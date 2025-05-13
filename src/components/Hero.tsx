@@ -1,7 +1,6 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { 
   Select,
   SelectContent,
@@ -9,8 +8,15 @@ import {
   SelectTrigger,
   SelectValue, 
 } from "@/components/ui/select";
+import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  const isMobile = useIsMobile();
+  const [category, setCategory] = React.useState("");
+  const [city, setCity] = React.useState("");
+
   const cities = [
     "Delhi NCR", 
     "Mumbai", 
@@ -35,8 +41,21 @@ const Hero = () => {
     "Catering"
   ];
 
+  const handleSearch = () => {
+    // In a real app, this would navigate to search results
+    console.log(`Searching for ${category} in ${city}`);
+    // Example navigation (would go to a search page in a real implementation)
+    navigate(`#search?category=${category}&city=${city}`);
+  };
+
+  const handleQuickSearch = (category: string) => {
+    setCategory(category);
+    console.log(`Quick searching for ${category}`);
+    navigate(`#search?category=${category}`);
+  };
+
   return (
-    <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-[85vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
       {/* Background image with overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0" 
@@ -48,21 +67,21 @@ const Hero = () => {
       </div>
       
       <div className="wedding-container relative z-10 text-center text-white mt-20">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 animate-fade-in">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 animate-fade-in">
           Plan Your Dream Wedding
         </h1>
-        <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-90 animate-fade-in">
+        <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-90 animate-fade-in">
           Find the best wedding vendors with thousands of trusted reviews
         </p>
         
-        <div className="bg-white rounded-lg shadow-xl p-4 md:p-5 mt-10 max-w-4xl mx-auto animate-fade-in">
+        <div className="bg-white rounded-lg shadow-xl p-3 md:p-5 mt-8 md:mt-10 max-w-4xl mx-auto animate-fade-in">
           <div className="text-wedding-navy text-left mb-3 font-medium text-lg">
             I am looking for...
           </div>
           
           <div className="flex flex-col md:flex-row gap-3">
             <div className="flex-1">
-              <Select>
+              <Select value={category} onValueChange={setCategory}>
                 <SelectTrigger className="w-full bg-white">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -77,7 +96,7 @@ const Hero = () => {
             </div>
             
             <div className="flex-1">
-              <Select>
+              <Select value={city} onValueChange={setCity}>
                 <SelectTrigger className="w-full bg-white">
                   <SelectValue placeholder="City" />
                 </SelectTrigger>
@@ -91,25 +110,26 @@ const Hero = () => {
               </Select>
             </div>
             
-            <Button className="bg-wedding-pink text-white hover:bg-wedding-pink/90 px-8">
+            <Button 
+              onClick={handleSearch} 
+              className="bg-wedding-pink text-white hover:bg-wedding-pink/90 px-6 sm:px-8 transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
+            >
               Search
             </Button>
           </div>
         </div>
         
-        <div className="mt-10 flex flex-wrap justify-center gap-3 animate-fade-in">
-          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
-            Venues
-          </Button>
-          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
-            Photographers
-          </Button>
-          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
-            Makeup Artists
-          </Button>
-          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
-            Wedding Planners
-          </Button>
+        <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-2 sm:gap-3 animate-fade-in">
+          {["Venues", "Photographers", "Makeup Artists", "Wedding Planners"].map((cat) => (
+            <Button 
+              key={cat}
+              onClick={() => handleQuickSearch(cat)}
+              variant="outline" 
+              className="border-white/30 text-white hover:bg-white/20 active:scale-95 transition-all duration-200"
+            >
+              {cat}
+            </Button>
+          ))}
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -83,6 +82,30 @@
   }
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-[1.02] active:scale-95;
+  }
+  
+  .interactive-card {
+    @apply cursor-pointer hover:shadow-lg transition-all duration-300;
+  }
+  
+  /* Add smooth scrolling to the document */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @layer components {
   .wedding-container {
     @apply container mx-auto px-4 md:px-8;
@@ -106,10 +129,10 @@
   }
   
   .vendor-card {
-    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
   }
   
   .category-card {
-    @apply relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg;
+    @apply relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
   }
 }

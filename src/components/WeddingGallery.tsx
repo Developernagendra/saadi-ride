@@ -1,8 +1,12 @@
 
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const WeddingGallery = () => {
+  const navigate = useNavigate();
+  
   const categories = [
     "All",
     "Bridal",
@@ -14,6 +18,7 @@ const WeddingGallery = () => {
   ];
   
   const [activeTab, setActiveTab] = useState("All");
+  const [expandedPhoto, setExpandedPhoto] = useState<number | null>(null);
   
   const photos = [
     {
@@ -67,16 +72,26 @@ const WeddingGallery = () => {
     ? photos 
     : photos.filter(photo => photo.category.includes(activeTab));
 
+  const handleViewMore = () => {
+    console.log("Viewing more inspiration");
+    navigate("#gallery");
+  };
+
+  const handlePhotoClick = (photoId: number) => {
+    console.log(`Clicked on photo ${photoId}`);
+    setExpandedPhoto(expandedPhoto === photoId ? null : photoId);
+  };
+
   return (
-    <section className="py-16 bg-wedding-white">
+    <section className="py-12 sm:py-16 bg-wedding-white">
       <div className="wedding-container">
         <h2 className="section-title">Wedding Inspiration Gallery</h2>
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
           Browse stunning photos from real weddings to get inspiration for your special day
         </p>
         
         <Tabs defaultValue="All" className="w-full" onValueChange={setActiveTab}>
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6 sm:mb-8 overflow-x-auto px-4 sm:px-0 no-scrollbar">
             <TabsList className="bg-wedding-cream/50">
               {categories.map((category) => (
                 <TabsTrigger 
@@ -91,27 +106,54 @@ const WeddingGallery = () => {
           </div>
           
           <TabsContent value={activeTab} className="mt-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 px-2 sm:px-0">
               {filteredPhotos.map((photo) => (
                 <div 
                   key={photo.id} 
-                  className="aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer group"
+                  className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer group ${
+                    expandedPhoto === photo.id ? 'ring-2 ring-wedding-pink' : ''
+                  }`}
+                  onClick={() => handlePhotoClick(photo.id)}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handlePhotoClick(photo.id);
+                    }
+                  }}
                 >
                   <img 
                     src={photo.image} 
                     alt="Wedding inspiration" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  
+                  {expandedPhoto === photo.id && (
+                    <div className="absolute inset-0 bg-black/40 flex items-end p-4">
+                      <Button 
+                        onClick={(e) => {
+                          e.stopPropagation(); 
+                          navigate(`#photo/${photo.id}`)
+                        }}
+                        className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
+                      >
+                        View Details
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </TabsContent>
         </Tabs>
         
-        <div className="text-center mt-10">
-          <button className="wedding-btn-primary">
+        <div className="text-center mt-8 sm:mt-10">
+          <Button 
+            onClick={handleViewMore}
+            className="wedding-btn-primary transform transition hover:scale-[1.01] active:scale-95"
+          >
             View More Inspiration
-          </button>
+          </Button>
         </div>
       </div>
     </section>
