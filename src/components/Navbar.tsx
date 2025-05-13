@@ -8,6 +8,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -39,12 +48,75 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { title: "Vendors", href: "#vendors" },
-    { title: "Real Weddings", href: "#real-weddings" },
-    { title: "Photos", href: "#photos" },
-    { title: "Ideas", href: "#ideas" },
-    { title: "Planning Tools", href: "#planning-tools" },
-    { title: "Blog", href: "#blog" },
+    { 
+      title: "Vendors", 
+      href: "/vendors",
+      services: [
+        { name: "Wedding Venues", href: "/vendors?category=venues" },
+        { name: "Photographers", href: "/vendors?category=photographers" },
+        { name: "Makeup Artists", href: "/vendors?category=makeup" },
+        { name: "Wedding Planners", href: "/vendors?category=planners" },
+        { name: "Bridal Wear", href: "/vendors?category=bridal-wear" },
+        { name: "Groom Wear", href: "/vendors?category=groom-wear" },
+        { name: "Catering", href: "/vendors?category=catering" },
+        { name: "Decorators", href: "/vendors?category=decorators" },
+      ]
+    },
+    { 
+      title: "Real Weddings", 
+      href: "#real-weddings",
+      services: [
+        { name: "Traditional Weddings", href: "#traditional" },
+        { name: "Destination Weddings", href: "#destination" },
+        { name: "Themed Weddings", href: "#themed" },
+        { name: "Celebrity Weddings", href: "#celebrity" },
+        { name: "Budget Weddings", href: "#budget" },
+      ]
+    },
+    { 
+      title: "Photos", 
+      href: "#photos",
+      services: [
+        { name: "Pre-Wedding Shoots", href: "#pre-wedding" },
+        { name: "Wedding Ceremonies", href: "#ceremonies" },
+        { name: "Reception Photos", href: "#reception" },
+        { name: "Bridal Portraits", href: "#bridal" },
+        { name: "Family Photos", href: "#family" },
+      ]
+    },
+    { 
+      title: "Ideas", 
+      href: "#ideas",
+      services: [
+        { name: "Decor Ideas", href: "#decor" },
+        { name: "Theme Ideas", href: "#themes" },
+        { name: "Wedding Cards", href: "#cards" },
+        { name: "Wedding Favors", href: "#favors" },
+        { name: "Return Gifts", href: "#gifts" },
+      ]
+    },
+    { 
+      title: "Planning Tools", 
+      href: "#planning-tools",
+      services: [
+        { name: "Checklist", href: "#checklist" },
+        { name: "Budget Planner", href: "#budget-planner" },
+        { name: "Guest List Manager", href: "#guest-list" },
+        { name: "Vendor Manager", href: "#vendor-manager" },
+        { name: "Wedding Website", href: "#wedding-website" },
+      ]
+    },
+    { 
+      title: "Blog", 
+      href: "#blog",
+      services: [
+        { name: "Wedding Tips", href: "#tips" },
+        { name: "Wedding Trends", href: "#trends" },
+        { name: "Vendor Spotlights", href: "#spotlights" },
+        { name: "Real Wedding Stories", href: "#stories" },
+        { name: "Expert Advice", href: "#advice" },
+      ]
+    },
   ];
 
   return (
@@ -65,20 +137,38 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-3 lg:space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.title}
-              to={link.href}
-              className="text-wedding-navy hover:text-wedding-pink hover:scale-105 active:scale-95 transition-all duration-300 font-medium px-1 py-1"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavigation(link.href);
-              }}
-            >
-              {link.title}
-            </Link>
-          ))}
+        <nav className="hidden md:block">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navLinks.map((link) => (
+                <NavigationMenuItem key={link.title}>
+                  <NavigationMenuTrigger className="text-wedding-navy hover:text-wedding-pink">
+                    {link.title}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                      {link.services.map((service) => (
+                        <li key={service.name} className="row-span-1">
+                          <NavigationMenuLink asChild>
+                            <Link
+                              to={service.href}
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleNavigation(service.href);
+                              }}
+                            >
+                              <div className="text-sm font-medium leading-none">{service.name}</div>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
 
         <div className="hidden md:flex items-center space-x-3">
@@ -119,16 +209,29 @@ const Navbar = () => {
               </Button>
             </SheetTrigger>
             <SheetContent>
-              <div className="flex flex-col space-y-4 mt-8">
+              <div className="flex flex-col space-y-1 mt-8">
                 {navLinks.map((link) => (
-                  <Button
-                    key={link.title}
-                    variant="ghost"
-                    className="text-lg justify-start py-2 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors"
-                    onClick={() => handleNavigation(link.href)}
-                  >
-                    {link.title}
-                  </Button>
+                  <div key={link.title} className="py-2">
+                    <Button
+                      variant="ghost"
+                      className="w-full text-lg justify-start py-2 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors font-semibold"
+                      onClick={() => handleNavigation(link.href)}
+                    >
+                      {link.title}
+                    </Button>
+                    <div className="ml-4 mt-1 flex flex-col space-y-1">
+                      {link.services.map((service) => (
+                        <Button
+                          key={service.name}
+                          variant="ghost"
+                          className="w-full text-sm justify-start py-1.5 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors"
+                          onClick={() => handleNavigation(service.href)}
+                        >
+                          {service.name}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
                 ))}
                 <div className="flex flex-col space-y-3 pt-4 mt-4 border-t">
                   <Button 
