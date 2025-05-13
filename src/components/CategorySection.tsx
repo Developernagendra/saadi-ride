@@ -58,8 +58,7 @@ const CategorySection = () => {
   ];
 
   const handleCategoryClick = (slug: string) => {
-    console.log(`Navigating to category: ${slug}`);
-    navigate(`#category/${slug}`);
+    navigate(`/vendors?category=${slug}`);
   };
 
   return (

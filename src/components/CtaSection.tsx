@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ContactForm from "@/components/ContactForm";
 
 const CtaSection = () => {
   const navigate = useNavigate();
@@ -69,6 +70,10 @@ const CtaSection = () => {
                 Create Free Account
               </Button>
             </div>
+            
+            <div className="mt-8 hidden md:block">
+              <ContactForm />
+            </div>
           </div>
           
           <div className="relative mt-6 md:mt-0">
@@ -85,6 +90,11 @@ const CtaSection = () => {
             <div className="absolute -bottom-5 -left-5 w-16 sm:w-28 h-16 sm:h-28 border-4 border-wedding-pink rounded-full z-0"></div>
             <div className="absolute -top-5 -right-5 w-12 sm:w-20 h-12 sm:h-20 border-4 border-wedding-gold opacity-70 rounded-full z-0"></div>
           </div>
+        </div>
+        
+        {/* Mobile Contact Form */}
+        <div className="mt-8 md:hidden">
+          <ContactForm />
         </div>
       </div>
     </section>

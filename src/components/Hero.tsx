@@ -42,16 +42,17 @@ const Hero = () => {
   ];
 
   const handleSearch = () => {
-    // In a real app, this would navigate to search results
-    console.log(`Searching for ${category} in ${city}`);
-    // Example navigation (would go to a search page in a real implementation)
-    navigate(`#search?category=${category}&city=${city}`);
+    // Navigate to vendors page with query params
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (city) params.append('city', city);
+    
+    navigate(`/vendors?${params.toString()}`);
   };
 
   const handleQuickSearch = (category: string) => {
-    setCategory(category);
-    console.log(`Quick searching for ${category}`);
-    navigate(`#search?category=${category}`);
+    setCategory(category.toLowerCase().replace(' ', '-'));
+    navigate(`/vendors?category=${category.toLowerCase().replace(' ', '-')}`);
   };
 
   return (
