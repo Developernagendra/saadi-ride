@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -136,3 +137,17 @@
     @apply relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
   }
 }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-from-right {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
