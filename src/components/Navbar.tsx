@@ -64,57 +64,57 @@ const Navbar = () => {
     },
     { 
       title: "Real Weddings", 
-      href: "#real-weddings",
+      href: "/real-weddings",
       services: [
-        { name: "Traditional Weddings", href: "#traditional" },
-        { name: "Destination Weddings", href: "#destination" },
-        { name: "Themed Weddings", href: "#themed" },
-        { name: "Celebrity Weddings", href: "#celebrity" },
-        { name: "Budget Weddings", href: "#budget" },
+        { name: "Traditional Weddings", href: "/real-weddings?type=traditional" },
+        { name: "Destination Weddings", href: "/real-weddings?type=destination" },
+        { name: "Themed Weddings", href: "/real-weddings?type=themed" },
+        { name: "Celebrity Weddings", href: "/real-weddings?type=celebrity" },
+        { name: "Budget Weddings", href: "/real-weddings?type=budget" },
       ]
     },
     { 
       title: "Photos", 
-      href: "#photos",
+      href: "/photos",
       services: [
-        { name: "Pre-Wedding Shoots", href: "#pre-wedding" },
-        { name: "Wedding Ceremonies", href: "#ceremonies" },
-        { name: "Reception Photos", href: "#reception" },
-        { name: "Bridal Portraits", href: "#bridal" },
-        { name: "Family Photos", href: "#family" },
+        { name: "Pre-Wedding Shoots", href: "/photos?category=pre-wedding" },
+        { name: "Wedding Ceremonies", href: "/photos?category=ceremonies" },
+        { name: "Reception Photos", href: "/photos?category=reception" },
+        { name: "Bridal Portraits", href: "/photos?category=bridal" },
+        { name: "Family Photos", href: "/photos?category=family" },
       ]
     },
     { 
       title: "Ideas", 
-      href: "#ideas",
+      href: "/ideas",
       services: [
-        { name: "Decor Ideas", href: "#decor" },
-        { name: "Theme Ideas", href: "#themes" },
-        { name: "Wedding Cards", href: "#cards" },
-        { name: "Wedding Favors", href: "#favors" },
-        { name: "Return Gifts", href: "#gifts" },
+        { name: "Decor Ideas", href: "/ideas?category=decor" },
+        { name: "Theme Ideas", href: "/ideas?category=themes" },
+        { name: "Wedding Cards", href: "/ideas?category=cards" },
+        { name: "Wedding Favors", href: "/ideas?category=favors" },
+        { name: "Return Gifts", href: "/ideas?category=gifts" },
       ]
     },
     { 
       title: "Planning Tools", 
-      href: "#planning-tools",
+      href: "/planning-tools",
       services: [
-        { name: "Checklist", href: "#checklist" },
-        { name: "Budget Planner", href: "#budget-planner" },
-        { name: "Guest List Manager", href: "#guest-list" },
-        { name: "Vendor Manager", href: "#vendor-manager" },
-        { name: "Wedding Website", href: "#wedding-website" },
+        { name: "Checklist", href: "/planning-tools#checklist" },
+        { name: "Budget Planner", href: "/planning-tools#budget" },
+        { name: "Guest List Manager", href: "/planning-tools#guests" },
+        { name: "Vendor Manager", href: "/planning-tools#vendors" },
+        { name: "Wedding Website", href: "/planning-tools#website" },
       ]
     },
     { 
       title: "Blog", 
-      href: "#blog",
+      href: "/blog",
       services: [
-        { name: "Wedding Tips", href: "#tips" },
-        { name: "Wedding Trends", href: "#trends" },
-        { name: "Vendor Spotlights", href: "#spotlights" },
-        { name: "Real Wedding Stories", href: "#stories" },
-        { name: "Expert Advice", href: "#advice" },
+        { name: "Wedding Tips", href: "/blog?category=tips" },
+        { name: "Wedding Trends", href: "/blog?category=trends" },
+        { name: "Vendor Spotlights", href: "/blog?category=spotlights" },
+        { name: "Real Wedding Stories", href: "/blog?category=stories" },
+        { name: "Expert Advice", href: "/blog?category=advice" },
       ]
     },
   ];
