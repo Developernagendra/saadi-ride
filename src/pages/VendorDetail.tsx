@@ -8,9 +8,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import Map from "@/components/Map";
 import {
   Calendar,
   Check,
+  ChevronDown,
+  ChevronRight,
+  ExternalLink,
   Heart,
   Mail,
   MapPin,
@@ -26,6 +30,7 @@ const VendorDetail = () => {
   const { toast } = useToast();
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("about");
+  const [showFullDescription, setShowFullDescription] = useState(false);
   
   // In a real app, this data would be fetched from an API based on the slug
   const vendor = {
@@ -34,7 +39,7 @@ const VendorDetail = () => {
     category: "Venue",
     location: "Chattarpur, Delhi NCR",
     price: "₹3,50,000",
-    description: "Royal Gardens is a luxurious wedding venue situated in the heart of Chattarpur, Delhi NCR. With sprawling lawns and elegant interiors, it provides the perfect backdrop for your dream wedding. Our venue can accommodate up to 1000 guests and offers comprehensive services including catering, decoration, and event management.",
+    description: "Royal Gardens is a luxurious wedding venue situated in the heart of Chattarpur, Delhi NCR. With sprawling lawns and elegant interiors, it provides the perfect backdrop for your dream wedding. Our venue can accommodate up to 1000 guests and offers comprehensive services including catering, decoration, and event management. The Royal Gardens team works closely with couples to understand their vision and bring it to life with meticulous attention to detail. Our dedicated event coordinators ensure that every aspect of your wedding day is planned and executed flawlessly, allowing you to relax and enjoy your celebration. From the moment you step onto our property until the last guest departs, our staff is committed to providing exceptional service that exceeds your expectations. The venue features both indoor and outdoor spaces that can be customized to match your theme and preferences. Our in-house catering team specializes in multi-cuisine menus that can be tailored to your taste and dietary requirements. We also collaborate with top wedding professionals including photographers, entertainers, and florists to offer complete wedding packages that simplify your planning process.",
     features: [
       "Capacity for 500-1000 guests",
       "Indoor and outdoor spaces",
@@ -145,6 +150,16 @@ const VendorDetail = () => {
     });
   };
 
+  // Function to truncate text to a number of words and add ellipsis
+  const truncateText = (text, wordCount) => {
+    const words = text.split(' ');
+    if (words.length <= wordCount) return text;
+    
+    return words.slice(0, wordCount).join(' ') + '...';
+  };
+
+  const shortDescription = truncateText(vendor.description, 40);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -243,7 +258,21 @@ const VendorDetail = () => {
                   
                   <TabsContent value="about" className="p-6 focus-visible:outline-none focus-visible:ring-0">
                     <h2 className="text-xl font-heading font-semibold mb-3">About {vendor.name}</h2>
-                    <p className="text-gray-700 mb-6">{vendor.description}</p>
+                    <div className="text-gray-700 mb-6">
+                      <p>{showFullDescription ? vendor.description : shortDescription}</p>
+                      {vendor.description.length > shortDescription.length && (
+                        <button 
+                          onClick={() => setShowFullDescription(!showFullDescription)}
+                          className="mt-2 text-wedding-pink hover:text-wedding-pink/80 flex items-center font-medium transition-colors"
+                        >
+                          {showFullDescription ? (
+                            <>Show Less <ChevronDown className="ml-1 w-4 h-4" /></>
+                          ) : (
+                            <>Read More <ChevronRight className="ml-1 w-4 h-4" /></>
+                          )}
+                        </button>
+                      )}
+                    </div>
                     
                     <h3 className="text-lg font-semibold mb-2">Features & Amenities</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
@@ -260,9 +289,9 @@ const VendorDetail = () => {
                       <MapPin size={18} className="text-wedding-pink mr-2" />
                       {vendor.address}
                     </p>
-                    {/* Placeholder for map */}
-                    <div className="w-full h-48 bg-gray-200 rounded-md mb-6 flex items-center justify-center">
-                      <p className="text-gray-600">Map view would be displayed here</p>
+                    {/* Map integration */}
+                    <div className="w-full rounded-md mb-6">
+                      <Map address={vendor.address} />
                     </div>
                   </TabsContent>
                   
@@ -400,6 +429,22 @@ const VendorDetail = () => {
                       <p className="font-medium">{vendor.address}</p>
                     </div>
                   </div>
+                  {vendor.website && (
+                    <div className="flex items-center">
+                      <ExternalLink size={18} className="text-wedding-pink mr-3" />
+                      <div>
+                        <p className="text-sm text-gray-500">Website</p>
+                        <a 
+                          href={`https://${vendor.website}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="font-medium text-wedding-navy hover:text-wedding-pink transition-colors"
+                        >
+                          {vendor.website}
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 <Separator className="my-4" />
