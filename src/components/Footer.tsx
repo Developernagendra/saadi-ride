@@ -7,11 +7,11 @@ const Footer = () => {
     {
       title: "For Couples",
       links: [
-        { name: "Find Vendors", url: "#" },
-        { name: "Wedding Website", url: "#" },
-        { name: "Wedding Checklist", url: "#" },
-        { name: "Budget Planner", url: "#" },
-        { name: "Guest List Manager", url: "#" },
+        { name: "Find Vendors", url: "/vendors" },
+        { name: "Wedding Website", url: "/planning-tools" },
+        { name: "Wedding Checklist", url: "/planning-tools" },
+        { name: "Budget Planner", url: "/planning-tools" },
+        { name: "Guest List Manager", url: "/planning-tools" },
       ],
     },
     {
@@ -27,21 +27,21 @@ const Footer = () => {
     {
       title: "Inspiration",
       links: [
-        { name: "Real Weddings", url: "#" },
-        { name: "Photos", url: "#" },
-        { name: "Wedding Blog", url: "#" },
-        { name: "Wedding Ideas", url: "#" },
-        { name: "Trending", url: "#" },
+        { name: "Real Weddings", url: "/real-weddings" },
+        { name: "Photos", url: "/photos" },
+        { name: "Wedding Blog", url: "/blog" },
+        { name: "Wedding Ideas", url: "/ideas" },
+        { name: "Trending", url: "/ideas" },
       ],
     },
     {
       title: "About Us",
       links: [
-        { name: "Our Story", url: "#" },
-        { name: "Careers", url: "#" },
-        { name: "Press", url: "#" },
-        { name: "Contact Us", url: "#" },
-        { name: "Terms & Privacy", url: "#" },
+        { name: "Our Story", url: "/about/our-story" },
+        { name: "Careers", url: "/about/careers" },
+        { name: "Press", url: "/about/press" },
+        { name: "Contact Us", url: "/about/contact" },
+        { name: "Terms & Privacy", url: "/about/terms-privacy" },
       ],
     },
   ];
@@ -106,13 +106,13 @@ const Footer = () => {
               © 2025 WedMeGood. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex space-x-6">
-              <Link to="#" className="text-gray-400 hover:text-wedding-pink text-sm">
+              <Link to="/about/terms-privacy" className="text-gray-400 hover:text-wedding-pink text-sm">
                 Privacy Policy
               </Link>
-              <Link to="#" className="text-gray-400 hover:text-wedding-pink text-sm">
+              <Link to="/about/terms-privacy" className="text-gray-400 hover:text-wedding-pink text-sm">
                 Terms of Service
               </Link>
-              <Link to="#" className="text-gray-400 hover:text-wedding-pink text-sm">
+              <Link to="/about/terms-privacy" className="text-gray-400 hover:text-wedding-pink text-sm">
                 Cookie Policy
               </Link>
             </div>
