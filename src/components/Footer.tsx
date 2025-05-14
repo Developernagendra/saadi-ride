@@ -1,47 +1,60 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { 
+  Users, Globe, CalendarCheck, Wallet, List,
+  UserPlus, User, Megaphone, Star, HelpCircle,
+  Heart, Image, Book, Bulb, TrendingUp
+} from "lucide-react";
 
 const Footer = () => {
   const footerLinks = [
     {
       title: "For Couples",
+      icon: <Users size={16} />,
+      description: "Planning your big day? We've got all the tools you need.",
       links: [
-        { name: "Find Vendors", url: "/vendors" },
-        { name: "Wedding Website", url: "/planning-tools" },
-        { name: "Wedding Checklist", url: "/planning-tools" },
-        { name: "Budget Planner", url: "/planning-tools" },
-        { name: "Guest List Manager", url: "/planning-tools" },
+        { name: "Find Vendors", icon: <Users size={14} />, url: "/vendors", description: "Discover top-rated wedding vendors in your area" },
+        { name: "Wedding Website", icon: <Globe size={14} />, url: "/planning-tools", description: "Create a beautiful custom wedding website for free" },
+        { name: "Wedding Checklist", icon: <CalendarCheck size={14} />, url: "/planning-tools", description: "Stay organized with our comprehensive timeline" },
+        { name: "Budget Planner", icon: <Wallet size={14} />, url: "/planning-tools", description: "Track expenses and manage your wedding budget" },
+        { name: "Guest List Manager", icon: <List size={14} />, url: "/planning-tools", description: "Organize your guest list and track RSVPs" },
       ],
     },
     {
       title: "For Vendors",
+      icon: <Star size={16} />,
+      description: "Grow your wedding business with our platform.",
       links: [
-        { name: "Join as Vendor", url: "#" },
-        { name: "Vendor Login", url: "#" },
-        { name: "Advertise with Us", url: "#" },
-        { name: "Vendor Success Stories", url: "#" },
-        { name: "Vendor FAQ", url: "#" },
+        { name: "Join as Vendor", icon: <UserPlus size={14} />, url: "#", description: "List your services and reach engaged couples" },
+        { name: "Vendor Login", icon: <User size={14} />, url: "#", description: "Access your vendor dashboard and manage bookings" },
+        { name: "Advertise with Us", icon: <Megaphone size={14} />, url: "#", description: "Increase visibility with premium advertising options" },
+        { name: "Vendor Success Stories", icon: <Star size={14} />, url: "#", description: "Read testimonials from successful wedding vendors" },
+        { name: "Vendor FAQ", icon: <HelpCircle size={14} />, url: "#", description: "Find answers to common questions about our platform" },
       ],
     },
     {
       title: "Inspiration",
+      icon: <Bulb size={16} />,
+      description: "Get inspired for your perfect wedding day.",
       links: [
-        { name: "Real Weddings", url: "/real-weddings" },
-        { name: "Photos", url: "/photos" },
-        { name: "Wedding Blog", url: "/blog" },
-        { name: "Wedding Ideas", url: "/ideas" },
-        { name: "Trending", url: "/ideas" },
+        { name: "Real Weddings", icon: <Heart size={14} />, url: "/real-weddings", description: "Browse real weddings from around the world" },
+        { name: "Photos", icon: <Image size={14} />, url: "/photos", description: "Explore thousands of wedding photos for inspiration" },
+        { name: "Wedding Blog", icon: <Book size={14} />, url: "/blog", description: "Read the latest wedding trends and tips" },
+        { name: "Wedding Ideas", icon: <Bulb size={14} />, url: "/ideas", description: "Discover creative ideas for your wedding" },
+        { name: "Trending", icon: <TrendingUp size={14} />, url: "/ideas", description: "See what's popular in weddings right now" },
       ],
     },
     {
       title: "About Us",
+      icon: <Users size={16} />,
+      description: "Learn more about WedMeGood and our mission.",
       links: [
-        { name: "Our Story", url: "/about/our-story" },
-        { name: "Careers", url: "/about/careers" },
-        { name: "Press", url: "/about/press" },
-        { name: "Contact Us", url: "/about/contact" },
-        { name: "Terms & Privacy", url: "/about/terms-privacy" },
+        { name: "Our Story", url: "/about/our-story", description: "Learn about how WedMeGood started" },
+        { name: "Careers", url: "/about/careers", description: "Join our team and help couples plan their dream weddings" },
+        { name: "Press", url: "/about/press", description: "News and media coverage about WedMeGood" },
+        { name: "Contact Us", url: "/about/contact", description: "Get in touch with our team" },
+        { name: "Terms & Privacy", url: "/about/terms-privacy", description: "Our policies and terms of service" },
       ],
     },
   ];
@@ -82,16 +95,22 @@ const Footer = () => {
           </div>
           
           {footerLinks.map((column) => (
-            <div key={column.title}>
-              <h3 className="text-xl font-semibold mb-4">{column.title}</h3>
+            <div key={column.title} className="footer-column">
+              <div className="flex items-center gap-2 mb-4">
+                {column.icon && <span className="text-wedding-pink">{column.icon}</span>}
+                <h3 className="text-xl font-semibold">{column.title}</h3>
+              </div>
+              {column.description && <p className="text-gray-300 text-sm mb-4">{column.description}</p>}
               <ul className="space-y-2">
                 {column.links.map((link) => (
                   <li key={link.name}>
                     <Link 
                       to={link.url} 
-                      className="text-gray-300 hover:text-wedding-pink transition-colors"
+                      className="flex items-center gap-2 text-gray-300 hover:text-wedding-pink transition-colors group"
+                      title={link.description}
                     >
-                      {link.name}
+                      {link.icon && <span className="text-gray-400 group-hover:text-wedding-pink">{link.icon}</span>}
+                      <span>{link.name}</span>
                     </Link>
                   </li>
                 ))}
