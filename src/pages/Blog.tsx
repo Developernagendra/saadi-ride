@@ -1,5 +1,6 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Search, CalendarDays, BookOpen } from "lucide-react";
 
 const Blog = () => {
+  const navigate = useNavigate();
+  
   const featuredPost = {
     id: "featured-1",
     title: "10 Wedding Trends That Will Be Huge in 2025",
@@ -18,7 +21,8 @@ const Blog = () => {
     category: "Trends",
     date: "May 10, 2024",
     author: "Priya Sharma",
-    authorImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1528&auto=format&fit=crop"
+    authorImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1528&auto=format&fit=crop",
+    slug: "10-wedding-trends-2025"
   };
 
   const blogPosts = [
@@ -29,7 +33,8 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop",
       category: "Planning",
       date: "May 5, 2024",
-      readTime: "7 min read"
+      readTime: "7 min read",
+      slug: "choose-perfect-wedding-venue"
     },
     {
       id: 2,
@@ -38,7 +43,8 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1522673607200-164d1b3ce551?q=80&w=1470&auto=format&fit=crop",
       category: "Budget",
       date: "April 28, 2024",
-      readTime: "5 min read"
+      readTime: "5 min read",
+      slug: "budget-friendly-wedding-ideas"
     },
     {
       id: 3,
@@ -47,7 +53,8 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1470&auto=format&fit=crop",
       category: "Tips",
       date: "April 21, 2024",
-      readTime: "4 min read"
+      readTime: "4 min read",
+      slug: "wedding-day-emergency-kit"
     },
     {
       id: 4,
@@ -56,7 +63,8 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?q=80&w=1476&auto=format&fit=crop",
       category: "Traditions",
       date: "April 15, 2024",
-      readTime: "8 min read"
+      readTime: "8 min read",
+      slug: "cultural-wedding-traditions"
     },
     {
       id: 5,
@@ -65,7 +73,8 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1470&auto=format&fit=crop",
       category: "Vendors",
       date: "April 8, 2024",
-      readTime: "6 min read"
+      readTime: "6 min read",
+      slug: "questions-for-wedding-photographer"
     },
     {
       id: 6,
@@ -74,12 +83,23 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1470&auto=format&fit=crop",
       category: "Ceremony",
       date: "April 1, 2024",
-      readTime: "5 min read"
+      readTime: "5 min read",
+      slug: "writing-wedding-vows"
     }
   ];
 
   const categories = ["All", "Planning", "Budget", "Trends", "Tips", "Vendors", "Traditions", "Ceremony"];
-  const [activeCategory, setActiveCategory] = React.useState("All");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  // Navigate to blog post page
+  const handleReadArticle = (slug) => {
+    navigate(`/blog/${slug}`);
+  };
+
+  // Filter posts by category
+  const filteredPosts = activeCategory === "All" 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === activeCategory);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -142,6 +162,7 @@ const Blog = () => {
                   <Button 
                     variant="outline" 
                     className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+                    onClick={() => handleReadArticle(featuredPost.slug)}
                   >
                     Read Article
                   </Button>
@@ -170,7 +191,7 @@ const Blog = () => {
 
         <section className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
+            {filteredPosts.map((post) => (
               <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="relative">
                   <AspectRatio ratio={16/9}>
@@ -196,6 +217,7 @@ const Blog = () => {
                   <Button 
                     variant="outline" 
                     className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+                    onClick={() => handleReadArticle(post.slug)}
                   >
                     <BookOpen className="h-4 w-4 mr-2" />
                     Read More

@@ -13,6 +13,7 @@ import Photos from "./pages/Photos";
 import Ideas from "./pages/Ideas";
 import PlanningTools from "./pages/PlanningTools";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import AboutUs from "./pages/AboutUs";
 import OurStory from "./pages/OurStory";
 import Careers from "./pages/Careers";
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/ideas" element={<Ideas />} />
           <Route path="/planning-tools" element={<PlanningTools />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           
           {/* About Us section routes */}
           <Route path="/about" element={<AboutUs />} />
