@@ -17,12 +17,16 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
+import AuthDialog from "@/components/auth/AuthDialog";
+import UserAvatar from "@/components/auth/UserAvatar";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { isAuthenticated } = useAuth();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -172,19 +176,17 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-3">
-          <Button 
-            variant="outline" 
-            className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 transition-all duration-300 hover:scale-[1.02] active:scale-95"
-            onClick={() => handleNavigation("#login")}
-          >
-            Login
-          </Button>
-          <Button 
-            className="bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 hover:scale-[1.02] active:scale-95"
-            onClick={() => handleNavigation("#signup")}
-          >
-            Sign Up
-          </Button>
+          {isAuthenticated ? (
+            <UserAvatar />
+          ) : (
+            <>
+              <AuthDialog type="login" />
+              <AuthDialog 
+                type="signup" 
+                className="bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 hover:scale-[1.02] active:scale-95"
+              />
+            </>
+          )}
         </div>
 
         {/* Mobile Navigation */}
@@ -234,23 +236,55 @@ const Navbar = () => {
                   </div>
                 ))}
                 <div className="flex flex-col space-y-3 pt-4 mt-4 border-t">
-                  <Button 
-                    variant="outline" 
-                    className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
-                    onClick={() => handleNavigation("#login")}
-                  >
-                    Login
-                  </Button>
-                  <Button 
-                    className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
-                    onClick={() => handleNavigation("#signup")}
-                  >
-                    Sign Up
-                  </Button>
+                  {isAuthenticated ? (
+                    <Button 
+                      variant="outline" 
+                      className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
+                      onClick={() => {
+                        const { logout } = require("@/contexts/AuthContext").useAuth();
+                        logout();
+                        setIsOpen(false);
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  ) : (
+                    <>
+                      <Button 
+                        variant="outline" 
+                        className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
+                        onClick={() => {
+                          setIsOpen(false);
+                          setTimeout(() => {
+                            document.querySelector('[data-trigger="login"]')?.click();
+                          }, 100);
+                        }}
+                      >
+                        Login
+                      </Button>
+                      <Button 
+                        className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
+                        onClick={() => {
+                          setIsOpen(false);
+                          setTimeout(() => {
+                            document.querySelector('[data-trigger="signup"]')?.click();
+                          }, 100);
+                        }}
+                      >
+                        Sign Up
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </SheetContent>
           </Sheet>
+          
+          {/* Hidden triggers for dialogs */}
+          <div className="hidden">
+            <AuthDialog type="login" trigger={<button data-trigger="login">Login</button>} />
+            <AuthDialog type="signup" trigger={<button data-trigger="signup">Sign Up</button>} />
+          </div>
         </div>
       </div>
     </header>
