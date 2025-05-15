@@ -28,7 +28,8 @@ const FeaturedVendors = () => {
       price: "₹1,25,000",
       image: "https://images.unsplash.com/photo-1519741347686-c1e0917af82d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
       rating: 4.9,
-      reviews: 156
+      reviews: 156,
+      slug: "moments-photography"
     },
     {
       id: 3,
@@ -38,7 +39,8 @@ const FeaturedVendors = () => {
       price: "₹45,000",
       image: "https://images.unsplash.com/photo-1596704017254-9lean0b27a4c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
       rating: 4.7,
-      reviews: 98
+      reviews: 98,
+      slug: "glamour-artists"
     },
     {
       id: 4,
@@ -48,7 +50,8 @@ const FeaturedVendors = () => {
       price: "₹2,75,000",
       image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
       rating: 4.6,
-      reviews: 87
+      reviews: 87,
+      slug: "elite-events"
     },
     {
       id: 5,
@@ -58,7 +61,8 @@ const FeaturedVendors = () => {
       price: "₹1,50,000",
       image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
       rating: 4.8,
-      reviews: 112
+      reviews: 112,
+      slug: "flower-fantasies"
     },
     {
       id: 6,
@@ -68,7 +72,8 @@ const FeaturedVendors = () => {
       price: "₹1,200 per plate",
       image: "https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
       rating: 4.7,
-      reviews: 135
+      reviews: 135,
+      slug: "spice-delights"
     },
   ];
 
