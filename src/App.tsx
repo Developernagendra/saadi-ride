@@ -27,6 +27,7 @@ import VendorLogin from "./pages/VendorLogin";
 import JoinAsVendor from "./pages/JoinAsVendor";
 import VendorSuccess from "./pages/VendorSuccess";
 import Advertise from "./pages/Advertise";
+import CabServices from "./pages/CabServices";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/vendors/advertise" element={<Advertise />} />
             <Route path="/vendors/success" element={<VendorSuccess />} />
             <Route path="/vendors/faq" element={<VendorFAQ />} />
+            <Route path="/vendors/cab-services" element={<CabServices />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
