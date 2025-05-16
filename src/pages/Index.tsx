@@ -13,7 +13,7 @@ import SupportButton from "@/components/SupportButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <Navbar />
       <main className="flex-grow">
         <Hero />
@@ -24,7 +24,9 @@ const Index = () => {
         <CtaSection />
       </main>
       <Footer />
-      <Chatbot />
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-4 items-end">
+        <Chatbot />
+      </div>
       <SupportButton />
     </div>
   );

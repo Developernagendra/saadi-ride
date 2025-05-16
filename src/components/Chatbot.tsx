@@ -1,8 +1,8 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageSquare, Send, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Message {
   id: number;
@@ -26,6 +26,7 @@ const Chatbot = () => {
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isMobile = useIsMobile();
   
   // Auto-scroll to bottom of messages
   useEffect(() => {
@@ -104,11 +105,15 @@ const Chatbot = () => {
     return "Thanks for your message! How else can I help with your wedding planning? Feel free to ask about venues, photographers, outfits, budgeting, or any other wedding-related topics!";
   };
 
+  const chatWindowClasses = isMobile
+    ? "fixed inset-0 z-50 flex flex-col bg-white" // fullscreen on mobile
+    : "fixed bottom-24 right-4 md:right-8 w-80 sm:w-96 bg-white rounded-lg shadow-xl z-40 overflow-hidden transition-all duration-300 ease-in-out";
+
   return (
     <>
       {/* Chat button */}
       <Button
-        className={`fixed bottom-24 right-4 md:right-8 rounded-full w-12 h-12 p-0 shadow-lg flex items-center justify-center z-50 ${
+        className={`rounded-full w-12 h-12 p-0 shadow-lg flex items-center justify-center z-50 ${
           isOpen ? "bg-wedding-navy" : "bg-wedding-pink"
         }`}
         onClick={() => setIsOpen(!isOpen)}
@@ -118,19 +123,31 @@ const Chatbot = () => {
       
       {/* Chat window */}
       <div
-        className={`fixed bottom-24 right-4 md:right-8 w-80 sm:w-96 bg-white rounded-lg shadow-xl z-40 overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+        className={`${chatWindowClasses} ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-        style={{ height: isOpen ? "450px" : "0" }}
+        style={!isMobile ? { height: isOpen ? "450px" : "0" } : {}}
       >
         {/* Chat header */}
-        <div className="bg-wedding-pink p-4 text-white">
-          <h3 className="font-medium">Wedding Planning Assistant</h3>
-          <p className="text-xs opacity-80">We're here to help with your wedding planning</p>
+        <div className="bg-wedding-pink p-4 text-white flex justify-between items-center">
+          <div>
+            <h3 className="font-medium">Wedding Planning Assistant</h3>
+            <p className="text-xs opacity-80">We're here to help with your wedding planning</p>
+          </div>
+          {isMobile && (
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-white p-1 h-auto"
+              onClick={() => setIsOpen(false)}
+            >
+              <X size={20} />
+            </Button>
+          )}
         </div>
         
         {/* Chat messages */}
-        <div className="p-4 h-[320px] overflow-y-auto">
+        <div className={`p-4 ${isMobile ? "flex-grow overflow-y-auto" : "h-[320px] overflow-y-auto"}`}>
           {messages.map((msg) => (
             <div
               key={msg.id}

@@ -10,19 +10,88 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Headset } from "lucide-react";
+import { Headset, LifeBuoy } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-const SupportButton = () => {
-  const { toast } = useToast();
+const SupportForm = ({ 
+  onSubmit 
+}: { 
+  onSubmit: (e: React.FormEvent) => void 
+}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [open, setOpen] = useState(false);
 
+  return (
+    <form onSubmit={(e) => {
+      onSubmit(e);
+      setName("");
+      setEmail("");
+      setMessage("");
+    }}>
+      <div className="grid gap-4 py-4">
+        <div className="grid gap-2">
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your name"
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="message">Message</Label>
+          <Textarea
+            id="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="How can we help you?"
+            className="min-h-[100px]"
+            required
+          />
+        </div>
+      </div>
+      <DialogFooter className="sm:justify-end">
+        <Button type="submit" className="bg-wedding-pink hover:bg-wedding-pink/90 w-full sm:w-auto">
+          Send Message
+        </Button>
+      </DialogFooter>
+    </form>
+  );
+};
+
+const SupportButton = () => {
+  const { toast } = useToast();
+  const [open, setOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isMobile = useIsMobile();
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -33,73 +102,62 @@ const SupportButton = () => {
       duration: 3000,
     });
     
-    // Reset form and close dialog
-    setName("");
-    setEmail("");
-    setMessage("");
+    // Close both dialog and drawer
     setOpen(false);
+    setDrawerOpen(false);
   };
 
   return (
     <>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button
-            className="fixed bottom-4 right-4 md:right-8 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50"
-          >
-            <Headset size={18} /> 24/7 Support
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>24/7 Support</DialogTitle>
-            <DialogDescription>
-              Our support team is available 24/7 to help with any questions or issues.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleSubmit}>
-            <div className="grid gap-4 py-4">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="How can we help you?"
-                  className="min-h-[100px]"
-                  required
-                />
-              </div>
+      {isMobile ? (
+        // Mobile version - use drawer
+        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+          <DrawerTrigger asChild>
+            <Button
+              className="fixed bottom-4 right-4 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50 px-4 py-2"
+              size="sm"
+            >
+              <Headset className="h-4 w-4" /> Support
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent className="px-4 pb-6">
+            <DrawerHeader className="text-center pt-4">
+              <DrawerTitle className="text-xl font-heading">24/7 Support</DrawerTitle>
+              <DrawerDescription>
+                Our support team is available 24/7 to help with any questions or issues.
+              </DrawerDescription>
+            </DrawerHeader>
+            <div className="px-4">
+              <SupportForm onSubmit={handleSubmit} />
             </div>
-            <DialogFooter>
-              <Button type="submit" className="bg-wedding-pink hover:bg-wedding-pink/90">
-                Send Message
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button variant="outline" className="w-full">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      ) : (
+        // Desktop version - use dialog
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button
+              className="fixed bottom-4 right-8 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50"
+            >
+              <LifeBuoy size={18} /> 24/7 Support
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>24/7 Support</DialogTitle>
+              <DialogDescription>
+                Our support team is available 24/7 to help with any questions or issues.
+              </DialogDescription>
+            </DialogHeader>
+            <SupportForm onSubmit={handleSubmit} />
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 };
