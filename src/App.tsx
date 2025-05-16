@@ -21,6 +21,12 @@ import Careers from "./pages/Careers";
 import Press from "./pages/Press";
 import ContactUs from "./pages/ContactUs";
 import TermsAndPrivacy from "./pages/TermsAndPrivacy";
+import AllIdeas from "./pages/AllIdeas";
+import VendorFAQ from "./pages/VendorFAQ";
+import VendorLogin from "./pages/VendorLogin";
+import JoinAsVendor from "./pages/JoinAsVendor";
+import VendorSuccess from "./pages/VendorSuccess";
+import Advertise from "./pages/Advertise";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +44,7 @@ const App = () => (
             <Route path="/real-weddings" element={<RealWeddings />} />
             <Route path="/photos" element={<Photos />} />
             <Route path="/ideas" element={<Ideas />} />
+            <Route path="/ideas/all" element={<AllIdeas />} />
             <Route path="/planning-tools" element={<PlanningTools />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
@@ -49,6 +56,13 @@ const App = () => (
             <Route path="/about/press" element={<Press />} />
             <Route path="/about/contact" element={<ContactUs />} />
             <Route path="/about/terms-privacy" element={<TermsAndPrivacy />} />
+            
+            {/* Vendor section routes */}
+            <Route path="/vendors/join" element={<JoinAsVendor />} />
+            <Route path="/vendors/login" element={<VendorLogin />} />
+            <Route path="/vendors/advertise" element={<Advertise />} />
+            <Route path="/vendors/success" element={<VendorSuccess />} />
+            <Route path="/vendors/faq" element={<VendorFAQ />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

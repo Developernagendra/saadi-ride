@@ -5,8 +5,13 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarCheck, ListCheck, Users, Book, Wallet, Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 const PlanningTools = () => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  
   const tools = [
     {
       id: "checklist",
@@ -65,6 +70,27 @@ const PlanningTools = () => {
     ]
   };
 
+  const handleToolClick = (id: string, comingSoon: boolean) => {
+    if (comingSoon) {
+      toast({
+        title: "Coming Soon!",
+        description: "This tool will be available shortly. We'll notify you when it's ready.",
+        duration: 3000,
+      });
+    } else {
+      navigate(`/planning-tools#${id}`);
+    }
+  };
+
+  const handleTryItNow = () => {
+    navigate("/planning-tools#checklist");
+  };
+
+  const handleCreateAccount = () => {
+    const signupButton = document.querySelector('[data-trigger="signup"]') as HTMLButtonElement | null;
+    if (signupButton) signupButton.click();
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -100,7 +126,7 @@ const PlanningTools = () => {
                   </li>
                 ))}
               </ul>
-              <Button className="bg-wedding-pink text-white hover:bg-wedding-pink/90">
+              <Button className="bg-wedding-pink text-white hover:bg-wedding-pink/90" onClick={handleTryItNow}>
                 Try It Now
               </Button>
             </div>
@@ -110,7 +136,7 @@ const PlanningTools = () => {
                   <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">1</div>
                   <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
                     <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked />
+                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked readOnly />
                       <span className="ml-2 text-gray-700 line-through">Set your wedding date</span>
                     </div>
                   </div>
@@ -119,7 +145,7 @@ const PlanningTools = () => {
                   <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">2</div>
                   <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
                     <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked />
+                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked readOnly />
                       <span className="ml-2 text-gray-700 line-through">Create your wedding budget</span>
                     </div>
                   </div>
@@ -128,7 +154,7 @@ const PlanningTools = () => {
                   <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">3</div>
                   <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
                     <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked />
+                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked readOnly />
                       <span className="ml-2 text-gray-700 line-through">Book your venue</span>
                     </div>
                   </div>
@@ -181,7 +207,7 @@ const PlanningTools = () => {
                     className={tool.comingSoon ? 
                       "w-full bg-gray-100 text-gray-500 hover:bg-gray-200 cursor-not-allowed" : 
                       "w-full bg-wedding-pink text-white hover:bg-wedding-pink/90"}
-                    disabled={tool.comingSoon}
+                    onClick={() => handleToolClick(tool.id, tool.comingSoon)}
                   >
                     {tool.comingSoon ? "Notify Me" : "Get Started"}
                   </Button>
@@ -202,10 +228,17 @@ const PlanningTools = () => {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button className="bg-wedding-pink text-white hover:bg-wedding-pink/90">
+            <Button 
+              className="bg-wedding-pink text-white hover:bg-wedding-pink/90"
+              onClick={handleCreateAccount}
+            >
               Create Free Account
             </Button>
-            <Button variant="outline" className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10">
+            <Button 
+              variant="outline" 
+              className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+              onClick={() => navigate("/about")}
+            >
               Learn More
             </Button>
           </div>

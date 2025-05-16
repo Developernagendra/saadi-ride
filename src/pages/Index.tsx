@@ -8,6 +8,8 @@ import WeddingGallery from "@/components/WeddingGallery";
 import TestimonialSection from "@/components/TestimonialSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
+import SupportButton from "@/components/SupportButton";
 
 const Index = () => {
   return (
@@ -22,6 +24,8 @@ const Index = () => {
         <CtaSection />
       </main>
       <Footer />
+      <Chatbot />
+      <SupportButton />
     </div>
   );
 };

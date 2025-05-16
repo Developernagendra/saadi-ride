@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,8 +6,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Ideas = () => {
+  const navigate = useNavigate();
+  
   const ideaCategories = [
     {
       id: "decor",
@@ -92,6 +94,14 @@ const Ideas = () => {
     }
   ];
 
+  const handleReadMore = (ideaId: number) => {
+    navigate(`/blog/${ideaId}`);
+  };
+
+  const handleExploreAllIdeas = () => {
+    navigate("/ideas/all");
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -132,6 +142,7 @@ const Ideas = () => {
                   <Button 
                     variant="outline" 
                     className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+                    onClick={() => handleReadMore(idea.id)}
                   >
                     <BookOpen className="h-4 w-4 mr-2" />
                     Read More
@@ -152,6 +163,7 @@ const Ideas = () => {
               <div 
                 key={category.id} 
                 className="group cursor-pointer rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-shadow duration-300"
+                onClick={() => navigate(`/ideas?category=${category.id}`)}
               >
                 <AspectRatio ratio={16/9}>
                   <img 
@@ -173,7 +185,10 @@ const Ideas = () => {
         </section>
 
         <div className="text-center mb-16">
-          <Button className="bg-wedding-pink text-white hover:bg-wedding-pink/90">
+          <Button 
+            className="bg-wedding-pink text-white hover:bg-wedding-pink/90"
+            onClick={handleExploreAllIdeas}
+          >
             Explore All Ideas
           </Button>
         </div>
