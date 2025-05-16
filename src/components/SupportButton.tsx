@@ -114,7 +114,7 @@ const SupportButton = () => {
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
           <DrawerTrigger asChild>
             <Button
-              className="fixed bottom-4 right-4 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50 px-4 py-2"
+              className="fixed bottom-4 left-4 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50 px-4 py-2"
               size="sm"
             >
               <Headset className="h-4 w-4" /> Support
@@ -142,7 +142,7 @@ const SupportButton = () => {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button
-              className="fixed bottom-4 right-8 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50"
+              className="fixed bottom-4 left-8 rounded-full flex items-center gap-2 bg-wedding-navy hover:bg-wedding-navy/90 shadow-lg z-50"
             >
               <LifeBuoy size={18} /> 24/7 Support
             </Button>
