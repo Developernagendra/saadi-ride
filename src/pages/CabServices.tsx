@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DatePicker } from "@/components/ui/date-picker";
-import { CarFront, Search } from "lucide-react";
+import { CarFront, CarTaxiFront, Search } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 const CabServices = () => {
@@ -19,6 +19,7 @@ const CabServices = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [passengers, setPassengers] = useState("2");
   const [activeTab, setActiveTab] = useState("wedding");
+  const [cabFilter, setCabFilter] = useState("");
 
   const cabTypes = [
     {
@@ -27,6 +28,7 @@ const CabServices = () => {
       image: "/placeholder.svg",
       price: "₹2,500",
       features: ["Up to 3 passengers", "Air conditioning", "Luggage space"],
+      category: "wedding"
     },
     {
       id: 2,
@@ -34,6 +36,7 @@ const CabServices = () => {
       image: "/placeholder.svg",
       price: "₹4,500",
       features: ["Up to 6 passengers", "Premium interiors", "Extra luggage space"],
+      category: "wedding"
     },
     {
       id: 3,
@@ -41,6 +44,7 @@ const CabServices = () => {
       image: "/placeholder.svg",
       price: "₹8,000",
       features: ["Perfect for bride & groom", "Decorated", "Photogenic"],
+      category: "wedding"
     },
     {
       id: 4,
@@ -48,6 +52,7 @@ const CabServices = () => {
       image: "/placeholder.svg",
       price: "₹6,500",
       features: ["Up to 15 passengers", "Ideal for guest transport", "Comfortable seating"],
+      category: "guests"
     },
     {
       id: 5,
@@ -55,7 +60,152 @@ const CabServices = () => {
       image: "/placeholder.svg",
       price: "₹5,000",
       features: ["Up to 8 passengers", "Spacious interiors", "Luggage compartment"],
+      category: "guests"
     },
+    {
+      id: 6,
+      name: "Classic Rolls Royce",
+      image: "/placeholder.svg",
+      price: "₹15,000",
+      features: ["Luxury experience", "Chauffeur included", "Red carpet service"],
+      category: "wedding"
+    },
+    {
+      id: 7,
+      name: "Executive Sedan",
+      image: "/placeholder.svg",
+      price: "₹3,200",
+      features: ["Professional driver", "Bottled water", "Phone chargers"],
+      category: "airport"
+    },
+    {
+      id: 8,
+      name: "Stretch Limousine",
+      image: "/placeholder.svg",
+      price: "₹12,000",
+      features: ["Up to 8 passengers", "Bar service", "Premium audio"],
+      category: "wedding"
+    },
+    {
+      id: 9,
+      name: "Party Bus",
+      image: "/placeholder.svg",
+      price: "₹18,000",
+      features: ["Up to 25 passengers", "Music system", "Light effects"],
+      category: "guests"
+    },
+    {
+      id: 10,
+      name: "Luxury Tempo Traveller",
+      image: "/placeholder.svg",
+      price: "₹8,000",
+      features: ["Up to 15 passengers", "Reclining seats", "AC with individual vents"],
+      category: "guests"
+    },
+    {
+      id: 11,
+      name: "Airport Shuttle",
+      image: "/placeholder.svg",
+      price: "₹1,500",
+      features: ["Flight tracking", "Waiting time included", "Meet & greet"],
+      category: "airport"
+    },
+    {
+      id: 12,
+      name: "Convertible Luxury Car",
+      image: "/placeholder.svg",
+      price: "₹9,000",
+      features: ["Open top experience", "Perfect for photoshoots", "Premium vehicle"],
+      category: "wedding"
+    },
+    {
+      id: 13,
+      name: "Electric Tesla",
+      image: "/placeholder.svg",
+      price: "₹7,000",
+      features: ["Zero emissions", "Cutting edge technology", "Premium experience"],
+      category: "wedding"
+    },
+    {
+      id: 14,
+      name: "Mercedes S-Class",
+      image: "/placeholder.svg",
+      price: "₹6,500",
+      features: ["Ultimate luxury", "Professional chauffeur", "Wedding decorations"],
+      category: "wedding"
+    },
+    {
+      id: 15,
+      name: "BMW 7 Series",
+      image: "/placeholder.svg",
+      price: "₹6,000",
+      features: ["German engineering", "Leather interiors", "Climate control"],
+      category: "wedding"
+    },
+    {
+      id: 16,
+      name: "Jaguar XJ",
+      image: "/placeholder.svg",
+      price: "₹7,000",
+      features: ["British luxury", "Premium sound system", "Professional driver"],
+      category: "wedding"
+    },
+    {
+      id: 17,
+      name: "Standard Airport Transfer",
+      image: "/placeholder.svg",
+      price: "₹1,200",
+      features: ["Reliable service", "AC vehicle", "Professional driver"],
+      category: "airport"
+    },
+    {
+      id: 18,
+      name: "VIP Airport Transfer",
+      image: "/placeholder.svg",
+      price: "₹3,500",
+      features: ["Premium vehicle", "Priority service", "Refreshments included"],
+      category: "airport"
+    },
+    {
+      id: 19,
+      name: "Large Group Bus",
+      image: "/placeholder.svg",
+      price: "₹15,000",
+      features: ["Up to 40 passengers", "Perfect for large weddings", "Multi-point pickup"],
+      category: "guests"
+    },
+    {
+      id: 20,
+      name: "Horse Carriage",
+      image: "/placeholder.svg",
+      price: "₹25,000",
+      features: ["Traditional experience", "Perfect for baraat", "Decorated carriage"],
+      category: "wedding"
+    },
+    {
+      id: 21,
+      name: "Vintage Bentley",
+      image: "/placeholder.svg",
+      price: "₹22,000",
+      features: ["Classic elegance", "Professional chauffeur", "Photo opportunity"],
+      category: "wedding"
+    },
+    {
+      id: 22,
+      name: "Toyota Innova",
+      image: "/placeholder.svg",
+      price: "₹3,500",
+      features: ["7-seater vehicle", "Reliable comfort", "Spacious interiors"],
+      category: "guests"
+    },
+    {
+      id: 23,
+      name: "Economy Sedan",
+      image: "/placeholder.svg",
+      price: "₹1,800",
+      features: ["Budget friendly", "Reliable service", "AC vehicle"],
+      category: "airport"
+    }
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -75,6 +225,19 @@ const CabServices = () => {
     });
     // In a real app, this would search for available cabs
   };
+
+  // Filter cabs based on the active tab
+  const filteredCabs = cabTypes
+    .filter(cab => {
+      // Filter by category
+      if (activeTab === "all") return true;
+      return cab.category === activeTab;
+    })
+    .filter(cab => {
+      // Filter by search term if any
+      if (!cabFilter) return true;
+      return cab.name.toLowerCase().includes(cabFilter.toLowerCase());
+    });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -96,6 +259,7 @@ const CabServices = () => {
                 <TabsTrigger value="wedding">Wedding Day Transport</TabsTrigger>
                 <TabsTrigger value="guests">Guest Transport</TabsTrigger>
                 <TabsTrigger value="airport">Airport Transfers</TabsTrigger>
+                <TabsTrigger value="all">All Services</TabsTrigger>
               </TabsList>
 
               <form onSubmit={handleSearch}>
@@ -154,41 +318,63 @@ const CabServices = () => {
         </Card>
 
         <section className="mb-16">
-          <h2 className="text-2xl font-heading font-bold text-wedding-navy mb-6">
-            {activeTab === "wedding" ? "Wedding Day Transport Options" : 
-             activeTab === "guests" ? "Guest Transport Solutions" : "Airport Transfer Services"}
-          </h2>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+            <h2 className="text-2xl font-heading font-bold text-wedding-navy mb-4 md:mb-0">
+              {activeTab === "wedding" ? "Wedding Day Transport Options" : 
+               activeTab === "guests" ? "Guest Transport Solutions" : 
+               activeTab === "airport" ? "Airport Transfer Services" : "All Available Cab Services"}
+            </h2>
+            
+            <div className="w-full md:w-64">
+              <Input 
+                placeholder="Search cabs..." 
+                value={cabFilter}
+                onChange={(e) => setCabFilter(e.target.value)}
+                className="w-full"
+              />
+            </div>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cabTypes.map((cab) => (
-              <Card key={cab.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video relative bg-gray-100 flex items-center justify-center">
-                  <img 
-                    src={cab.image} 
-                    alt={cab.name} 
-                    className="object-cover w-full h-full" 
-                  />
-                  <CarFront className="absolute text-gray-400 h-16 w-16" />
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-heading font-semibold text-lg text-wedding-navy">{cab.name}</h3>
-                    <div className="text-wedding-pink font-semibold">{cab.price}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredCabs.length > 0 ? (
+              filteredCabs.map((cab) => (
+                <Card key={cab.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="aspect-video relative bg-gray-100 flex items-center justify-center">
+                    <img 
+                      src={cab.image} 
+                      alt={cab.name} 
+                      className="object-cover w-full h-full" 
+                    />
+                    {cab.category === "wedding" ? (
+                      <CarFront className="absolute text-gray-400 h-16 w-16" />
+                    ) : (
+                      <CarTaxiFront className="absolute text-gray-400 h-16 w-16" />
+                    )}
                   </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    {cab.features.map((feature, index) => (
-                      <li key={index} className="flex items-center">
-                        <div className="mr-2 h-1 w-1 rounded-full bg-wedding-pink"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full mt-4 bg-wedding-navy hover:bg-wedding-navy/90">
-                    Book Now
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="font-heading font-semibold text-lg text-wedding-navy">{cab.name}</h3>
+                      <div className="text-wedding-pink font-semibold">{cab.price}</div>
+                    </div>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      {cab.features.map((feature, index) => (
+                        <li key={index} className="flex items-center">
+                          <div className="mr-2 h-1 w-1 rounded-full bg-wedding-pink"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button className="w-full mt-4 bg-wedding-navy hover:bg-wedding-navy/90">
+                      Book Now
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-10">
+                <p className="text-gray-500">No cab services match your search criteria.</p>
+              </div>
+            )}
           </div>
         </section>
 
