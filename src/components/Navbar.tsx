@@ -255,8 +255,10 @@ const Navbar = () => {
                         className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
                         onClick={() => {
                           setIsOpen(false);
+                          // Fix: Use HTMLElement type and optional chaining with click
                           setTimeout(() => {
-                            document.querySelector('[data-trigger="login"]')?.click();
+                            const loginButton = document.querySelector('[data-trigger="login"]') as HTMLButtonElement | null;
+                            if (loginButton) loginButton.click();
                           }, 100);
                         }}
                       >
@@ -266,8 +268,10 @@ const Navbar = () => {
                         className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
                         onClick={() => {
                           setIsOpen(false);
+                          // Fix: Use HTMLElement type and optional chaining with click
                           setTimeout(() => {
-                            document.querySelector('[data-trigger="signup"]')?.click();
+                            const signupButton = document.querySelector('[data-trigger="signup"]') as HTMLButtonElement | null;
+                            if (signupButton) signupButton.click();
                           }, 100);
                         }}
                       >
