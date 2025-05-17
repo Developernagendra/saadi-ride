@@ -72,14 +72,20 @@ const WeddingGallery = () => {
     ? photos 
     : photos.filter(photo => photo.category.includes(activeTab));
 
+  // Updated to navigate to /real-weddings page
   const handleViewMore = () => {
     console.log("Viewing more inspiration");
-    navigate("#gallery");
+    navigate("/real-weddings");
   };
 
   const handlePhotoClick = (photoId: number) => {
     console.log(`Clicked on photo ${photoId}`);
     setExpandedPhoto(expandedPhoto === photoId ? null : photoId);
+  };
+
+  // Navigate to photo detail page
+  const handleViewPhotoDetails = (photoId: number) => {
+    navigate(`/photos/${photoId}`);
   };
 
   return (
@@ -133,7 +139,7 @@ const WeddingGallery = () => {
                       <Button 
                         onClick={(e) => {
                           e.stopPropagation(); 
-                          navigate(`#photo/${photo.id}`)
+                          handleViewPhotoDetails(photo.id);
                         }}
                         className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
                       >

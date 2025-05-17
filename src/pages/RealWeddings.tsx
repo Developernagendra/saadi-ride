@@ -6,8 +6,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const RealWeddings = () => {
+  const navigate = useNavigate();
+  
   const weddingStories = [
     {
       id: 1,
@@ -72,6 +75,12 @@ const RealWeddings = () => {
     ? weddingStories 
     : weddingStories.filter(wedding => wedding.category === activeCategory);
 
+  // Handle view wedding gallery click
+  const handleViewWeddingGallery = (weddingId: number) => {
+    console.log(`Viewing wedding gallery for wedding ${weddingId}`);
+    navigate(`/wedding-gallery/${weddingId}`);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -133,6 +142,7 @@ const RealWeddings = () => {
                 <Button 
                   variant="outline" 
                   className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+                  onClick={() => handleViewWeddingGallery(wedding.id)}
                 >
                   View Wedding Gallery
                 </Button>
