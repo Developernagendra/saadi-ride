@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Vendors from "./pages/Vendors";
 import VendorDetail from "./pages/VendorDetail";
 import RealWeddings from "./pages/RealWeddings";
+import WeddingGalleryDetail from "./pages/WeddingGalleryDetail";
 import Photos from "./pages/Photos";
 import Ideas from "./pages/Ideas";
 import PlanningTools from "./pages/PlanningTools";
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/vendor/:slug" element={<VendorDetail />} />
             <Route path="/real-weddings" element={<RealWeddings />} />
+            <Route path="/wedding-gallery/:id" element={<WeddingGalleryDetail />} />
             <Route path="/photos" element={<Photos />} />
             <Route path="/ideas" element={<Ideas />} />
             <Route path="/ideas/all" element={<AllIdeas />} />
