@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,8 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthDialog from "@/components/auth/AuthDialog";
 import UserAvatar from "@/components/auth/UserAvatar";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -26,6 +29,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -52,22 +56,22 @@ const Navbar = () => {
 
   const navLinks = [
     { 
-      title: "Vendors", 
+      title: t('nav.vendors'), 
       href: "/vendors",
       services: [
-        { name: "Wedding Venues", href: "/vendors?category=venues" },
-        { name: "Photographers", href: "/vendors?category=photographers" },
-        { name: "Makeup Artists", href: "/vendors?category=makeup" },
-        { name: "Wedding Planners", href: "/vendors?category=planners" },
-        { name: "Bridal Wear", href: "/vendors?category=bridal-wear" },
-        { name: "Groom Wear", href: "/vendors?category=groom-wear" },
-        { name: "Catering", href: "/vendors?category=catering" },
-        { name: "Decorators", href: "/vendors?category=decorators" },
+        { name: t('categories.venues'), href: "/vendors?category=venues" },
+        { name: t('categories.photographers'), href: "/vendors?category=photographers" },
+        { name: t('categories.makeup'), href: "/vendors?category=makeup" },
+        { name: t('categories.planners'), href: "/vendors?category=planners" },
+        { name: t('categories.bridalWear'), href: "/vendors?category=bridal-wear" },
+        { name: t('categories.groomWear'), href: "/vendors?category=groom-wear" },
+        { name: t('categories.catering'), href: "/vendors?category=catering" },
+        { name: t('categories.decorators'), href: "/vendors?category=decorators" },
         { name: "Cab Services", href: "/vendors?category=cab-services" },
       ]
     },
     { 
-      title: "Real Weddings", 
+      title: t('nav.realWeddings'), 
       href: "/real-weddings",
       services: [
         { name: "Traditional Weddings", href: "/real-weddings?type=traditional" },
@@ -78,7 +82,7 @@ const Navbar = () => {
       ]
     },
     { 
-      title: "Photos", 
+      title: t('nav.photos'), 
       href: "/photos",
       services: [
         { name: "Pre-Wedding Shoots", href: "/photos?category=pre-wedding" },
@@ -89,7 +93,7 @@ const Navbar = () => {
       ]
     },
     { 
-      title: "Ideas", 
+      title: t('nav.ideas'), 
       href: "/ideas",
       services: [
         { name: "Decor Ideas", href: "/ideas?category=decor" },
@@ -100,7 +104,7 @@ const Navbar = () => {
       ]
     },
     { 
-      title: "Planning Tools", 
+      title: t('nav.planningTools'), 
       href: "/planning-tools",
       services: [
         { name: "Checklist", href: "/planning-tools#checklist" },
@@ -111,7 +115,7 @@ const Navbar = () => {
       ]
     },
     { 
-      title: "Blog", 
+      title: t('nav.blog'), 
       href: "/blog",
       services: [
         { name: "Wedding Tips", href: "/blog?category=tips" },
@@ -176,6 +180,7 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-3">
+          <LanguageSwitcher />
           {isAuthenticated ? (
             <UserAvatar />
           ) : (
@@ -191,6 +196,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className="md:hidden flex items-center">
+          <LanguageSwitcher className="mr-1" />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="p-2">
@@ -246,7 +252,7 @@ const Navbar = () => {
                         setIsOpen(false);
                       }}
                     >
-                      Logout
+                      {t('nav.logout')}
                     </Button>
                   ) : (
                     <>
@@ -262,7 +268,7 @@ const Navbar = () => {
                           }, 100);
                         }}
                       >
-                        Login
+                        {t('nav.login')}
                       </Button>
                       <Button 
                         className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
@@ -275,7 +281,7 @@ const Navbar = () => {
                           }, 100);
                         }}
                       >
-                        Sign Up
+                        {t('nav.signup')}
                       </Button>
                     </>
                   )}
