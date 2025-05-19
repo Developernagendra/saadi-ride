@@ -37,25 +37,25 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
           variant="ghost" 
           size="sm" 
           className={cn(
-            "hover:bg-wedding-pink/10 hover:text-wedding-pink transition-colors rounded-full gap-1 px-2.5",
+            "hover:bg-wedding-pink/10 hover:text-wedding-pink transition-colors rounded-full gap-1.5 px-2.5 group",
             className
           )}
         >
-          <Languages className="h-4 w-4" />
+          <Languages className="h-4 w-4 group-hover:animate-spin" />
           <span className="text-xs font-medium hidden sm:inline">{getLanguageLabel(language)}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-[120px] p-1 rounded-lg border-wedding-pink/20 shadow-lg">
+      <DropdownMenuContent align="end" className="min-w-[120px] p-1.5 rounded-lg border-wedding-pink/20 shadow-lg bg-white/95 backdrop-blur-sm animate-fade-in">
         <DropdownMenuItem 
           onClick={() => handleLanguageChange('en')} 
           className={cn(
-            "text-sm px-3 py-2 cursor-pointer rounded-md transition-colors",
+            "text-sm px-3 py-2 cursor-pointer rounded-md transition-colors hover:bg-wedding-pink/10 hover:text-wedding-pink",
             language === 'en' ? "bg-wedding-pink/10 text-wedding-pink font-medium" : ""
           )}
         >
           <span className="flex items-center gap-2">
             {language === 'en' && (
-              <span className="h-1.5 w-1.5 rounded-full bg-wedding-pink"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-wedding-pink animate-pulse"></span>
             )}
             English
           </span>
@@ -63,13 +63,13 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
         <DropdownMenuItem 
           onClick={() => handleLanguageChange('hi')}
           className={cn(
-            "text-sm px-3 py-2 cursor-pointer rounded-md transition-colors",
+            "text-sm px-3 py-2 cursor-pointer rounded-md transition-colors hover:bg-wedding-pink/10 hover:text-wedding-pink",
             language === 'hi' ? "bg-wedding-pink/10 text-wedding-pink font-medium" : ""
           )}
         >
           <span className="flex items-center gap-2">
             {language === 'hi' && (
-              <span className="h-1.5 w-1.5 rounded-full bg-wedding-pink"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-wedding-pink animate-pulse"></span>
             )}
             हिन्दी
           </span>
