@@ -64,146 +64,10 @@ const CabServices = () => {
     },
     {
       id: 6,
-      name: "Classic Rolls Royce",
-      image: "/placeholder.svg",
-      price: "₹15,000",
-      features: ["Luxury experience", "Chauffeur included", "Red carpet service"],
-      category: "wedding"
-    },
-    {
-      id: 7,
-      name: "Executive Sedan",
-      image: "/placeholder.svg",
-      price: "₹3,200",
-      features: ["Professional driver", "Bottled water", "Phone chargers"],
-      category: "airport"
-    },
-    {
-      id: 8,
-      name: "Stretch Limousine",
-      image: "/placeholder.svg",
-      price: "₹12,000",
-      features: ["Up to 8 passengers", "Bar service", "Premium audio"],
-      category: "wedding"
-    },
-    {
-      id: 9,
-      name: "Party Bus",
-      image: "/placeholder.svg",
-      price: "₹18,000",
-      features: ["Up to 25 passengers", "Music system", "Light effects"],
-      category: "guests"
-    },
-    {
-      id: 10,
-      name: "Luxury Tempo Traveller",
-      image: "/placeholder.svg",
-      price: "₹8,000",
-      features: ["Up to 15 passengers", "Reclining seats", "AC with individual vents"],
-      category: "guests"
-    },
-    {
-      id: 11,
       name: "Airport Shuttle",
       image: "/placeholder.svg",
       price: "₹1,500",
       features: ["Flight tracking", "Waiting time included", "Meet & greet"],
-      category: "airport"
-    },
-    {
-      id: 12,
-      name: "Convertible Luxury Car",
-      image: "/placeholder.svg",
-      price: "₹9,000",
-      features: ["Open top experience", "Perfect for photoshoots", "Premium vehicle"],
-      category: "wedding"
-    },
-    {
-      id: 13,
-      name: "Electric Tesla",
-      image: "/placeholder.svg",
-      price: "₹7,000",
-      features: ["Zero emissions", "Cutting edge technology", "Premium experience"],
-      category: "wedding"
-    },
-    {
-      id: 14,
-      name: "Mercedes S-Class",
-      image: "/placeholder.svg",
-      price: "₹6,500",
-      features: ["Ultimate luxury", "Professional chauffeur", "Wedding decorations"],
-      category: "wedding"
-    },
-    {
-      id: 15,
-      name: "BMW 7 Series",
-      image: "/placeholder.svg",
-      price: "₹6,000",
-      features: ["German engineering", "Leather interiors", "Climate control"],
-      category: "wedding"
-    },
-    {
-      id: 16,
-      name: "Jaguar XJ",
-      image: "/placeholder.svg",
-      price: "₹7,000",
-      features: ["British luxury", "Premium sound system", "Professional driver"],
-      category: "wedding"
-    },
-    {
-      id: 17,
-      name: "Standard Airport Transfer",
-      image: "/placeholder.svg",
-      price: "₹1,200",
-      features: ["Reliable service", "AC vehicle", "Professional driver"],
-      category: "airport"
-    },
-    {
-      id: 18,
-      name: "VIP Airport Transfer",
-      image: "/placeholder.svg",
-      price: "₹3,500",
-      features: ["Premium vehicle", "Priority service", "Refreshments included"],
-      category: "airport"
-    },
-    {
-      id: 19,
-      name: "Large Group Bus",
-      image: "/placeholder.svg",
-      price: "₹15,000",
-      features: ["Up to 40 passengers", "Perfect for large weddings", "Multi-point pickup"],
-      category: "guests"
-    },
-    {
-      id: 20,
-      name: "Horse Carriage",
-      image: "/placeholder.svg",
-      price: "₹25,000",
-      features: ["Traditional experience", "Perfect for baraat", "Decorated carriage"],
-      category: "wedding"
-    },
-    {
-      id: 21,
-      name: "Vintage Bentley",
-      image: "/placeholder.svg",
-      price: "₹22,000",
-      features: ["Classic elegance", "Professional chauffeur", "Photo opportunity"],
-      category: "wedding"
-    },
-    {
-      id: 22,
-      name: "Toyota Innova",
-      image: "/placeholder.svg",
-      price: "₹3,500",
-      features: ["7-seater vehicle", "Reliable comfort", "Spacious interiors"],
-      category: "guests"
-    },
-    {
-      id: 23,
-      name: "Economy Sedan",
-      image: "/placeholder.svg",
-      price: "₹1,800",
-      features: ["Budget friendly", "Reliable service", "AC vehicle"],
       category: "airport"
     }
   ];
@@ -227,17 +91,15 @@ const CabServices = () => {
   };
 
   // Filter cabs based on the active tab
-  const filteredCabs = cabTypes
-    .filter(cab => {
-      // Filter by category
-      if (activeTab === "all") return true;
-      return cab.category === activeTab;
-    })
-    .filter(cab => {
-      // Filter by search term if any
-      if (!cabFilter) return true;
-      return cab.name.toLowerCase().includes(cabFilter.toLowerCase());
-    });
+  const filteredCabs = cabTypes.filter(cab => {
+    // Filter by category
+    if (activeTab === "all") return true;
+    return cab.category === activeTab;
+  }).filter(cab => {
+    // Filter by search term if any
+    if (!cabFilter) return true;
+    return cab.name.toLowerCase().includes(cabFilter.toLowerCase());
+  });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -335,7 +197,7 @@ const CabServices = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCabs.length > 0 ? (
               filteredCabs.map((cab) => (
                 <Card key={cab.id} className="overflow-hidden hover:shadow-lg transition-shadow">

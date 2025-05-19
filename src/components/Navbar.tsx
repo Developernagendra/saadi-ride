@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -67,7 +66,7 @@ const Navbar = () => {
         { name: t('categories.groomWear'), href: "/vendors?category=groom-wear" },
         { name: t('categories.catering'), href: "/vendors?category=catering" },
         { name: t('categories.decorators'), href: "/vendors?category=decorators" },
-        { name: "Cab Services", href: "/vendors?category=cab-services" },
+        { name: "Cab Services", href: "/vendors/cab-services" },
       ]
     },
     { 
