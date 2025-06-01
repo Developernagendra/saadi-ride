@@ -105,6 +105,14 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Add extra small breakpoint for very small screens */
+  @media (max-width: 475px) {
+    .xs\:text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+  }
 }
 
 @layer components {
@@ -113,20 +121,20 @@
   }
   
   .wedding-btn-primary {
-    @apply bg-wedding-pink text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium;
+    @apply bg-wedding-pink text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium text-sm sm:text-base;
   }
   
   .wedding-btn-outline {
-    @apply border border-wedding-pink text-wedding-pink px-6 py-3 rounded-md hover:bg-wedding-pink hover:bg-opacity-10 transition-all duration-300 font-medium;
+    @apply border border-wedding-pink text-wedding-pink px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-wedding-pink hover:bg-opacity-10 transition-all duration-300 font-medium text-sm sm:text-base;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-heading font-semibold mb-8 text-center relative;
+    @apply text-2xl sm:text-3xl md:text-4xl font-heading font-semibold mb-6 sm:mb-8 text-center relative;
   }
   
   .section-title::after {
     content: '';
-    @apply block w-20 h-1 bg-wedding-pink mx-auto mt-4;
+    @apply block w-16 sm:w-20 h-1 bg-wedding-pink mx-auto mt-3 sm:mt-4;
   }
   
   .vendor-card {
@@ -135,6 +143,60 @@
   
   .category-card {
     @apply relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
+  }
+
+  /* Responsive text utilities */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl;
+  }
+  
+  .text-responsive-3xl {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  /* Responsive spacing utilities */
+  .p-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+  
+  .px-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .py-responsive {
+    @apply py-4 sm:py-6 lg:py-8;
+  }
+  
+  .m-responsive {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+  
+  .mx-responsive {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+  
+  .my-responsive {
+    @apply my-4 sm:my-6 lg:my-8;
   }
 }
 
@@ -150,4 +212,3 @@
 .animate-slide-in-from-right {
   animation: slideInFromRight 0.3s ease-out;
 }
-

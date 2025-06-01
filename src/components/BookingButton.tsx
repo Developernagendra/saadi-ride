@@ -53,13 +53,13 @@ Please confirm availability and provide next steps.
 
   if (!isAuthenticated) {
     return (
-      <>
+      <div className="w-full">
         <Button 
           onClick={() => setShowAuthDialog(true)}
-          className={`bg-wedding-pink hover:bg-wedding-pink/90 ${className}`}
+          className={`bg-wedding-pink hover:bg-wedding-pink/90 w-full sm:w-auto min-w-[140px] text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 ${className}`}
         >
-          <User className="mr-2 h-4 w-4" />
-          Login to Book
+          <User className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+          <span className="truncate">Login to Book</span>
         </Button>
         
         {showAuthDialog && (
@@ -68,17 +68,17 @@ Please confirm availability and provide next steps.
             trigger={<div style={{ display: 'none' }} />}
           />
         )}
-      </>
+      </div>
     );
   }
 
   return (
     <Button 
       onClick={handleBooking}
-      className={`bg-wedding-navy hover:bg-wedding-navy/90 ${className}`}
+      className={`bg-wedding-navy hover:bg-wedding-navy/90 w-full sm:w-auto min-w-[140px] text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 ${className}`}
     >
-      <Calendar className="mr-2 h-4 w-4" />
-      Book Now
+      <Calendar className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+      <span className="truncate">Book Now</span>
     </Button>
   );
 };
