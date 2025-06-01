@@ -48,10 +48,7 @@ Please confirm availability and provide next steps.
     const whatsappUrl = `https://wa.me/918800123456?text=${encodeURIComponent(bookingDetails)}`;
     window.open(whatsappUrl, '_blank');
 
-    toast({
-      title: "Booking initiated!",
-      description: `Your booking request for ${serviceName} has been sent via WhatsApp.`,
-    });
+    toast(`Booking initiated! Your booking request for ${serviceName} has been sent via WhatsApp.`);
   };
 
   if (!isAuthenticated) {
