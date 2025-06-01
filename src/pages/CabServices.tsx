@@ -20,6 +20,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import Map from "@/components/Map";
 import CabSearchResult from "@/components/CabSearchResult";
+import BookingButton from "@/components/BookingButton";
 
 const CabServices = () => {
   const { toast } = useToast();
@@ -412,7 +413,10 @@ const CabServices = () => {
           <CabSearchResult 
             results={searchResults} 
             onViewMap={handleViewOnMap} 
-            onBook={handleBookNow} 
+            onBook={(cabId) => {
+              const cab = cabTypes.find(c => c.id === cabId);
+              // This will be handled by the BookingButton component
+            }} 
           />
         )}
 
@@ -465,12 +469,14 @@ const CabServices = () => {
                       ))}
                     </ul>
                     <div className="flex gap-2">
-                      <Button 
-                        className="flex-1 bg-wedding-navy hover:bg-wedding-navy/90"
-                        onClick={() => handleBookNow(cab.id)}
-                      >
-                        Book Now
-                      </Button>
+                      <BookingButton
+                        serviceName={cab.name}
+                        serviceType="cab"
+                        serviceId={cab.id}
+                        price={cab.price}
+                        location={cab.location}
+                        className="flex-1"
+                      />
                       <Button 
                         variant="outline" 
                         className="flex-none border-wedding-navy text-wedding-navy" 

@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -10,6 +9,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
 import SupportButton from "@/components/SupportButton";
+import BookingButton from "@/components/BookingButton";
 import { Button } from "@/components/ui/button";
 import { CarFront, CarTaxiFront, Navigation, Route, MapPin, MessageCircle, Download, Palette, ShoppingBag, Crown, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -20,7 +20,6 @@ const Index = () => {
   };
 
   const handleDownloadApp = () => {
-    // In a real app, this would redirect to Play Store/App Store
     window.open('https://play.google.com/store', '_blank');
   };
 
@@ -47,11 +46,12 @@ const Index = () => {
                 </div>
                 <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">Transportation</h3>
                 <p className="text-gray-600 mb-4 text-sm">Premium cars and shuttles for your wedding day</p>
-                <Link to="/vendors/cab-services">
-                  <Button variant="outline" className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full">
-                    Book Now
-                  </Button>
-                </Link>
+                <BookingButton
+                  serviceName="Wedding Transportation"
+                  serviceType="cab"
+                  price="Starting from ₹2,000"
+                  className="w-full border-wedding-pink text-wedding-pink bg-transparent hover:bg-wedding-pink hover:text-white border"
+                />
               </div>
               
               <div className="rounded-lg bg-white shadow-md p-6 text-center hover:shadow-lg transition-shadow">
@@ -60,9 +60,12 @@ const Index = () => {
                 </div>
                 <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">Mehendi Services</h3>
                 <p className="text-gray-600 mb-4 text-sm">Beautiful henna designs by expert artists</p>
-                <Button variant="outline" className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full">
-                  Book Now
-                </Button>
+                <BookingButton
+                  serviceName="Mehendi Services"
+                  serviceType="other"
+                  price="Starting from ₹1,500"
+                  className="w-full border-wedding-pink text-wedding-pink bg-transparent hover:bg-wedding-pink hover:text-white border"
+                />
               </div>
               
               <div className="rounded-lg bg-white shadow-md p-6 text-center hover:shadow-lg transition-shadow">
@@ -71,9 +74,12 @@ const Index = () => {
                 </div>
                 <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">Bridal Shopping</h3>
                 <p className="text-gray-600 mb-4 text-sm">Complete bridal shopping assistance and styling</p>
-                <Button variant="outline" className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full">
-                  Book Now
-                </Button>
+                <BookingButton
+                  serviceName="Bridal Shopping Assistance"
+                  serviceType="other"
+                  price="Starting from ₹5,000"
+                  className="w-full border-wedding-pink text-wedding-pink bg-transparent hover:bg-wedding-pink hover:text-white border"
+                />
               </div>
               
               <div className="rounded-lg bg-white shadow-md p-6 text-center hover:shadow-lg transition-shadow">
@@ -82,9 +88,12 @@ const Index = () => {
                 </div>
                 <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">Purohit Services</h3>
                 <p className="text-gray-600 mb-4 text-sm">Experienced priests for all wedding rituals</p>
-                <Button variant="outline" className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full">
-                  Book Now
-                </Button>
+                <BookingButton
+                  serviceName="Purohit Services"
+                  serviceType="other"
+                  price="Starting from ₹3,000"
+                  className="w-full border-wedding-pink text-wedding-pink bg-transparent hover:bg-wedding-pink hover:text-white border"
+                />
               </div>
               
               <div className="rounded-lg bg-white shadow-md p-6 text-center hover:shadow-lg transition-shadow">
@@ -93,9 +102,12 @@ const Index = () => {
                 </div>
                 <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">Honeymoon Packages</h3>
                 <p className="text-gray-600 mb-4 text-sm">Romantic destinations and custom packages</p>
-                <Button variant="outline" className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full">
-                  Explore Packages
-                </Button>
+                <BookingButton
+                  serviceName="Honeymoon Packages"
+                  serviceType="other"
+                  price="Starting from ₹25,000"
+                  className="w-full border-wedding-pink text-wedding-pink bg-transparent hover:bg-wedding-pink hover:text-white border"
+                />
               </div>
             </div>
           </div>

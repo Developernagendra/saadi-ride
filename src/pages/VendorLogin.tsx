@@ -1,20 +1,26 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { useNavigate } from "react-router-dom";
 
 const VendorLogin = () => {
   const navigate = useNavigate();
+  const { login, isLoading } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would authenticate the vendor
-    navigate("/vendors");
+    const success = await login(email, password);
+    if (success) {
+      navigate("/vendors");
+    }
   };
 
   return (
@@ -23,14 +29,21 @@ const VendorLogin = () => {
       <main className="flex-grow flex items-center justify-center py-16 px-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-heading text-wedding-navy">Vendor Login</CardTitle>
+            <CardTitle className="text-2xl font-heading font-bold text-wedding-navy">Vendor Login</CardTitle>
             <CardDescription>Sign in to access your vendor dashboard</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="your@email.com" required />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required 
+                />
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -39,10 +52,20 @@ const VendorLogin = () => {
                     Forgot password?
                   </Button>
                 </div>
-                <Input id="password" type="password" required />
+                <Input 
+                  id="password" 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required 
+                />
               </div>
-              <Button type="submit" className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90">
-                Sign In
+              <Button 
+                type="submit" 
+                className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90"
+                disabled={isLoading}
+              >
+                {isLoading ? "Signing In..." : "Sign In"}
               </Button>
             </form>
           </CardContent>
