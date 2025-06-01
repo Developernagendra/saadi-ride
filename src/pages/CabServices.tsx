@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -38,204 +37,204 @@ const CabServices = () => {
     {
       id: 1,
       name: "Premium Sedan",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=400&h=300&fit=crop",
       price: "₹2,500",
       features: ["Up to 3 passengers", "Air conditioning", "Luggage space"],
       category: "wedding",
-      location: "Delhi NCR"
+      location: "Darbhanga"
     },
     {
       id: 2,
       name: "Luxury SUV",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop",
       price: "₹4,500",
       features: ["Up to 6 passengers", "Premium interiors", "Extra luggage space"],
       category: "wedding",
-      location: "Delhi NCR"
+      location: "Patna"
     },
     {
       id: 3,
       name: "Vintage Car",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop",
       price: "₹8,000",
       features: ["Perfect for bride & groom", "Decorated", "Photogenic"],
       category: "wedding",
-      location: "Mumbai"
+      location: "Muzaffarpur"
     },
     {
       id: 4,
       name: "Mini Bus",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=300&fit=crop",
       price: "₹6,500",
       features: ["Up to 15 passengers", "Ideal for guest transport", "Comfortable seating"],
       category: "guests",
-      location: "Bangalore"
+      location: "Samastipur"
     },
     {
       id: 5,
       name: "Premium Van",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop",
       price: "₹5,000",
       features: ["Up to 8 passengers", "Spacious interiors", "Luggage compartment"],
       category: "guests",
-      location: "Chennai"
+      location: "Darbhanga"
     },
     {
       id: 6,
       name: "Airport Shuttle",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop",
       price: "₹1,500",
       features: ["Flight tracking", "Waiting time included", "Meet & greet"],
       category: "airport",
-      location: "Delhi NCR"
+      location: "Patna"
     },
     {
       id: 7,
       name: "Executive Sedan",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=400&h=300&fit=crop",
       price: "₹3,200",
       features: ["Professional chauffeur", "Leather interiors", "Bottled water"],
       category: "wedding",
-      location: "Hyderabad"
+      location: "Muzaffarpur"
     },
     {
       id: 8,
       name: "Stretch Limousine",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop",
       price: "₹12,000",
       features: ["Up to 8 passengers", "Bar setup", "Red carpet service"],
       category: "wedding",
-      location: "Mumbai"
+      location: "Samastipur"
     },
     {
       id: 9,
       name: "Luxury Coach",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=300&fit=crop",
       price: "₹15,000",
       features: ["Up to 45 passengers", "Air conditioning", "Entertainment system"],
       category: "guests",
-      location: "Delhi NCR"
+      location: "Darbhanga"
     },
     {
       id: 10,
       name: "Party Bus",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=300&fit=crop",
       price: "₹18,000",
       features: ["Up to 20 passengers", "LED lighting", "Sound system"],
       category: "guests",
-      location: "Goa"
+      location: "Patna"
     },
     {
       id: 11,
       name: "Convertible",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop",
       price: "₹7,500",
       features: ["Open top", "Perfect for photoshoots", "Decorated"],
       category: "wedding",
-      location: "Jaipur"
+      location: "Muzaffarpur"
     },
     {
       id: 12,
       name: "Premium Hatchback",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=400&h=300&fit=crop",
       price: "₹1,800",
       features: ["Economical", "Easy city navigation", "Fuel efficient"],
       category: "airport",
-      location: "Bangalore"
+      location: "Samastipur"
     },
     {
       id: 13,
       name: "Luxury Tempo Traveller",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=300&fit=crop",
       price: "₹8,500",
       features: ["Up to 12 passengers", "Pushback seats", "Ample luggage space"],
       category: "guests",
-      location: "Kolkata"
+      location: "Darbhanga"
     },
     {
       id: 14,
       name: "Electric Sedan",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=400&h=300&fit=crop",
       price: "₹3,000",
       features: ["Zero emissions", "Modern interiors", "Quiet ride"],
       category: "wedding",
-      location: "Pune"
+      location: "Patna"
     },
     {
       id: 15,
       name: "Innova Crysta",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop",
       price: "₹4,000",
       features: ["Up to 7 passengers", "Spacious", "Comfortable for long journeys"],
       category: "guests",
-      location: "Chennai"
+      location: "Muzaffarpur"
     },
     {
       id: 16,
       name: "Heritage Car",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop",
       price: "₹10,000",
       features: ["Classic design", "Chauffeur in traditional attire", "Photo opportunity"],
       category: "wedding",
-      location: "Udaipur"
+      location: "Samastipur"
     },
     {
       id: 17,
       name: "Minivan",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=300&fit=crop",
       price: "₹3,500",
       features: ["Up to 7 passengers", "Family friendly", "Multiple luggage"],
       category: "airport",
-      location: "Mumbai"
+      location: "Darbhanga"
     },
     {
       id: 18,
       name: "Decorated Chariot",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop",
       price: "₹15,000",
       features: ["Traditional experience", "Horses with handler", "Perfect for baraat"],
       category: "wedding",
-      location: "Jaipur"
+      location: "Patna"
     },
     {
       id: 19,
       name: "Standard Sedan",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=400&h=300&fit=crop",
       price: "₹2,000",
       features: ["Up to 4 passengers", "Air conditioning", "Budget friendly"],
       category: "airport",
-      location: "Delhi NCR"
+      location: "Muzaffarpur"
     },
     {
       id: 20,
       name: "Premium SUV",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop",
       price: "₹5,500",
       features: ["Up to 6 passengers", "Leather interiors", "Premium experience"],
       category: "wedding",
-      location: "Bangalore"
+      location: "Samastipur"
     },
     {
       id: 21,
       name: "Tesla Model S",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop",
       price: "₹8,000",
       features: ["Premium electric vehicle", "Autopilot features", "Zero emissions"],
       category: "wedding",
-      location: "Mumbai"
+      location: "Darbhanga"
     },
     {
       id: 22,
       name: "Mercedes S-Class",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop",
       price: "₹10,000",
       features: ["Luxury sedan", "Executive comfort", "Premium service"],
       category: "wedding",
-      location: "Delhi NCR"
+      location: "Patna"
     }
   ];
 
-  const locations = Array.from(new Set(cabTypes.map(cab => cab.location))).sort();
+  const locations = ["Darbhanga", "Patna", "Muzaffarpur", "Samastipur"];
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -248,21 +247,19 @@ const CabServices = () => {
       return;
     }
     
-    // Set the map address to the pickup location for visualization
     setMapAddress(pickup);
     setShowMap(true);
     
-    // Filter cabs based on location (simple simulation)
     const results = cabTypes.filter(cab => {
       return cab.location.toLowerCase().includes(pickup.toLowerCase()) || 
-             cab.location.toLowerCase() === "delhi ncr"; // Fallback to Delhi NCR
+             locations.some(loc => pickup.toLowerCase().includes(loc.toLowerCase()));
     });
     
-    setSearchResults(results);
+    setSearchResults(results.length > 0 ? results : cabTypes.slice(0, 8));
     
     toast({
       title: "Search completed",
-      description: `Found ${results.length} cabs for your journey from ${pickup} to ${dropoff}.`,
+      description: `Found ${results.length || 8} cabs for your journey from ${pickup} to ${dropoff}.`,
     });
   };
 
@@ -270,7 +267,6 @@ const CabServices = () => {
     setMapAddress(address);
     setShowMap(true);
     
-    // Smooth scroll to the map section
     const mapSection = document.getElementById('map-section');
     if (mapSection) {
       mapSection.scrollIntoView({ behavior: 'smooth' });
@@ -280,12 +276,16 @@ const CabServices = () => {
   const handleBookNow = (cabId: number) => {
     const cab = cabTypes.find(c => c.id === cabId);
     
-    toast({
-      title: "Booking initiated",
-      description: `You're booking a ${cab?.name}. The provider will contact you shortly.`,
-    });
+    // Simulate WhatsApp booking
+    const message = `Hi Saadi Ride! I want to book a ${cab?.name} (${cab?.price}) from ${pickup || 'pickup location'} to ${dropoff || 'destination'}. Please confirm availability.`;
+    const whatsappUrl = `https://wa.me/918800123456?text=${encodeURIComponent(message)}`;
     
-    // In a real app, this would navigate to a booking confirmation page
+    window.open(whatsappUrl, '_blank');
+    
+    toast({
+      title: "Booking initiated via WhatsApp",
+      description: `You're booking a ${cab?.name}. Continue the conversation on WhatsApp.`,
+    });
   };
 
   // Filter cabs based on the active tab and search term
@@ -307,10 +307,10 @@ const CabServices = () => {
       <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-4">
-            Wedding <span className="text-wedding-pink">Cab Services</span>
+            Saadi Ride <span className="text-wedding-pink">Cab Services</span>
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Reliable transportation for your wedding day and guest travel needs
+            Reliable transportation for your wedding day and guest travel needs across Bihar
           </p>
         </div>
 
@@ -377,7 +377,7 @@ const CabServices = () => {
                 
                 <div className="mt-4 flex flex-wrap gap-2">
                   <span className="text-sm font-medium text-gray-500">Popular locations:</span>
-                  {locations.slice(0, 5).map((location) => (
+                  {locations.map((location) => (
                     <Button
                       key={location}
                       type="button"
@@ -395,7 +395,6 @@ const CabServices = () => {
           </CardContent>
         </Card>
 
-        {/* Map visualization */}
         {showMap && (
           <div id="map-section" className="mb-12">
             <h2 className="text-2xl font-heading font-bold text-wedding-navy mb-4">
@@ -409,7 +408,6 @@ const CabServices = () => {
           </div>
         )}
 
-        {/* Search results display */}
         {searchResults && (
           <CabSearchResult 
             results={searchResults} 
@@ -443,17 +441,12 @@ const CabServices = () => {
             {filteredCabs.length > 0 ? (
               filteredCabs.map((cab) => (
                 <Card key={cab.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="aspect-video relative bg-gray-100 flex items-center justify-center">
+                  <div className="aspect-video relative bg-gray-100">
                     <img 
                       src={cab.image} 
                       alt={cab.name} 
                       className="object-cover w-full h-full" 
                     />
-                    {cab.category === "wedding" ? (
-                      <CarFront className="absolute text-gray-400 h-16 w-16" />
-                    ) : (
-                      <CarTaxiFront className="absolute text-gray-400 h-16 w-16" />
-                    )}
                   </div>
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-2">
@@ -499,7 +492,7 @@ const CabServices = () => {
 
         <section className="mb-16 bg-gray-50 p-8 rounded-lg">
           <h2 className="text-2xl font-heading font-bold text-wedding-navy mb-6">
-            Why Choose Our Wedding Cab Services?
+            Why Choose Saadi Ride Cab Services?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

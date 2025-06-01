@@ -19,6 +19,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import AboutUs from "./pages/AboutUs";
 import OurStory from "./pages/OurStory";
+import MeetOurTeam from "./pages/MeetOurTeam";
+import MissionVision from "./pages/MissionVision";
 import Careers from "./pages/Careers";
 import Press from "./pages/Press";
 import ContactUs from "./pages/ContactUs";
@@ -58,6 +60,8 @@ const App = () => (
               {/* About Us section routes */}
               <Route path="/about" element={<AboutUs />} />
               <Route path="/about/our-story" element={<OurStory />} />
+              <Route path="/about/our-team" element={<MeetOurTeam />} />
+              <Route path="/about/mission-vision" element={<MissionVision />} />
               <Route path="/about/careers" element={<Careers />} />
               <Route path="/about/press" element={<Press />} />
               <Route path="/about/contact" element={<ContactUs />} />

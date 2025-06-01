@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -47,11 +48,13 @@ const Footer = () => {
     {
       title: "About Us",
       icon: <Users size={16} />,
-      description: "Learn more about WedMeGood and our mission.",
+      description: "Learn more about Saadi Ride and our mission.",
       links: [
-        { name: "Our Story", url: "/about/our-story", description: "Learn about how WedMeGood started" },
+        { name: "Our Story", url: "/about/our-story", description: "Learn about how Saadi Ride started" },
+        { name: "Meet Our Team", url: "/about/our-team", description: "Get to know the people behind Saadi Ride" },
+        { name: "Mission & Vision", url: "/about/mission-vision", description: "Our goals and values for transforming weddings" },
         { name: "Careers", url: "/about/careers", description: "Join our team and help couples plan their dream weddings" },
-        { name: "Press", url: "/about/press", description: "News and media coverage about WedMeGood" },
+        { name: "Press", url: "/about/press", description: "News and media coverage about Saadi Ride" },
         { name: "Contact Us", url: "/about/contact", description: "Get in touch with our team" },
         { name: "Terms & Privacy", url: "/about/terms-privacy", description: "Our policies and terms of service" },
       ],
@@ -64,10 +67,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-heading font-bold mb-6">
-              <span className="text-wedding-pink">Wed</span>MeGood
+              <span className="text-wedding-pink">Saadi</span> Ride
             </h3>
             <p className="text-gray-300 mb-6 max-w-md">
-              India's favorite wedding planning platform to help you plan the perfect wedding. Browse thousands of vendors, get inspiration, and plan your dream wedding.
+              Bihar's favorite wedding transportation and planning platform to help you plan the perfect wedding. Browse thousands of vendors, get inspiration, and plan your dream wedding with reliable transportation services.
             </p>
             <div className="flex space-x-4 mb-8">
               <a href="#" className="text-white hover:text-wedding-pink transition-colors">
@@ -121,7 +124,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2025 WedMeGood. All rights reserved.
+              © 2025 Saadi Ride. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex space-x-6">
               <Link to="/about/terms-privacy" className="text-gray-400 hover:text-wedding-pink text-sm">
