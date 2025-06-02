@@ -81,6 +81,23 @@
   h1, h2, h3, h4 {
     @apply font-heading;
   }
+
+  /* Mobile-first responsive text */
+  @media (max-width: 374px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  /* Touch-friendly interactions */
+  button, a, [role="button"] {
+    @apply touch-manipulation;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    @apply overflow-x-hidden;
+  }
 }
 
 @layer utilities {
@@ -106,35 +123,74 @@
     scroll-behavior: smooth;
   }
 
-  /* Add extra small breakpoint for very small screens */
-  @media (max-width: 475px) {
-    .xs\:text-3xl {
-      font-size: 1.875rem;
-      line-height: 2.25rem;
-    }
+  /* Mobile-first utilities */
+  .text-mobile-xs {
+    @apply text-xs leading-tight;
+  }
+  
+  .text-mobile-sm {
+    @apply text-xs xs:text-sm;
+  }
+  
+  .text-mobile-base {
+    @apply text-sm xs:text-base;
+  }
+  
+  .text-mobile-lg {
+    @apply text-base xs:text-lg;
+  }
+
+  /* Mobile spacing utilities */
+  .px-mobile {
+    @apply px-3 xs:px-4 sm:px-6;
+  }
+  
+  .py-mobile {
+    @apply py-3 xs:py-4 sm:py-6;
+  }
+  
+  .p-mobile {
+    @apply p-3 xs:p-4 sm:p-6;
+  }
+
+  /* Safe area utilities for mobile devices */
+  .pb-safe {
+    @apply pb-safe-bottom;
+  }
+  
+  .pt-safe {
+    @apply pt-safe-top;
+  }
+  
+  .pl-safe {
+    @apply pl-safe-left;
+  }
+  
+  .pr-safe {
+    @apply pr-safe-right;
   }
 }
 
 @layer components {
   .wedding-container {
-    @apply container mx-auto px-4 md:px-8;
+    @apply container mx-auto px-3 xs:px-4 md:px-8;
   }
   
   .wedding-btn-primary {
-    @apply bg-wedding-pink text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium text-sm sm:text-base;
+    @apply bg-wedding-pink text-white px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium text-xs xs:text-sm sm:text-base touch-manipulation;
   }
   
   .wedding-btn-outline {
-    @apply border border-wedding-pink text-wedding-pink px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-wedding-pink hover:bg-opacity-10 transition-all duration-300 font-medium text-sm sm:text-base;
+    @apply border border-wedding-pink text-wedding-pink px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-md hover:bg-wedding-pink hover:bg-opacity-10 transition-all duration-300 font-medium text-xs xs:text-sm sm:text-base touch-manipulation;
   }
   
   .section-title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-heading font-semibold mb-6 sm:mb-8 text-center relative;
+    @apply text-xl xs:text-2xl sm:text-3xl md:text-4xl font-heading font-semibold mb-4 xs:mb-6 sm:mb-8 text-center relative;
   }
   
   .section-title::after {
     content: '';
-    @apply block w-16 sm:w-20 h-1 bg-wedding-pink mx-auto mt-3 sm:mt-4;
+    @apply block w-12 xs:w-16 sm:w-20 h-1 bg-wedding-pink mx-auto mt-2 xs:mt-3 sm:mt-4;
   }
   
   .vendor-card {
@@ -145,58 +201,58 @@
     @apply relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
   }
 
-  /* Responsive text utilities */
+  /* Mobile-first responsive text utilities */
   .text-responsive-xs {
     @apply text-xs sm:text-sm;
   }
   
   .text-responsive-sm {
-    @apply text-sm sm:text-base;
+    @apply text-xs xs:text-sm sm:text-base;
   }
   
   .text-responsive-base {
-    @apply text-base sm:text-lg;
+    @apply text-sm xs:text-base sm:text-lg;
   }
   
   .text-responsive-lg {
-    @apply text-lg sm:text-xl;
+    @apply text-base xs:text-lg sm:text-xl;
   }
   
   .text-responsive-xl {
-    @apply text-xl sm:text-2xl;
+    @apply text-lg xs:text-xl sm:text-2xl;
   }
   
   .text-responsive-2xl {
-    @apply text-2xl sm:text-3xl;
+    @apply text-xl xs:text-2xl sm:text-3xl;
   }
   
   .text-responsive-3xl {
-    @apply text-3xl sm:text-4xl;
+    @apply text-2xl xs:text-3xl sm:text-4xl;
   }
 
-  /* Responsive spacing utilities */
+  /* Mobile-first responsive spacing utilities */
   .p-responsive {
-    @apply p-4 sm:p-6 lg:p-8;
+    @apply p-3 xs:p-4 sm:p-6 lg:p-8;
   }
   
   .px-responsive {
-    @apply px-4 sm:px-6 lg:px-8;
+    @apply px-3 xs:px-4 sm:px-6 lg:px-8;
   }
   
   .py-responsive {
-    @apply py-4 sm:py-6 lg:py-8;
+    @apply py-3 xs:py-4 sm:py-6 lg:py-8;
   }
   
   .m-responsive {
-    @apply m-4 sm:m-6 lg:m-8;
+    @apply m-3 xs:m-4 sm:m-6 lg:m-8;
   }
   
   .mx-responsive {
-    @apply mx-4 sm:mx-6 lg:mx-8;
+    @apply mx-3 xs:mx-4 sm:mx-6 lg:mx-8;
   }
   
   .my-responsive {
-    @apply my-4 sm:my-6 lg:my-8;
+    @apply my-3 xs:my-4 sm:my-6 lg:my-8;
   }
 }
 

@@ -20,7 +20,12 @@ export default {
 		},
 		extend: {
 			screens: {
-				'xs': '475px',
+				'xs': '375px',
+				'sm': '640px',
+				'md': '768px',
+				'lg': '1024px',
+				'xl': '1280px',
+				'2xl': '1536px',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -79,6 +84,15 @@ export default {
 				sans: ['Inter', 'sans-serif'],
 				serif: ['Playfair Display', 'serif'],
 				heading: ['Cormorant Garamond', 'serif']
+			},
+			fontSize: {
+				'2xs': ['0.625rem', { lineHeight: '0.75rem' }],
+			},
+			spacing: {
+				'safe-bottom': 'env(safe-area-inset-bottom)',
+				'safe-top': 'env(safe-area-inset-top)',
+				'safe-left': 'env(safe-area-inset-left)',
+				'safe-right': 'env(safe-area-inset-right)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

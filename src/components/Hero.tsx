@@ -44,7 +44,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-[85vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden px-3 sm:px-4 lg:px-8">
       {/* Background image with enhanced overlay */}
       <div
         className={cn(
@@ -58,31 +58,31 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-filter backdrop-blur-[2px]"></div>
       </div>
 
-      {/* Floating particles/decorative elements */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full border-2 border-wedding-pink animate-float"></div>
-        <div className="absolute top-1/3 right-1/3 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full border border-wedding-gold animate-float delay-300"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white animate-float delay-500"></div>
+      {/* Floating particles - hidden on very small screens */}
+      <div className="absolute inset-0 z-0 opacity-20 hidden xs:block">
+        <div className="absolute top-1/4 left-1/4 w-6 h-6 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full border-2 border-wedding-pink animate-float"></div>
+        <div className="absolute top-1/3 right-1/3 w-4 h-4 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full border border-wedding-gold animate-float delay-300"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-6 h-6 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white animate-float delay-500"></div>
       </div>
 
-      {/* Content with enhanced typography and animations */}
-      <div className="relative z-10 text-white text-center max-w-4xl w-full mt-16 md:mt-0 animate-fade-in">
-        <h1 className="font-heading font-bold mb-4 sm:mb-6 leading-tight text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-lg px-2">
+      {/* Content with enhanced mobile typography */}
+      <div className="relative z-10 text-white text-center max-w-6xl w-full mt-16 md:mt-0 animate-fade-in px-2">
+        <h1 className="font-heading font-bold mb-3 sm:mb-6 leading-tight text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-lg">
           <span className="block transform hover:scale-105 transition-transform duration-300 text-transparent bg-clip-text bg-gradient-to-r from-white to-wedding-light-pink">
             {t('hero.title')}
           </span>
         </h1>
         
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto opacity-90 leading-relaxed tracking-wide drop-shadow-md font-light px-4">
+        <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-10 max-w-4xl mx-auto opacity-90 leading-relaxed tracking-wide drop-shadow-md font-light px-2">
           {t('hero.subtitle')}
         </p>
         
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 relative px-4">
+        <div className="flex flex-col gap-3 sm:gap-4 relative px-2 max-w-md sm:max-w-none mx-auto">
           <Button
             onClick={() => navigate("/vendors")}
             size={isMobile ? "default" : "lg"}
             className={cn(
-              "bg-wedding-pink hover:bg-wedding-pink/90 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
+              "bg-wedding-pink hover:bg-wedding-pink/90 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-xs xs:text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
               hoveredButton === 1 ? "shadow-wedding-pink/50" : ""
             )}
             onMouseEnter={() => setHoveredButton(1)}
@@ -97,7 +97,7 @@ const Hero = () => {
             variant="outline"
             size={isMobile ? "default" : "lg"}
             className={cn(
-              "bg-transparent border-2 border-white text-white hover:bg-white/20 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
+              "bg-transparent border-2 border-white text-white hover:bg-white/20 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-xs xs:text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
               hoveredButton === 2 ? "shadow-wedding-pink/30" : ""  
             )}
             onMouseEnter={() => setHoveredButton(2)}
@@ -108,9 +108,9 @@ const Hero = () => {
           </Button>
         </div>
         
-        {/* Scroll indicator with enhanced animation */}
+        {/* Scroll indicator - hidden on mobile */}
         <div 
-          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce hidden md:block hover:text-wedding-pink transition-colors"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce hidden lg:block hover:text-wedding-pink transition-colors"
           onClick={scrollToNextSection}
         >
           <div className="flex flex-col items-center">
@@ -120,15 +120,15 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Enhanced image indicators */}
+      {/* Enhanced mobile-friendly image indicators */}
       <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-10">
         {heroImages.map((_, index) => (
           <button
             key={index}
-            className={`transition-all duration-300 ${
+            className={`transition-all duration-300 touch-manipulation ${
               currentImageIndex === index 
-                ? "bg-wedding-pink w-4 sm:w-6 h-1.5 sm:h-2 rounded-full shadow-lg shadow-wedding-pink/50" 
-                : "bg-white/50 hover:bg-white w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full hover:shadow-md"
+                ? "bg-wedding-pink w-3 xs:w-4 sm:w-6 h-1 xs:h-1.5 sm:h-2 rounded-full shadow-lg shadow-wedding-pink/50" 
+                : "bg-white/50 hover:bg-white w-1 xs:w-1.5 sm:w-2 h-1 xs:h-1.5 sm:h-2 rounded-full hover:shadow-md"
             }`}
             onClick={() => {
               setIsVisible(false);
