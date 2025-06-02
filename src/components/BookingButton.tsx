@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import AuthDialog from "@/components/auth/AuthDialog";
-import { toast } from "@/components/ui/sonner";
-import { Calendar, Clock, MapPin, User } from "lucide-react";
+import { toast } from "sonner";
+import { Calendar, User } from "lucide-react";
 
 interface BookingButtonProps {
   serviceName: string;
@@ -51,35 +51,41 @@ Please confirm availability and provide next steps.
     toast(`Booking initiated! Your booking request for ${serviceName} has been sent via WhatsApp.`);
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="w-full">
-        <Button 
-          onClick={() => setShowAuthDialog(true)}
-          className={`bg-wedding-pink hover:bg-wedding-pink/90 w-full sm:w-auto min-w-[140px] text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 ${className}`}
-        >
-          <User className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-          <span className="truncate">Login to Book</span>
-        </Button>
-        
-        {showAuthDialog && (
-          <AuthDialog 
-            type="login"
-            trigger={<div style={{ display: 'none' }} />}
-          />
-        )}
-      </div>
-    );
-  }
+  const handleAuthSuccess = () => {
+    setShowAuthDialog(false);
+    // After successful login, trigger booking
+    setTimeout(() => {
+      handleBooking();
+    }, 100);
+  };
 
   return (
-    <Button 
-      onClick={handleBooking}
-      className={`bg-wedding-navy hover:bg-wedding-navy/90 w-full sm:w-auto min-w-[140px] text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 ${className}`}
-    >
-      <Calendar className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-      <span className="truncate">Book Now</span>
-    </Button>
+    <div className="w-full">
+      <Button 
+        onClick={handleBooking}
+        className={`${isAuthenticated ? 'bg-wedding-navy hover:bg-wedding-navy/90' : 'bg-wedding-pink hover:bg-wedding-pink/90'} w-full sm:w-auto min-w-[140px] text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 ${className}`}
+      >
+        {isAuthenticated ? (
+          <>
+            <Calendar className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="truncate">Book Now</span>
+          </>
+        ) : (
+          <>
+            <User className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="truncate">Login to Book</span>
+          </>
+        )}
+      </Button>
+      
+      <AuthDialog 
+        type="login"
+        trigger={<div style={{ display: 'none' }} />}
+        isOpen={showAuthDialog}
+        onOpenChange={setShowAuthDialog}
+        onSuccess={handleAuthSuccess}
+      />
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,30 +13,51 @@ interface AuthDialogProps {
   type?: "login" | "signup";
   trigger?: React.ReactNode;
   className?: string;
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  onSuccess?: () => void;
 }
 
 const AuthDialog: React.FC<AuthDialogProps> = ({ 
   type = "login", 
   trigger, 
-  className 
+  className,
+  isOpen: controlledOpen,
+  onOpenChange,
+  onSuccess
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
   const [formType, setFormType] = useState<"login" | "signup">(type);
+
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : internalOpen;
+
+  const handleOpenChange = (newOpen: boolean) => {
+    if (isControlled) {
+      onOpenChange?.(newOpen);
+    } else {
+      setInternalOpen(newOpen);
+    }
+    
+    // Reset to default form after dialog closes
+    if (!newOpen) {
+      setTimeout(() => {
+        setFormType(type);
+      }, 200);
+    }
+  };
 
   const toggleFormType = () => {
     setFormType(formType === "login" ? "signup" : "login");
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
-    // Reset to default form after dialog closes
-    setTimeout(() => {
-      setFormType(type);
-    }, 200);
+  const handleSuccess = () => {
+    handleOpenChange(false);
+    onSuccess?.();
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         {trigger || (
           <Button
@@ -49,9 +70,15 @@ const AuthDialog: React.FC<AuthDialogProps> = ({
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         {formType === "login" ? (
-          <LoginForm onToggleForm={toggleFormType} onCloseDialog={handleClose} />
+          <LoginForm 
+            onToggleForm={toggleFormType} 
+            onCloseDialog={handleSuccess} 
+          />
         ) : (
-          <SignupForm onToggleForm={toggleFormType} onCloseDialog={handleClose} />
+          <SignupForm 
+            onToggleForm={toggleFormType} 
+            onCloseDialog={handleSuccess} 
+          />
         )}
       </DialogContent>
     </Dialog>

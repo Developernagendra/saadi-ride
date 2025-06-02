@@ -60,9 +60,9 @@ const Hero = () => {
 
       {/* Floating particles/decorative elements */}
       <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full border-2 border-wedding-pink animate-float"></div>
-        <div className="absolute top-1/3 right-1/3 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border border-wedding-gold animate-float delay-300"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full border-2 border-white animate-float delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full border-2 border-wedding-pink animate-float"></div>
+        <div className="absolute top-1/3 right-1/3 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full border border-wedding-gold animate-float delay-300"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white animate-float delay-500"></div>
       </div>
 
       {/* Content with enhanced typography and animations */}
@@ -73,7 +73,7 @@ const Hero = () => {
           </span>
         </h1>
         
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto opacity-90 leading-relaxed tracking-wide drop-shadow-md font-light px-4">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto opacity-90 leading-relaxed tracking-wide drop-shadow-md font-light px-4">
           {t('hero.subtitle')}
         </p>
         
@@ -82,13 +82,12 @@ const Hero = () => {
             onClick={() => navigate("/vendors")}
             size={isMobile ? "default" : "lg"}
             className={cn(
-              "bg-wedding-pink hover:bg-wedding-pink/90 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto sm:min-w-[200px] relative overflow-hidden group",
+              "bg-wedding-pink hover:bg-wedding-pink/90 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
               hoveredButton === 1 ? "shadow-wedding-pink/50" : ""
             )}
             onMouseEnter={() => setHoveredButton(1)}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            {/* Button shine effect */}
             <span className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000"></span>
             {t('hero.cta')}
           </Button>
@@ -98,13 +97,12 @@ const Hero = () => {
             variant="outline"
             size={isMobile ? "default" : "lg"}
             className={cn(
-              "bg-transparent border-2 border-white text-white hover:bg-white/20 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto sm:min-w-[200px] relative overflow-hidden group",
+              "bg-transparent border-2 border-white text-white hover:bg-white/20 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
               hoveredButton === 2 ? "shadow-wedding-pink/30" : ""  
             )}
             onMouseEnter={() => setHoveredButton(2)}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            {/* Button shine effect */}
             <span className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000"></span>
             {t('hero.exploreWeddings')}
           </Button>
@@ -117,7 +115,7 @@ const Hero = () => {
         >
           <div className="flex flex-col items-center">
             <span className="text-xs sm:text-sm mb-2 font-light tracking-wider">{t('hero.scrollDown')}</span>
-            <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
           </div>
         </div>
       </div>
