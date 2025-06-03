@@ -1,8 +1,8 @@
-
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WriteReviewForm from "@/components/WriteReviewForm";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
@@ -31,6 +31,7 @@ const VendorDetail = () => {
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("about");
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [showWriteReview, setShowWriteReview] = useState(false);
   
   // In a real app, this data would be fetched from an API based on the slug
   const vendor = {
@@ -159,6 +160,10 @@ const VendorDetail = () => {
   };
 
   const shortDescription = truncateText(vendor.description, 40);
+
+  const handleReviewSubmitted = () => {
+    setShowWriteReview(false);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -364,19 +369,32 @@ const VendorDetail = () => {
                     </div>
                     
                     <div className="mt-6 bg-wedding-cream/50 p-4 rounded-md text-center">
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 mb-3">
                         Have you used this vendor's services? Share your experience!
                       </p>
-                      <Button 
-                        className="mt-2 bg-wedding-navy hover:bg-wedding-navy/90"
-                        onClick={() => toast({
-                          title: "Review Feature",
-                          description: "The ability to write reviews will be available soon.",
-                        })}
-                      >
-                        Write a Review
-                      </Button>
+                      {!showWriteReview ? (
+                        <Button 
+                          className="bg-wedding-navy hover:bg-wedding-navy/90"
+                          onClick={() => setShowWriteReview(true)}
+                        >
+                          Write a Review
+                        </Button>
+                      ) : (
+                        <Button 
+                          variant="outline"
+                          onClick={() => setShowWriteReview(false)}
+                        >
+                          Cancel
+                        </Button>
+                      )}
                     </div>
+
+                    {showWriteReview && (
+                      <WriteReviewForm 
+                        vendorName={vendor.name}
+                        onReviewSubmitted={handleReviewSubmitted}
+                      />
+                    )}
                   </TabsContent>
                 </Tabs>
               </div>
