@@ -2,11 +2,14 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calculator, CheckCircle, Calendar, Mail, MessageCircle, Star } from "lucide-react";
+import { Calculator, CheckCircle, Calendar, Mail, Scale, DollarSign, Palette, Camera } from "lucide-react";
 import BudgetCalculator from "./BudgetCalculator";
 import WeddingChecklist from "./WeddingChecklist";
 import BookingCalendar from "./BookingCalendar";
 import NewsletterSubscription from "./NewsletterSubscription";
+import VendorComparison from "./VendorComparison";
+import WeddingCostEstimator from "./WeddingCostEstimator";
+import ColorPaletteGenerator from "./ColorPaletteGenerator";
 
 const InteractiveFeatures = () => {
   const [activeTab, setActiveTab] = useState("budget");
@@ -35,6 +38,24 @@ const InteractiveFeatures = () => {
       title: "Newsletter",
       icon: <Mail className="w-5 h-5" />,
       description: "Get the latest wedding trends and tips"
+    },
+    {
+      id: "comparison",
+      title: "Compare Vendors",
+      icon: <Scale className="w-5 h-5" />,
+      description: "Compare different vendors side by side"
+    },
+    {
+      id: "estimator",
+      title: "Cost Estimator",
+      icon: <DollarSign className="w-5 h-5" />,
+      description: "Get detailed wedding cost estimates"
+    },
+    {
+      id: "colors",
+      title: "Color Palettes",
+      icon: <Palette className="w-5 h-5" />,
+      description: "Discover perfect color combinations"
     }
   ];
 
@@ -58,18 +79,18 @@ const InteractiveFeatures = () => {
           </CardHeader>
           <CardContent className="p-0">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid grid-cols-2 lg:grid-cols-4 w-full h-auto bg-gray-50">
+              <TabsList className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 w-full h-auto bg-gray-50">
                 {features.map((feature) => (
                   <TabsTrigger
                     key={feature.id}
                     value={feature.id}
-                    className="flex flex-col items-center p-4 data-[state=active]:bg-white data-[state=active]:text-wedding-pink"
+                    className="flex flex-col items-center p-3 data-[state=active]:bg-white data-[state=active]:text-wedding-pink text-xs"
                   >
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-1 mb-1">
                       {feature.icon}
-                      <span className="font-medium">{feature.title}</span>
+                      <span className="font-medium hidden sm:inline">{feature.title}</span>
                     </div>
-                    <span className="text-xs text-gray-500 mt-1 hidden md:block">
+                    <span className="text-xs text-gray-500 hidden lg:block text-center leading-tight">
                       {feature.description}
                     </span>
                   </TabsTrigger>
@@ -91,6 +112,18 @@ const InteractiveFeatures = () => {
 
                 <TabsContent value="newsletter" className="mt-0">
                   <NewsletterSubscription />
+                </TabsContent>
+
+                <TabsContent value="comparison" className="mt-0">
+                  <VendorComparison />
+                </TabsContent>
+
+                <TabsContent value="estimator" className="mt-0">
+                  <WeddingCostEstimator />
+                </TabsContent>
+
+                <TabsContent value="colors" className="mt-0">
+                  <ColorPaletteGenerator />
                 </TabsContent>
               </div>
             </Tabs>
@@ -114,7 +147,7 @@ const InteractiveFeatures = () => {
           <div className="text-center p-6 bg-white rounded-lg shadow-md">
             <div className="text-3xl font-bold text-wedding-navy mb-2">4.9</div>
             <div className="text-sm text-gray-600 flex items-center justify-center">
-              <Star className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" />
+              <span className="text-yellow-400 mr-1">⭐</span>
               Average Rating
             </div>
           </div>
