@@ -9,7 +9,7 @@ interface Photo {
   id: number;
   src: string;
   alt: string;
-  category: string;
+  category: string[];
   photographer?: string;
   couple?: string;
   venue?: string;
