@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -36,54 +37,56 @@ import LiveTrack from "./pages/LiveTrack";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/vendors" element={<Vendors />} />
-              <Route path="/vendor/:slug" element={<VendorDetail />} />
-              <Route path="/real-weddings" element={<RealWeddings />} />
-              <Route path="/wedding-gallery/:id" element={<WeddingGalleryDetail />} />
-              <Route path="/photos" element={<Photos />} />
-              <Route path="/ideas" element={<Ideas />} />
-              <Route path="/ideas/all" element={<AllIdeas />} />
-              <Route path="/planning-tools" element={<PlanningTools />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              
-              {/* About Us section routes */}
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/about/our-story" element={<OurStory />} />
-              <Route path="/about/our-team" element={<MeetOurTeam />} />
-              <Route path="/about/mission-vision" element={<MissionVision />} />
-              <Route path="/about/careers" element={<Careers />} />
-              <Route path="/about/press" element={<Press />} />
-              <Route path="/about/contact" element={<ContactUs />} />
-              <Route path="/about/terms-privacy" element={<TermsAndPrivacy />} />
-              
-              {/* Vendor section routes */}
-              <Route path="/vendors/join" element={<JoinAsVendor />} />
-              <Route path="/vendors/login" element={<VendorLogin />} />
-              <Route path="/vendors/advertise" element={<Advertise />} />
-              <Route path="/vendors/success" element={<VendorSuccess />} />
-              <Route path="/vendors/faq" element={<VendorFAQ />} />
-              <Route path="/vendors/cab-services" element={<CabServices />} />
-              <Route path="/live-track" element={<LiveTrack />} />
-              
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </LanguageProvider>
-    </AuthProvider>
-  </QueryClientProvider>
-);
+const App: React.FC = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <LanguageProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/vendors" element={<Vendors />} />
+                <Route path="/vendor/:slug" element={<VendorDetail />} />
+                <Route path="/real-weddings" element={<RealWeddings />} />
+                <Route path="/wedding-gallery/:id" element={<WeddingGalleryDetail />} />
+                <Route path="/photos" element={<Photos />} />
+                <Route path="/ideas" element={<Ideas />} />
+                <Route path="/ideas/all" element={<AllIdeas />} />
+                <Route path="/planning-tools" element={<PlanningTools />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                
+                {/* About Us section routes */}
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/about/our-story" element={<OurStory />} />
+                <Route path="/about/our-team" element={<MeetOurTeam />} />
+                <Route path="/about/mission-vision" element={<MissionVision />} />
+                <Route path="/about/careers" element={<Careers />} />
+                <Route path="/about/press" element={<Press />} />
+                <Route path="/about/contact" element={<ContactUs />} />
+                <Route path="/about/terms-privacy" element={<TermsAndPrivacy />} />
+                
+                {/* Vendor section routes */}
+                <Route path="/vendors/join" element={<JoinAsVendor />} />
+                <Route path="/vendors/login" element={<VendorLogin />} />
+                <Route path="/vendors/advertise" element={<Advertise />} />
+                <Route path="/vendors/success" element={<VendorSuccess />} />
+                <Route path="/vendors/faq" element={<VendorFAQ />} />
+                <Route path="/vendors/cab-services" element={<CabServices />} />
+                <Route path="/live-track" element={<LiveTrack />} />
+                
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </LanguageProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
