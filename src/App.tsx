@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -35,6 +34,7 @@ import Advertise from "./pages/Advertise";
 import CabServices from "./pages/CabServices";
 import LiveTrack from "./pages/LiveTrack";
 import TrendingIdeas from "./pages/TrendingIdeas";
+import ReferralEarn from "./pages/ReferralEarn";
 
 const queryClient = new QueryClient();
 

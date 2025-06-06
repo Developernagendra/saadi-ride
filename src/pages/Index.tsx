@@ -10,7 +10,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import InteractiveFeatures from "@/components/InteractiveFeatures";
-import GoogleMap from "@/components/GoogleMap";
+import SimpleMap from "@/components/SimpleMap";
 
 const Index = () => {
   return (
@@ -23,7 +23,7 @@ const Index = () => {
       <FeaturedVendors />
       <InteractiveFeatures />
       
-      {/* Google Map Section */}
+      {/* Map Section */}
       <section className="py-16 bg-gray-50">
         <div className="wedding-container">
           <div className="text-center mb-12">
@@ -35,11 +35,10 @@ const Index = () => {
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
-            <GoogleMap
+            <SimpleMap
               address="Patna, Bihar, India"
               lat={25.5941}
               lng={85.1376}
-              zoom={11}
               className="h-96 w-full rounded-xl shadow-lg"
               markers={[
                 { lat: 25.6093, lng: 85.1025, title: "Wedding Venue 1", address: "Gandhi Maidan, Patna" },

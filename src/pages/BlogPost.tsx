@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,10 @@ import { ChevronLeft, CalendarDays, Clock, Share2 } from "lucide-react";
 const BlogPost = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Check if this is coming from Ideas page
+  const ideaFromState = location.state?.idea;
 
   // Data for all blog posts (in a real app, this would come from an API)
   const blogPostsData = [
@@ -205,8 +209,13 @@ const BlogPost = () => {
     }
   ];
 
-  // Find the current blog post
-  const post = blogPostsData.find(post => post.slug === slug);
+  // Find the current blog post - first check if it's from Ideas page
+  let post = ideaFromState;
+  
+  // If not from Ideas, look in the regular blog posts
+  if (!post) {
+    post = blogPostsData.find(post => post.slug === slug);
+  }
 
   // If post not found, show error
   if (!post) {
@@ -216,20 +225,32 @@ const BlogPost = () => {
         <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-4">
-              Blog Post Not Found
+              Content Not Found
             </h1>
-            <Button 
-              onClick={() => navigate('/blog')}
-              className="mt-4 bg-wedding-pink text-white hover:bg-wedding-pink/90"
-            >
-              <ChevronLeft className="mr-2 h-4 w-4" /> Back to Blog
-            </Button>
+            <p className="text-gray-600 mb-6">The content you're looking for could not be found.</p>
+            <div className="flex gap-4 justify-center">
+              <Button 
+                onClick={() => navigate('/blog')}
+                className="bg-wedding-pink text-white hover:bg-wedding-pink/90"
+              >
+                <ChevronLeft className="mr-2 h-4 w-4" /> Blog
+              </Button>
+              <Button 
+                onClick={() => navigate('/ideas')}
+                variant="outline"
+                className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+              >
+                <ChevronLeft className="mr-2 h-4 w-4" /> Wedding Ideas
+              </Button>
+            </div>
           </div>
         </main>
         <Footer />
       </div>
     );
   }
+
+  const isFromIdeas = !!ideaFromState;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -239,9 +260,10 @@ const BlogPost = () => {
           <Button 
             variant="outline" 
             className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
-            onClick={() => navigate('/blog')}
+            onClick={() => navigate(isFromIdeas ? '/ideas' : '/blog')}
           >
-            <ChevronLeft className="mr-2 h-4 w-4" /> Back to Blog
+            <ChevronLeft className="mr-2 h-4 w-4" /> 
+            Back to {isFromIdeas ? 'Wedding Ideas' : 'Blog'}
           </Button>
         </div>
         
