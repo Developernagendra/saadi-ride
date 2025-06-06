@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -95,56 +96,62 @@ const Ideas = () => {
   ];
 
   const handleReadMore = (ideaId: number) => {
-    navigate(`/blog/${ideaId}`);
+    console.log("Navigating to blog post:", ideaId);
+    navigate(`/blog/wedding-idea-${ideaId}`);
   };
 
   const handleExploreAllIdeas = () => {
+    console.log("Navigating to all ideas");
     navigate("/ideas/all");
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-4">
+      <main className="flex-grow pt-16 sm:pt-20 md:pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-3 md:mb-4">
             Wedding <span className="text-wedding-pink">Ideas & Inspiration</span>
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-2">
             Discover creative ideas for every aspect of your wedding, from decor and themes to favors and gifts.
             Find inspiration to make your celebration truly unique and memorable.
           </p>
         </div>
 
-        <section className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-6">
+        <section className="mb-12 md:mb-16">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-4 md:mb-6">
             Featured Ideas
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {featuredIdeas.map((idea) => (
-              <Card key={idea.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <Card key={idea.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={() => handleReadMore(idea.id)}>
                 <div className="relative">
                   <AspectRatio ratio={16/9}>
                     <img 
                       src={idea.image} 
                       alt={idea.title} 
-                      className="object-cover w-full h-full" 
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-300" 
                     />
                   </AspectRatio>
-                  <Badge className="absolute top-2 right-2 bg-wedding-pink text-white">
+                  <Badge className="absolute top-2 right-2 bg-wedding-pink text-white text-xs">
                     {idea.category}
                   </Badge>
                 </div>
-                <CardContent className="p-4">
-                  <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">{idea.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{idea.excerpt}</p>
+                <CardContent className="p-3 md:p-4">
+                  <h3 className="font-heading font-semibold text-base md:text-lg text-wedding-navy mb-2 line-clamp-2">{idea.title}</h3>
+                  <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4 line-clamp-3">{idea.excerpt}</p>
                   <Button 
                     variant="outline" 
-                    className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
-                    onClick={() => handleReadMore(idea.id)}
+                    size="sm"
+                    className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink hover:text-white text-xs md:text-sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleReadMore(idea.id);
+                    }}
                   >
-                    <BookOpen className="h-4 w-4 mr-2" />
+                    <BookOpen className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
                     Read More
                   </Button>
                 </CardContent>
@@ -153,16 +160,16 @@ const Ideas = () => {
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-6">
+        <section className="mb-12 md:mb-16">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-4 md:mb-6">
             Browse by Category
           </h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
             {ideaCategories.map((category) => (
               <div 
                 key={category.id} 
-                className="group cursor-pointer rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="group cursor-pointer rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-all duration-300"
                 onClick={() => navigate(`/ideas?category=${category.id}`)}
               >
                 <AspectRatio ratio={16/9}>
@@ -171,11 +178,11 @@ const Ideas = () => {
                     alt={category.title} 
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-4">
-                    <h3 className="font-heading font-bold text-white text-lg">{category.title}</h3>
-                    <div className="flex justify-between items-center">
-                      <p className="text-white/90 text-sm">{category.description}</p>
-                      <Badge className="bg-white/90 text-wedding-navy text-xs">{category.count} ideas</Badge>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-3 md:p-4">
+                    <h3 className="font-heading font-bold text-white text-sm md:text-lg mb-1">{category.title}</h3>
+                    <div className="flex justify-between items-end">
+                      <p className="text-white/90 text-xs md:text-sm line-clamp-2 flex-1 mr-2">{category.description}</p>
+                      <Badge className="bg-white/90 text-wedding-navy text-xs shrink-0">{category.count}</Badge>
                     </div>
                   </div>
                 </AspectRatio>
@@ -184,9 +191,9 @@ const Ideas = () => {
           </div>
         </section>
 
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <Button 
-            className="bg-wedding-pink text-white hover:bg-wedding-pink/90"
+            className="bg-wedding-pink text-white hover:bg-wedding-pink/90 px-6 md:px-8 py-2 md:py-3"
             onClick={handleExploreAllIdeas}
           >
             Explore All Ideas

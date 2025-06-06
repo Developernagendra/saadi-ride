@@ -43,6 +43,16 @@ const Hero = () => {
     }
   };
 
+  const handleFindVendors = () => {
+    console.log("Navigating to vendors page");
+    navigate("/vendors");
+  };
+
+  const handleExploreWeddings = () => {
+    console.log("Navigating to real weddings page");
+    navigate("/real-weddings");
+  };
+
   return (
     <div className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden px-3 sm:px-4 lg:px-8">
       {/* Background image with enhanced overlay */}
@@ -79,7 +89,7 @@ const Hero = () => {
         
         <div className="flex flex-col gap-3 sm:gap-4 relative px-2 max-w-md sm:max-w-none mx-auto">
           <Button
-            onClick={() => navigate("/vendors")}
+            onClick={handleFindVendors}
             size={isMobile ? "default" : "lg"}
             className={cn(
               "bg-wedding-pink hover:bg-wedding-pink/90 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 text-xs xs:text-sm sm:text-base lg:text-lg rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto sm:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group",
@@ -93,7 +103,7 @@ const Hero = () => {
           </Button>
           
           <Button
-            onClick={() => navigate("/real-weddings")}
+            onClick={handleExploreWeddings}
             variant="outline"
             size={isMobile ? "default" : "lg"}
             className={cn(

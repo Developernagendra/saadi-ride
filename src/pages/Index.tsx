@@ -10,6 +10,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import InteractiveFeatures from "@/components/InteractiveFeatures";
+import GoogleMap from "@/components/GoogleMap";
 
 const Index = () => {
   return (
@@ -21,6 +22,35 @@ const Index = () => {
       </div>
       <FeaturedVendors />
       <InteractiveFeatures />
+      
+      {/* Google Map Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="wedding-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-wedding-navy mb-4">
+              Find Us & Our Vendors
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our locations and discover wedding vendors near you across Bihar
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <GoogleMap
+              address="Patna, Bihar, India"
+              lat={25.5941}
+              lng={85.1376}
+              zoom={11}
+              className="h-96 w-full rounded-xl shadow-lg"
+              markers={[
+                { lat: 25.6093, lng: 85.1025, title: "Wedding Venue 1", address: "Gandhi Maidan, Patna" },
+                { lat: 25.5738, lng: 85.1563, title: "Photography Studio", address: "Boring Road, Patna" },
+                { lat: 25.6279, lng: 85.1359, title: "Catering Service", address: "Fraser Road, Patna" }
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
       <WeddingGallery />
       <TestimonialSection />
       <CtaSection />

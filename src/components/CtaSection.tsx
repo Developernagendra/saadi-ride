@@ -10,13 +10,14 @@ const CtaSection = () => {
   const isMobile = useIsMobile();
 
   const handleFindVendors = () => {
-    console.log("Finding vendors");
-    navigate("#vendors");
+    console.log("Navigating to vendors page");
+    navigate("/vendors");
   };
 
   const handleCreateAccount = () => {
-    console.log("Creating account");
-    navigate("#signup");
+    console.log("Creating account - would navigate to signup");
+    // This would typically open a signup modal or navigate to a signup page
+    navigate("/vendors/join");
   };
 
   return (
@@ -51,7 +52,7 @@ const CtaSection = () => {
               Start Planning Your Dream Wedding Today
             </h2>
             <p className="text-gray-300 mb-6 px-2 md:px-0">
-              Join thousands of happy couples who planned their perfect wedding with WedMeGood. Get access to top vendors, planning tools, and inspiration for your big day.
+              Join thousands of happy couples who planned their perfect wedding with Saadi Ride. Get access to top vendors, planning tools, and inspiration for your big day.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button 

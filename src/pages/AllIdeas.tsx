@@ -59,7 +59,7 @@ const AllIdeas = () => {
       title: "Traditional vs. Modern Wedding Ceremonies",
       category: "Planning",
       image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1470&auto=format&fit=crop",
-      excerpt: "How to blend traditional elements with modern touches in your ceremony."
+      excerpt: "How to blend traditional elements with traditional touches in your ceremony."
     },
     {
       id: 8,
@@ -98,55 +98,60 @@ const AllIdeas = () => {
     },
   ];
 
+  const handleReadMore = (ideaId: number) => {
+    console.log("Navigating to blog post:", ideaId);
+    navigate(`/blog/wedding-idea-${ideaId}`);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-4">
+      <main className="flex-grow pt-16 sm:pt-20 md:pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-3 md:mb-4">
             All Wedding <span className="text-wedding-pink">Ideas</span>
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-2">
             Browse our complete collection of wedding inspiration, tips, and ideas
           </p>
         </div>
 
-        <div className="mb-8 flex flex-wrap gap-2 justify-center">
-          <Button variant="outline" className="rounded-full">All</Button>
-          <Button variant="outline" className="rounded-full">Decor</Button>
-          <Button variant="outline" className="rounded-full">Themes</Button>
-          <Button variant="outline" className="rounded-full">Cards</Button>
-          <Button variant="outline" className="rounded-full">Favors</Button>
-          <Button variant="outline" className="rounded-full">Planning</Button>
-          <Button variant="outline" className="rounded-full">Beauty</Button>
-          <Button variant="outline" className="rounded-full">Photography</Button>
-          <Button variant="outline" className="rounded-full">Food</Button>
+        <div className="mb-6 md:mb-8 flex flex-wrap gap-2 justify-center">
+          <Button variant="outline" size="sm" className="rounded-full">All</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Decor</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Themes</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Cards</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Favors</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Planning</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Beauty</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Photography</Button>
+          <Button variant="outline" size="sm" className="rounded-full">Food</Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {allIdeas.map((idea) => (
-            <Card key={idea.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate(`/blog/${idea.id}`)}>
+            <Card key={idea.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleReadMore(idea.id)}>
               <div className="relative">
                 <AspectRatio ratio={16/9}>
                   <img 
                     src={idea.image} 
                     alt={idea.title} 
-                    className="object-cover w-full h-full" 
+                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-300" 
                   />
                 </AspectRatio>
-                <Badge className="absolute top-2 right-2 bg-wedding-pink text-white">
+                <Badge className="absolute top-2 right-2 bg-wedding-pink text-white text-xs">
                   {idea.category}
                 </Badge>
               </div>
-              <CardContent className="p-4">
-                <h3 className="font-heading font-semibold text-lg text-wedding-navy mb-2">{idea.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{idea.excerpt}</p>
+              <CardContent className="p-3 md:p-4">
+                <h3 className="font-heading font-semibold text-base md:text-lg text-wedding-navy mb-2 line-clamp-2">{idea.title}</h3>
+                <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4 line-clamp-3">{idea.excerpt}</p>
                 <Button 
                   variant="link" 
-                  className="px-0 text-wedding-pink hover:text-wedding-pink/80"
+                  className="px-0 text-wedding-pink hover:text-wedding-pink/80 text-xs md:text-sm h-auto p-0"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/blog/${idea.id}`);
+                    handleReadMore(idea.id);
                   }}
                 >
                   Read More →
@@ -156,11 +161,11 @@ const AllIdeas = () => {
           ))}
         </div>
 
-        <div className="flex justify-center gap-2 mb-16">
-          <Button variant="outline" className="rounded-full">1</Button>
-          <Button variant="outline" className="rounded-full">2</Button>
-          <Button variant="outline" className="rounded-full">3</Button>
-          <Button variant="outline" className="rounded-full">→</Button>
+        <div className="flex justify-center gap-2 mb-12 md:mb-16">
+          <Button variant="outline" size="sm" className="rounded-full">1</Button>
+          <Button variant="outline" size="sm" className="rounded-full">2</Button>
+          <Button variant="outline" size="sm" className="rounded-full">3</Button>
+          <Button variant="outline" size="sm" className="rounded-full">→</Button>
         </div>
       </main>
       <Footer />

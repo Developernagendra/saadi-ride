@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { 
   Users, Globe, CalendarCheck, Wallet, List,
   UserPlus, User, Megaphone, Star, HelpCircle,
-  Heart, Image, Book, Lightbulb, TrendingUp, CreditCard, Gift
+  Heart, Image, Book, Lightbulb, TrendingUp, CreditCard, Gift,
+  Map
 } from "lucide-react";
 
 const Footer = () => {
@@ -15,12 +16,13 @@ const Footer = () => {
       description: "Planning your big day? We've got all the tools you need.",
       links: [
         { name: "Find Vendors", icon: <Users size={14} />, url: "/vendors", description: "Discover top-rated wedding vendors in your area" },
-        { name: "Wedding Website", icon: <Globe size={14} />, url: "/planning-tools#website", description: "Create a beautiful custom wedding website for free" },
-        { name: "Wedding Checklist", icon: <CalendarCheck size={14} />, url: "/planning-tools#checklist", description: "Stay organized with our comprehensive timeline" },
-        { name: "Budget Planner", icon: <Wallet size={14} />, url: "/planning-tools#budget", description: "Track expenses and manage your wedding budget" },
-        { name: "Guest List Manager", icon: <List size={14} />, url: "/planning-tools#guests", description: "Organize your guest list and track RSVPs" },
-        { name: "Online Payment", icon: <CreditCard size={14} />, url: "/planning-tools#payment", description: "Secure online payments with Razorpay" },
-        { name: "Referral & Earn", icon: <Gift size={14} />, url: "/planning-tools#referral", description: "Refer friends and earn rewards" },
+        { name: "Wedding Website", icon: <Globe size={14} />, url: "/planning-tools", description: "Create a beautiful custom wedding website for free" },
+        { name: "Wedding Checklist", icon: <CalendarCheck size={14} />, url: "/planning-tools", description: "Stay organized with our comprehensive timeline" },
+        { name: "Budget Planner", icon: <Wallet size={14} />, url: "/planning-tools", description: "Track expenses and manage your wedding budget" },
+        { name: "Guest List Manager", icon: <List size={14} />, url: "/planning-tools", description: "Organize your guest list and track RSVPs" },
+        { name: "Online Payment", icon: <CreditCard size={14} />, url: "/planning-tools", description: "Secure online payments with Razorpay" },
+        { name: "Referral & Earn", icon: <Gift size={14} />, url: "/planning-tools", description: "Refer friends and earn rewards" },
+        { name: "Location Maps", icon: <Map size={14} />, url: "/planning-tools", description: "Interactive maps for venue locations" },
       ],
     },
     {
