@@ -14,13 +14,29 @@ const ReferralEarn = () => {
   const [copied, setCopied] = useState(false);
 
   const copyReferralCode = () => {
-    navigator.clipboard.writeText(`https://saadiride.com/join?ref=${referralCode}`);
-    setCopied(true);
-    toast({
-      title: "Copied!",
-      description: "Referral link copied to clipboard",
+    const referralLink = `https://saadiride.com/join?ref=${referralCode}`;
+    navigator.clipboard.writeText(referralLink).then(() => {
+      setCopied(true);
+      toast({
+        title: "Copied!",
+        description: "Referral link copied to clipboard",
+      });
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = referralLink;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopied(true);
+      toast({
+        title: "Copied!",
+        description: "Referral link copied to clipboard",
+      });
+      setTimeout(() => setCopied(false), 2000);
     });
-    setTimeout(() => setCopied(false), 2000);
   };
 
   const rewardTiers = [
@@ -130,17 +146,20 @@ const ReferralEarn = () => {
             Your Referral Dashboard
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            {referralStats.map((stat, index) => (
-              <Card key={index}>
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-wedding-pink/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <stat.icon className="h-6 w-6 text-wedding-pink" />
-                  </div>
-                  <div className="text-2xl font-bold text-wedding-navy">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </CardContent>
-              </Card>
-            ))}
+            {referralStats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <Card key={index}>
+                  <CardContent className="p-6 text-center">
+                    <div className="w-12 h-12 bg-wedding-pink/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <IconComponent className="h-6 w-6 text-wedding-pink" />
+                    </div>
+                    <div className="text-2xl font-bold text-wedding-navy">{stat.value}</div>
+                    <div className="text-sm text-gray-600">{stat.label}</div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           {/* Referral Link */}
