@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { 
   Users, Globe, CalendarCheck, Wallet, List,
   UserPlus, User, Megaphone, Star, HelpCircle,
-  Heart, Image, Book, Lightbulb, TrendingUp
+  Heart, Image, Book, Lightbulb, TrendingUp, CreditCard, Gift
 } from "lucide-react";
 
 const Footer = () => {
@@ -15,10 +15,12 @@ const Footer = () => {
       description: "Planning your big day? We've got all the tools you need.",
       links: [
         { name: "Find Vendors", icon: <Users size={14} />, url: "/vendors", description: "Discover top-rated wedding vendors in your area" },
-        { name: "Wedding Website", icon: <Globe size={14} />, url: "/planning-tools", description: "Create a beautiful custom wedding website for free" },
-        { name: "Wedding Checklist", icon: <CalendarCheck size={14} />, url: "/planning-tools", description: "Stay organized with our comprehensive timeline" },
-        { name: "Budget Planner", icon: <Wallet size={14} />, url: "/planning-tools", description: "Track expenses and manage your wedding budget" },
-        { name: "Guest List Manager", icon: <List size={14} />, url: "/planning-tools", description: "Organize your guest list and track RSVPs" },
+        { name: "Wedding Website", icon: <Globe size={14} />, url: "/planning-tools#website", description: "Create a beautiful custom wedding website for free" },
+        { name: "Wedding Checklist", icon: <CalendarCheck size={14} />, url: "/planning-tools#checklist", description: "Stay organized with our comprehensive timeline" },
+        { name: "Budget Planner", icon: <Wallet size={14} />, url: "/planning-tools#budget", description: "Track expenses and manage your wedding budget" },
+        { name: "Guest List Manager", icon: <List size={14} />, url: "/planning-tools#guests", description: "Organize your guest list and track RSVPs" },
+        { name: "Online Payment", icon: <CreditCard size={14} />, url: "/planning-tools#payment", description: "Secure online payments with Razorpay" },
+        { name: "Referral & Earn", icon: <Gift size={14} />, url: "/planning-tools#referral", description: "Refer friends and earn rewards" },
       ],
     },
     {
@@ -26,11 +28,11 @@ const Footer = () => {
       icon: <Star size={16} />,
       description: "Grow your wedding business with our platform.",
       links: [
-        { name: "Join as Vendor", icon: <UserPlus size={14} />, url: "#", description: "List your services and reach engaged couples" },
-        { name: "Vendor Login", icon: <User size={14} />, url: "#", description: "Access your vendor dashboard and manage bookings" },
-        { name: "Advertise with Us", icon: <Megaphone size={14} />, url: "#", description: "Increase visibility with premium advertising options" },
-        { name: "Vendor Success Stories", icon: <Star size={14} />, url: "#", description: "Read testimonials from successful wedding vendors" },
-        { name: "Vendor FAQ", icon: <HelpCircle size={14} />, url: "#", description: "Find answers to common questions about our platform" },
+        { name: "Join as Vendor", icon: <UserPlus size={14} />, url: "/vendors/join", description: "List your services and reach engaged couples" },
+        { name: "Vendor Login", icon: <User size={14} />, url: "/vendors/login", description: "Access your vendor dashboard and manage bookings" },
+        { name: "Advertise with Us", icon: <Megaphone size={14} />, url: "/vendors/advertise", description: "Increase visibility with premium advertising options" },
+        { name: "Vendor Success Stories", icon: <Star size={14} />, url: "/vendors/success", description: "Read testimonials from successful wedding vendors" },
+        { name: "Vendor FAQ", icon: <HelpCircle size={14} />, url: "/vendors/faq", description: "Find answers to common questions about our platform" },
       ],
     },
     {
@@ -42,7 +44,7 @@ const Footer = () => {
         { name: "Photos", icon: <Image size={14} />, url: "/photos", description: "Explore thousands of wedding photos for inspiration" },
         { name: "Wedding Blog", icon: <Book size={14} />, url: "/blog", description: "Read the latest wedding trends and tips" },
         { name: "Wedding Ideas", icon: <Lightbulb size={14} />, url: "/ideas", description: "Discover creative ideas for your wedding" },
-        { name: "Trending", icon: <TrendingUp size={14} />, url: "/ideas", description: "See what's popular in weddings right now" },
+        { name: "Trending", icon: <TrendingUp size={14} />, url: "/ideas/trending", description: "See what's popular in weddings right now" },
       ],
     },
     {
@@ -53,8 +55,6 @@ const Footer = () => {
         { name: "Our Story", url: "/about/our-story", description: "Learn about how Saadi Ride started" },
         { name: "Meet Our Team", url: "/about/our-team", description: "Get to know the people behind Saadi Ride" },
         { name: "Mission & Vision", url: "/about/mission-vision", description: "Our goals and values for transforming weddings" },
-        { name: "Careers", url: "/about/careers", description: "Join our team and help couples plan their dream weddings" },
-        { name: "Press", url: "/about/press", description: "News and media coverage about Saadi Ride" },
         { name: "Contact Us", url: "/about/contact", description: "Get in touch with our team" },
         { name: "Terms & Privacy", url: "/about/terms-privacy", description: "Our policies and terms of service" },
       ],
@@ -64,8 +64,8 @@ const Footer = () => {
   return (
     <footer className="bg-wedding-navy text-white pt-8 sm:pt-12 lg:pt-16 pb-6 sm:pb-8">
       <div className="wedding-container px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="lg:col-span-1">
             <h3 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">
               <span className="text-wedding-pink">Saadi</span> Ride
             </h3>

@@ -34,6 +34,7 @@ import VendorSuccess from "./pages/VendorSuccess";
 import Advertise from "./pages/Advertise";
 import CabServices from "./pages/CabServices";
 import LiveTrack from "./pages/LiveTrack";
+import TrendingIdeas from "./pages/TrendingIdeas";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App: React.FC = () => {
                 <Route path="/photos" element={<Photos />} />
                 <Route path="/ideas" element={<Ideas />} />
                 <Route path="/ideas/all" element={<AllIdeas />} />
+                <Route path="/ideas/trending" element={<TrendingIdeas />} />
                 <Route path="/planning-tools" element={<PlanningTools />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
