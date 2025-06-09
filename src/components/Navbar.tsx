@@ -106,12 +106,14 @@ const Navbar = () => {
       title: t('nav.planningTools'), 
       href: "/planning-tools",
       services: [
-        { name: "Checklist", href: "/planning-tools#checklist" },
-        { name: "Budget Planner", href: "/planning-tools#budget" },
-        { name: "Guest List Manager", href: "/planning-tools#guests" },
-        { name: "Vendor Manager", href: "/planning-tools#vendors" },
-        { name: "Wedding Website", href: "/planning-tools#website" },
+        { name: "Find Vendors", href: "/vendors" },
+        { name: "Wedding Website", href: "/planning-tools" },
+        { name: "Wedding Checklist", href: "/planning-tools" },
+        { name: "Budget Planner", href: "/planning-tools" },
+        { name: "Guest List Manager", href: "/planning-tools" },
+        { name: "Online Payment", href: "/planning-tools" },
         { name: "Referral & Earn", href: "/referral-earn" },
+        { name: "Location Maps", href: "/" },
       ]
     },
     { 
