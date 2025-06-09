@@ -111,6 +111,7 @@ const Navbar = () => {
         { name: "Guest List Manager", href: "/planning-tools#guests" },
         { name: "Vendor Manager", href: "/planning-tools#vendors" },
         { name: "Wedding Website", href: "/planning-tools#website" },
+        { name: "Referral & Earn", href: "/referral-earn" },
       ]
     },
     { 
