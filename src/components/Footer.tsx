@@ -5,10 +5,24 @@ import {
   Users, Globe, CalendarCheck, Wallet, List,
   UserPlus, User, Megaphone, Star, HelpCircle,
   Heart, Image, Book, Lightbulb, TrendingUp, CreditCard, Gift,
-  Map
+  Map, MessageCircle, Headphones, Phone
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
+import { toast } from "sonner";
 
 const Footer = () => {
+  const handleWhatsAppSupport = () => {
+    sendWhatsAppMessage({
+      type: 'support',
+      message: 'Hi! I need help with wedding planning services. Please contact me.'
+    });
+    
+    toast.success("Opening WhatsApp...", {
+      description: "Connect with our 24/7 support team directly."
+    });
+  };
+
   const footerLinks = [
     {
       title: "For Couples",
@@ -66,6 +80,40 @@ const Footer = () => {
   return (
     <footer className="bg-wedding-navy text-white pt-8 sm:pt-12 lg:pt-16 pb-6 sm:pb-8">
       <div className="wedding-container px-4 sm:px-6 lg:px-8">
+        {/* 24/7 Support Section */}
+        <div className="bg-gradient-to-r from-wedding-pink/10 to-wedding-navy/20 rounded-lg p-6 mb-8 border border-wedding-pink/20">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+                <Headphones className="h-6 w-6 text-wedding-pink" />
+                <h3 className="text-xl font-semibold">24/7 Support Available</h3>
+              </div>
+              <p className="text-gray-300">
+                Need help with your wedding planning? Our support team is available around the clock to assist you.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                onClick={handleWhatsAppSupport}
+                className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2"
+              >
+                <MessageCircle size={16} />
+                WhatsApp Support
+              </Button>
+              <Button
+                variant="outline"
+                className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink hover:text-white flex items-center gap-2"
+                asChild
+              >
+                <Link to="/about/contact">
+                  <Phone size={16} />
+                  Call Support
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="lg:col-span-1">
             <h3 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">
