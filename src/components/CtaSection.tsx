@@ -21,7 +21,7 @@ const CtaSection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-wedding-navy text-white relative overflow-hidden">
+    <section className="py-8 xs:py-12 sm:py-16 bg-wedding-navy text-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <svg
@@ -46,18 +46,18 @@ const CtaSection = () => {
       </div>
       
       <div className="wedding-container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xs:gap-8 md:gap-10 items-center">
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-4">
+            <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3 xs:mb-4">
               Start Planning Your Dream Wedding Today
             </h2>
-            <p className="text-gray-300 mb-6 px-2 md:px-0">
+            <p className="text-gray-300 mb-4 xs:mb-6 px-1 xs:px-2 md:px-0 text-sm xs:text-base">
               Join thousands of happy couples who planned their perfect wedding with Saadi Ride. Get access to top vendors, planning tools, and inspiration for your big day.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 xs:gap-3">
               <Button 
                 size={isMobile ? "default" : "lg"} 
-                className="bg-wedding-pink hover:bg-wedding-pink/90 text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
+                className="bg-wedding-pink hover:bg-wedding-pink/90 text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-95 min-h-[44px] touch-manipulation"
                 onClick={handleFindVendors}
               >
                 Find Vendors
@@ -65,19 +65,19 @@ const CtaSection = () => {
               <Button 
                 variant="outline" 
                 size={isMobile ? "default" : "lg"} 
-                className="border-white text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
+                className="border-white text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 min-h-[44px] touch-manipulation"
                 onClick={handleCreateAccount}
               >
                 Create Free Account
               </Button>
             </div>
             
-            <div className="mt-8 hidden md:block">
+            <div className="mt-6 xs:mt-8 hidden md:block">
               <ContactForm />
             </div>
           </div>
           
-          <div className="relative mt-6 md:mt-0">
+          <div className="relative mt-4 xs:mt-6 md:mt-0">
             <div className="aspect-[4/3] relative rounded-lg overflow-hidden shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1517722014278-c256a91a6fba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80"
@@ -88,13 +88,13 @@ const CtaSection = () => {
             </div>
             
             {/* Decorative elements */}
-            <div className="absolute -bottom-5 -left-5 w-16 sm:w-28 h-16 sm:h-28 border-4 border-wedding-pink rounded-full z-0"></div>
-            <div className="absolute -top-5 -right-5 w-12 sm:w-20 h-12 sm:h-20 border-4 border-wedding-gold opacity-70 rounded-full z-0"></div>
+            <div className="absolute -bottom-3 xs:-bottom-5 -left-3 xs:-left-5 w-12 h-12 xs:w-16 xs:h-16 sm:w-28 sm:h-28 border-4 border-wedding-pink rounded-full z-0"></div>
+            <div className="absolute -top-3 xs:-top-5 -right-3 xs:-right-5 w-8 h-8 xs:w-12 xs:h-12 sm:w-20 sm:h-20 border-4 border-wedding-gold opacity-70 rounded-full z-0"></div>
           </div>
         </div>
         
         {/* Mobile Contact Form */}
-        <div className="mt-8 md:hidden">
+        <div className="mt-6 xs:mt-8 md:hidden">
           <ContactForm />
         </div>
       </div>
