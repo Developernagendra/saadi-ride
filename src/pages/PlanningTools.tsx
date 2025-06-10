@@ -18,21 +18,24 @@ const PlanningTools = () => {
       title: "Wedding Checklist",
       description: "Keep track of all your wedding tasks with our comprehensive checklist.",
       icon: <ListCheck className="h-8 w-8 text-wedding-pink" />,
-      comingSoon: false
+      comingSoon: false,
+      route: "/"
     },
     {
       id: "budget",
       title: "Budget Planner",
       description: "Plan and manage your wedding expenses with our easy-to-use budget planner.",
       icon: <Wallet className="h-8 w-8 text-wedding-pink" />,
-      comingSoon: false
+      comingSoon: false,
+      route: "/"
     },
     {
       id: "guests",
       title: "Guest List Manager",
       description: "Organize your guest list, track RSVPs, and manage seating arrangements.",
       icon: <Users className="h-8 w-8 text-wedding-pink" />,
-      comingSoon: false
+      comingSoon: false,
+      route: "/"
     },
     {
       id: "vendors",
@@ -70,25 +73,61 @@ const PlanningTools = () => {
     ]
   };
 
-  const handleToolClick = (id: string, comingSoon: boolean) => {
-    if (comingSoon) {
+  const handleToolClick = (tool: typeof tools[0]) => {
+    if (tool.comingSoon) {
       toast({
         title: "Coming Soon!",
-        description: "This tool will be available shortly. We'll notify you when it's ready.",
+        description: `${tool.title} will be available shortly. We'll notify you when it's ready.`,
         duration: 3000,
       });
     } else {
-      navigate(`/planning-tools#${id}`);
+      // Navigate to homepage with interactive features and scroll to specific tool
+      navigate(tool.route);
+      setTimeout(() => {
+        const element = document.getElementById('categories-section');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      
+      toast({
+        title: "Tool Available!",
+        description: `Access ${tool.title} in the Interactive Planning Tools section on the homepage.`,
+        duration: 4000,
+      });
     }
   };
 
   const handleTryItNow = () => {
-    navigate("/planning-tools#checklist");
+    navigate("/");
+    setTimeout(() => {
+      const element = document.getElementById('categories-section');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+    
+    toast({
+      title: "Interactive Tools Ready!",
+      description: "Check out our interactive planning tools section below.",
+      duration: 4000,
+    });
   };
 
   const handleCreateAccount = () => {
-    const signupButton = document.querySelector('[data-trigger="signup"]') as HTMLButtonElement | null;
-    if (signupButton) signupButton.click();
+    toast({
+      title: "Account Creation",
+      description: "Account creation feature will be available soon. Currently exploring our tools doesn't require an account!",
+      duration: 4000,
+    });
+  };
+
+  const handleNotifyMe = (toolName: string) => {
+    toast({
+      title: "Notification Set!",
+      description: `We'll notify you when ${toolName} is ready. Thank you for your interest!`,
+      duration: 4000,
+    });
   };
 
   return (
@@ -205,9 +244,9 @@ const PlanningTools = () => {
                 <CardContent>
                   <Button 
                     className={tool.comingSoon ? 
-                      "w-full bg-gray-100 text-gray-500 hover:bg-gray-200 cursor-not-allowed" : 
+                      "w-full bg-gray-100 text-gray-500 hover:bg-gray-200" : 
                       "w-full bg-wedding-pink text-white hover:bg-wedding-pink/90"}
-                    onClick={() => handleToolClick(tool.id, tool.comingSoon)}
+                    onClick={() => tool.comingSoon ? handleNotifyMe(tool.title) : handleToolClick(tool)}
                   >
                     {tool.comingSoon ? "Notify Me" : "Get Started"}
                   </Button>
