@@ -10,7 +10,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import InteractiveFeatures from "@/components/InteractiveFeatures";
-import SimpleMap from "@/components/SimpleMap";
+import GoogleMap from "@/components/GoogleMap";
 
 const Index = () => {
   return (
@@ -35,15 +35,18 @@ const Index = () => {
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
-            <SimpleMap
+            <GoogleMap
               address="Patna, Bihar, India"
               lat={25.5941}
               lng={85.1376}
+              zoom={12}
               className="h-96 w-full rounded-xl shadow-lg"
               markers={[
                 { lat: 25.6093, lng: 85.1025, title: "Wedding Venue 1", address: "Gandhi Maidan, Patna" },
                 { lat: 25.5738, lng: 85.1563, title: "Photography Studio", address: "Boring Road, Patna" },
-                { lat: 25.6279, lng: 85.1359, title: "Catering Service", address: "Fraser Road, Patna" }
+                { lat: 25.6279, lng: 85.1359, title: "Catering Service", address: "Fraser Road, Patna" },
+                { lat: 25.5918, lng: 85.1273, title: "Bridal Makeup Artist", address: "Exhibition Road, Patna" },
+                { lat: 25.6158, lng: 85.1198, title: "Wedding Decorator", address: "Dak Bunglow Road, Patna" }
               ]}
             />
           </div>
