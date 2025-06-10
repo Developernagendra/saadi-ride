@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Send, X, User, Bot } from "lucide-react";
 import { toast } from "sonner";
+import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
 
 interface Message {
   id: number;
@@ -29,11 +30,11 @@ const LiveChat = () => {
   const [isInfoCollected, setIsInfoCollected] = useState(false);
 
   const botResponses = [
-    "Thank you for your message! Our team will get back to you shortly.",
-    "We offer a wide range of wedding services. Would you like to know about venues, photographers, or catering?",
-    "I'd be happy to help you with vendor recommendations. What's your budget range?",
-    "For urgent inquiries, please call us at +91 98765 43210 or WhatsApp us.",
-    "You can browse our vendor directory or check out real weddings for inspiration!"
+    "Thank you for your message! For immediate assistance, please contact us via WhatsApp.",
+    "We offer a wide range of wedding services. Would you like to connect via WhatsApp for detailed information?",
+    "I'd be happy to help you with vendor recommendations. Let's continue this conversation on WhatsApp for faster service.",
+    "For urgent inquiries, please use our WhatsApp button below for instant response.",
+    "You can browse our vendor directory or contact us directly via WhatsApp for personalized assistance!"
   ];
 
   const handleSendMessage = () => {
@@ -69,6 +70,20 @@ const LiveChat = () => {
     }
     setIsInfoCollected(true);
     toast.success("Thank you! Now you can start chatting with us.");
+  };
+
+  const handleWhatsAppContact = () => {
+    const chatHistory = messages.filter(m => m.sender === 'user').map(m => m.text).join('\n');
+    
+    sendWhatsAppMessage({
+      type: 'inquiry',
+      customerName: userInfo.name || 'Guest',
+      customerEmail: userInfo.email || '',
+      message: chatHistory || 'Continuing our chat conversation. Please contact me for wedding planning assistance.'
+    });
+    
+    toast.success("Connecting you via WhatsApp for faster support!");
+    setIsOpen(false);
   };
 
   if (!isOpen) {
@@ -118,9 +133,18 @@ const LiveChat = () => {
                 value={userInfo.email}
                 onChange={(e) => setUserInfo(prev => ({ ...prev, email: e.target.value }))}
               />
-              <Button onClick={handleInfoSubmit} className="w-full bg-wedding-pink hover:bg-wedding-pink/90">
-                Start Chat
-              </Button>
+              <div className="space-y-2">
+                <Button onClick={handleInfoSubmit} className="w-full bg-wedding-pink hover:bg-wedding-pink/90">
+                  Start Chat
+                </Button>
+                <Button 
+                  onClick={handleWhatsAppContact} 
+                  className="w-full bg-green-500 hover:bg-green-600"
+                  variant="outline"
+                >
+                  Contact via WhatsApp
+                </Button>
+              </div>
             </div>
           ) : (
             <>
@@ -146,7 +170,14 @@ const LiveChat = () => {
                   </div>
                 ))}
               </div>
-              <div className="border-t p-3">
+              <div className="border-t p-3 space-y-2">
+                <Button 
+                  onClick={handleWhatsAppContact}
+                  className="w-full bg-green-500 hover:bg-green-600 text-white text-sm"
+                  size="sm"
+                >
+                  Continue on WhatsApp
+                </Button>
                 <div className="flex space-x-2">
                   <Input
                     placeholder="Type your message..."

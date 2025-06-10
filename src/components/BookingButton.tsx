@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import AuthDialog from "@/components/auth/AuthDialog";
 import { toast } from "sonner";
 import { Calendar, User } from "lucide-react";
+import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
 
 interface BookingButtonProps {
   serviceName: string;
@@ -32,23 +33,18 @@ const BookingButton: React.FC<BookingButtonProps> = ({
       return;
     }
 
-    // Create booking details for WhatsApp
-    const bookingDetails = `
-Hi Saadi Ride! I want to book the following service:
+    // Send booking request via WhatsApp
+    sendWhatsAppMessage({
+      type: 'booking',
+      serviceName,
+      serviceType,
+      customerName: user?.name,
+      customerEmail: user?.email,
+      price,
+      location
+    });
 
-👤 Customer: ${user?.name} (${user?.email})
-🎉 Service: ${serviceName}
-💰 Price: ${price || "Please provide quote"}
-📍 Location: ${location || "To be discussed"}
-📅 Date: To be scheduled
-
-Please confirm availability and provide next steps.
-    `.trim();
-
-    const whatsappUrl = `https://wa.me/918800123456?text=${encodeURIComponent(bookingDetails)}`;
-    window.open(whatsappUrl, '_blank');
-
-    toast(`Booking initiated! Your booking request for ${serviceName} has been sent via WhatsApp.`);
+    toast.success(`Booking initiated! Your booking request for ${serviceName} has been sent via WhatsApp.`);
   };
 
   const handleAuthSuccess = () => {
@@ -68,7 +64,7 @@ Please confirm availability and provide next steps.
         {isAuthenticated ? (
           <>
             <Calendar className="mr-1 sm:mr-2 h-3 w-3 xs:h-3.5 xs:w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
-            <span className="truncate text-xs xs:text-sm sm:text-base">Book Now</span>
+            <span className="truncate text-xs xs:text-sm sm:text-base">Book via WhatsApp</span>
           </>
         ) : (
           <>

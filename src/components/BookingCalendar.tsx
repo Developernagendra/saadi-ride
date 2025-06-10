@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CalendarDays, Clock, User, Phone } from "lucide-react";
 import { toast } from "sonner";
+import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
 
 const BookingCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
@@ -44,20 +44,20 @@ const BookingCalendar = () => {
       return;
     }
 
-    const bookingDetails = `
-🗓️ Date: ${selectedDate.toLocaleDateString()}
-⏰ Time: ${selectedTime}
-🎯 Service: ${services.find(s => s.id === selectedService)?.name}
-👤 Name: ${customerInfo.name}
-📞 Phone: ${customerInfo.phone}
-👥 Guests: ${customerInfo.guests || 'Not specified'}
-📧 Email: ${customerInfo.email || 'Not provided'}
-    `;
-
-    const whatsappMessage = encodeURIComponent(`Hi! I'd like to book an appointment:\n${bookingDetails}`);
-    const whatsappUrl = `https://wa.me/919876543210?text=${whatsappMessage}`;
+    const selectedServiceDetails = services.find(s => s.id === selectedService);
     
-    window.open(whatsappUrl, '_blank');
+    sendWhatsAppMessage({
+      type: 'booking',
+      serviceName: selectedServiceDetails?.name || 'Appointment',
+      serviceType: 'other',
+      customerName: customerInfo.name,
+      customerPhone: customerInfo.phone,
+      customerEmail: customerInfo.email,
+      date: selectedDate.toLocaleDateString(),
+      time: selectedTime,
+      message: `Expected guests: ${customerInfo.guests || 'Not specified'}\nService duration: ${selectedServiceDetails?.duration || 'Not specified'}`
+    });
+    
     toast.success("Booking request sent via WhatsApp!");
   };
 
@@ -180,7 +180,7 @@ const BookingCalendar = () => {
               
               <Button 
                 onClick={handleBooking}
-                className="w-full bg-wedding-pink hover:bg-wedding-pink/90 text-white"
+                className="w-full bg-green-500 hover:bg-green-600 text-white"
                 disabled={!selectedDate || !selectedTime || !selectedService}
               >
                 Book via WhatsApp
