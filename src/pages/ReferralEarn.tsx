@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,11 +9,11 @@ import { Gift, Users, Share2, Wallet, Copy, CheckCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const ReferralEarn = () => {
-  const [referralCode] = useState("SAADI2025");
+  const [referralCode] = useState("SHAADI2025");
   const [copied, setCopied] = useState(false);
 
   const copyReferralCode = () => {
-    const referralLink = `https://saadiride.com/join?ref=${referralCode}`;
+    const referralLink = `https://shaadisaathi.com/join?ref=${referralCode}`;
     navigator.clipboard.writeText(referralLink).then(() => {
       setCopied(true);
       toast({
@@ -83,7 +82,7 @@ const ReferralEarn = () => {
             Referral & Earn Program
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Share Saadi Ride with friends and family, earn rewards for every successful booking
+            Share ShaadiSaathi with friends and family, earn rewards for every successful booking
           </p>
           <Badge className="bg-wedding-pink text-white px-4 py-2 text-lg">
             Earn up to ₹1500 per referral
@@ -119,7 +118,7 @@ const ReferralEarn = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  When they book vendors or transportation services through Saadi Ride, you both benefit
+                  When they book vendors or transportation services through ShaadiSaathi, you both benefit
                 </p>
               </CardContent>
             </Card>
@@ -173,7 +172,7 @@ const ReferralEarn = () => {
             <CardContent>
               <div className="flex gap-2">
                 <Input 
-                  value={`https://saadiride.com/join?ref=${referralCode}`}
+                  value={`https://shaadisaathi.com/join?ref=${referralCode}`}
                   readOnly
                   className="flex-1"
                 />
@@ -220,10 +219,10 @@ const ReferralEarn = () => {
             <CardContent>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>• Rewards are paid within 30 days of successful service completion</li>
-                <li>• Referred customers must be new to Saadi Ride platform</li>
+                <li>• Referred customers must be new to ShaadiSaathi platform</li>
                 <li>• Minimum booking value of ₹5,000 required for reward eligibility</li>
                 <li>• Self-referrals are not permitted</li>
-                <li>• Saadi Ride reserves the right to modify the program terms</li>
+                <li>• ShaadiSaathi reserves the right to modify the program terms</li>
                 <li>• Rewards are subject to applicable taxes</li>
               </ul>
             </CardContent>

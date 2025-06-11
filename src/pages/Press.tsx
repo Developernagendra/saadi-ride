@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,31 +6,31 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 const Press = () => {
   const pressReleases = [
     {
-      title: "WedMeGood Launches Comprehensive Wedding Budget Tool",
+      title: "ShaadiSaathi Launches Comprehensive Wedding Budget Tool",
       date: "April 15, 2025",
       excerpt: "New tool helps couples plan and track wedding expenses with customized budgeting based on regional and cultural factors.",
       link: "#",
     },
     {
-      title: "WedMeGood Reaches 25,000 Verified Vendor Milestone",
+      title: "ShaadiSaathi Reaches 25,000 Verified Vendor Milestone",
       date: "February 22, 2025",
       excerpt: "Leading wedding platform now offers the largest verified vendor network across 50+ cities in India.",
       link: "#",
     },
     {
-      title: "WedMeGood's Annual Wedding Trends Report Released",
+      title: "ShaadiSaathi's Annual Wedding Trends Report Released",
       date: "January 10, 2025",
       excerpt: "Report highlights sustainability, personalization, and hybrid celebrations as key trends for the 2025 wedding season.",
       link: "#",
     },
     {
-      title: "WedMeGood Expands Services to International Destination Weddings",
+      title: "ShaadiSaathi Expands Services to International Destination Weddings",
       date: "November 5, 2024",
       excerpt: "New partnerships with international vendors help Indian couples plan destination weddings across Southeast Asia and Europe.",
       link: "#",
     },
     {
-      title: "WedMeGood Hosts First Virtual Wedding Expo",
+      title: "ShaadiSaathi Hosts First Virtual Wedding Expo",
       date: "September 17, 2024",
       excerpt: "Over 10,000 couples attended the three-day virtual event featuring vendor showcases, workshops, and wedding planning masterclasses.",
       link: "#",
@@ -41,28 +40,28 @@ const Press = () => {
   const mediaFeatures = [
     {
       publication: "Economic Times",
-      title: "How WedMeGood is Revolutionizing Wedding Planning in India",
+      title: "How ShaadiSaathi is Revolutionizing Wedding Planning in India",
       date: "March 5, 2025",
       logo: "https://placehold.co/200x100?text=ET",
       link: "#",
     },
     {
       publication: "Vogue India",
-      title: "Wedding Planning Made Simple: WedMeGood's Digital Transformation",
+      title: "Wedding Planning Made Simple: ShaadiSaathi's Digital Transformation",
       date: "January 18, 2025",
       logo: "https://placehold.co/200x100?text=Vogue",
       link: "#",
     },
     {
       publication: "YourStory",
-      title: "WedMeGood: The Startup Story Behind India's Wedding Revolution",
+      title: "ShaadiSaathi: The Startup Story Behind India's Wedding Revolution",
       date: "December 1, 2024",
       logo: "https://placehold.co/200x100?text=YourStory",
       link: "#",
     },
     {
       publication: "NDTV",
-      title: "Wedding Industry Trends: In Conversation with WedMeGood Founders",
+      title: "Wedding Industry Trends: In Conversation with ShaadiSaathi Founders",
       date: "October 22, 2024",
       logo: "https://placehold.co/200x100?text=NDTV",
       link: "#",
@@ -79,7 +78,7 @@ const Press = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Find the latest news from WedMeGood, press resources, and media features. For press inquiries, please contact our media relations team at press@wedmegood.com.
+                Find the latest news from ShaadiSaathi, press resources, and media features. For press inquiries, please contact our media relations team at press@shaadisaathi.com.
               </p>
               
               <div className="flex flex-col md:flex-row gap-6 mb-12">

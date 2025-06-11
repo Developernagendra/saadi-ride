@@ -53,81 +53,22 @@ const PlanningTools = () => {
     },
     {
       id: "timeline",
-      title: "Day-Of Timeline",
-      description: "Plan your wedding day schedule down to the minute.",
+      title: "Timeline Planner",
+      description: "Create a detailed timeline for your wedding day and share it with vendors.",
       icon: <CalendarCheck className="h-8 w-8 text-wedding-pink" />,
       comingSoon: true
     }
   ];
 
-  const featuredTool = {
-    title: "Wedding Checklist",
-    description: "Stay on track with our comprehensive wedding planning checklist",
-    features: [
-      "Personalized timeline based on your wedding date",
-      "Task reminders and notifications",
-      "Progress tracking and completion status",
-      "Categorized tasks for easy organization",
-      "Ability to add custom tasks",
-      "Share with your partner or wedding planner"
-    ]
-  };
-
   const handleToolClick = (tool: typeof tools[0]) => {
     if (tool.comingSoon) {
       toast({
         title: "Coming Soon!",
-        description: `${tool.title} will be available shortly. We'll notify you when it's ready.`,
-        duration: 3000,
+        description: `${tool.title} will be available soon. We'll notify you when it's ready.`,
       });
     } else {
-      // Navigate to homepage with interactive features and scroll to specific tool
       navigate(tool.route);
-      setTimeout(() => {
-        const element = document.getElementById('categories-section');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-      
-      toast({
-        title: "Tool Available!",
-        description: `Access ${tool.title} in the Interactive Planning Tools section on the homepage.`,
-        duration: 4000,
-      });
     }
-  };
-
-  const handleTryItNow = () => {
-    navigate("/");
-    setTimeout(() => {
-      const element = document.getElementById('categories-section');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-    
-    toast({
-      title: "Interactive Tools Ready!",
-      description: "Check out our interactive planning tools section below.",
-      duration: 4000,
-    });
-  };
-
-  const handleCreateAccount = () => {
-    toast({
-      title: "Account Creation",
-      description: "Account creation feature will be available soon. Currently exploring our tools doesn't require an account!",
-      duration: 4000,
-    });
-  };
-
-  const handleNotifyMe = (toolName: string) => {
-    toast({
-      title: "Notification Set!",
-      description: `We'll notify you when ${toolName} is ready. Thank you for your interest!`,
-      duration: 4000,
-    });
   };
 
   return (
@@ -136,152 +77,80 @@ const PlanningTools = () => {
       <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-4">
-            Wedding <span className="text-wedding-pink">Planning Tools</span>
+            Wedding Planning <span className="text-wedding-pink">Tools</span>
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Make your wedding planning journey stress-free with our suite of planning tools.
-            From budgeting to guest lists, we've got everything you need to organize your perfect day.
+            Streamline your wedding planning process with our comprehensive suite of tools designed to make your special day perfect.
           </p>
         </div>
 
-        <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-4">
-                {featuredTool.title}
-              </h2>
-              <p className="text-gray-600 mb-6">
-                {featuredTool.description}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {featuredTool.features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="mr-2 mt-1 bg-wedding-pink/10 rounded-full p-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-wedding-pink" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button className="bg-wedding-pink text-white hover:bg-wedding-pink/90" onClick={handleTryItNow}>
-                Try It Now
-              </Button>
-            </div>
-            <div className="bg-wedding-pink/5 p-6 rounded-lg border border-wedding-pink/20">
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">1</div>
-                  <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
-                    <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked readOnly />
-                      <span className="ml-2 text-gray-700 line-through">Set your wedding date</span>
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {tools.map((tool) => (
+            <Card 
+              key={tool.id} 
+              className={`cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                tool.comingSoon ? 'opacity-75' : ''
+              }`}
+              onClick={() => handleToolClick(tool)}
+            >
+              <CardHeader className="text-center">
+                <div className="bg-wedding-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  {tool.icon}
                 </div>
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">2</div>
-                  <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
-                    <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked readOnly />
-                      <span className="ml-2 text-gray-700 line-through">Create your wedding budget</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">3</div>
-                  <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
-                    <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" checked readOnly />
-                      <span className="ml-2 text-gray-700 line-through">Book your venue</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-wedding-pink flex items-center justify-center text-white text-sm font-medium">4</div>
-                  <div className="ml-3 p-3 bg-white rounded-lg border flex-1">
-                    <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" />
-                      <span className="ml-2 text-gray-700">Start looking for vendors</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-wedding-pink/30 flex items-center justify-center text-white text-sm font-medium">5</div>
-                  <div className="ml-3 p-3 bg-white rounded-lg border border-dashed flex-1">
-                    <div className="flex items-center">
-                      <input type="checkbox" className="h-4 w-4 text-wedding-pink rounded border-gray-300" disabled />
-                      <span className="ml-2 text-gray-400">Create your guest list</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                <CardTitle className="text-xl flex items-center justify-center gap-2">
+                  {tool.title}
+                  {tool.comingSoon && (
+                    <span className="text-xs bg-wedding-pink text-white px-2 py-1 rounded-full">
+                      Coming Soon
+                    </span>
+                  )}
+                </CardTitle>
+                <CardDescription>{tool.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button 
+                  variant={tool.comingSoon ? "outline" : "default"}
+                  className={tool.comingSoon ? 
+                    "border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10" : 
+                    "bg-wedding-pink text-white hover:bg-wedding-pink/90"
+                  }
+                  disabled={tool.comingSoon}
+                >
+                  {tool.comingSoon ? "Notify Me" : "Get Started"}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
 
-        <section className="mb-16">
+        <div className="bg-gradient-to-r from-wedding-pink/5 to-wedding-navy/5 rounded-lg p-8 md:p-12 text-center mb-16">
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-6">
-            Our Planning Tools
+            Why Choose ShaadiSaathi Planning Tools?
           </h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tools.map((tool) => (
-              <Card key={tool.id} className="overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    {tool.icon}
-                    {tool.comingSoon && (
-                      <span className="inline-block bg-wedding-navy/10 text-wedding-navy text-xs px-2 py-1 rounded-full font-medium">
-                        Coming Soon
-                      </span>
-                    )}
-                  </div>
-                  <CardTitle className="text-xl font-heading text-wedding-navy mt-4">{tool.title}</CardTitle>
-                  <CardDescription className="text-gray-600">{tool.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button 
-                    className={tool.comingSoon ? 
-                      "w-full bg-gray-100 text-gray-500 hover:bg-gray-200" : 
-                      "w-full bg-wedding-pink text-white hover:bg-wedding-pink/90"}
-                    onClick={() => tool.comingSoon ? handleNotifyMe(tool.title) : handleToolClick(tool)}
-                  >
-                    {tool.comingSoon ? "Notify Me" : "Get Started"}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-wedding-pink/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🎯</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Easy to Use</h3>
+              <p className="text-gray-600">Intuitive tools designed for couples, not wedding planners.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-wedding-pink/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">💾</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Cloud Synced</h3>
+              <p className="text-gray-600">Access your planning data from anywhere, anytime.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-wedding-pink/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🤝</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Collaborative</h3>
+              <p className="text-gray-600">Share with your partner, family, and vendors.</p>
+            </div>
           </div>
-        </section>
-
-        <section className="bg-wedding-pink/5 p-8 rounded-lg mb-16 border border-wedding-pink/20">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-wedding-navy mb-4">
-              Need Help Planning Your Wedding?
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Our premium planning tools are designed to make your wedding planning journey smooth and stress-free.
-              Create an account to access all tools and save your progress.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button 
-              className="bg-wedding-pink text-white hover:bg-wedding-pink/90"
-              onClick={handleCreateAccount}
-            >
-              Create Free Account
-            </Button>
-            <Button 
-              variant="outline" 
-              className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
-              onClick={() => navigate("/about")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </div>

@@ -14,7 +14,7 @@ const OurStory = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                The journey of WedMeGood began in 2014 when our founders, Anand and Mehak, experienced firsthand the challenges of planning their own wedding. They realized that despite India having one of the largest wedding industries in the world, couples lacked a centralized platform to discover and connect with reliable vendors.
+                The journey of ShaadiSaathi began in 2014 when our founders, Anand and Mehak, experienced firsthand the challenges of planning their own wedding. They realized that despite India having one of the largest wedding industries in the world, couples lacked a centralized platform to discover and connect with reliable vendors.
               </p>
               
               <div className="my-10 bg-white p-8 rounded-lg shadow-sm">
@@ -27,7 +27,7 @@ const OurStory = () => {
               <h2 className="text-3xl font-semibold my-6 text-wedding-navy">From Idea to Reality</h2>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Starting with just a small team working out of a tiny office in Delhi, WedMeGood began by curating a list of 100 vendors across three categories. The platform quickly gained traction as couples appreciated the verified reviews, detailed portfolios, and transparent pricing information.
+                Starting with just a small team working out of a tiny office in Delhi, ShaadiSaathi began by curating a list of 100 vendors across three categories. The platform quickly gained traction as couples appreciated the verified reviews, detailed portfolios, and transparent pricing information.
               </p>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
@@ -52,7 +52,7 @@ const OurStory = () => {
               <h2 className="text-3xl font-semibold my-6 text-wedding-navy">Our Cultural Mission</h2>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
-                India's wedding traditions are as diverse as its culture. From the vibrant Punjabi celebrations to the elegant Tamil ceremonies, each wedding carries unique customs and rituals. At WedMeGood, we're committed to celebrating this diversity and helping couples honor their traditions while also creating their personal touches.
+                India's wedding traditions are as diverse as its culture. From the vibrant Punjabi celebrations to the elegant Tamil ceremonies, each wedding carries unique customs and rituals. At ShaadiSaathi, we're committed to celebrating this diversity and helping couples honor their traditions while also creating their personal touches.
               </p>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
@@ -62,7 +62,7 @@ const OurStory = () => {
               <h2 className="text-3xl font-semibold my-6 text-wedding-navy">Looking Ahead</h2>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Today, WedMeGood has evolved into much more than a vendor directory. We're a comprehensive wedding ecosystem that supports couples through every stage of planning. Our blogging platform features expert advice, our mobile app allows planning on the go, and our vendor management tools help businesses grow and connect with their ideal clients.
+                Today, ShaadiSaathi has evolved into much more than a vendor directory. We're a comprehensive wedding ecosystem that supports couples through every stage of planning. Our blogging platform features expert advice, our mobile app allows planning on the go, and our vendor management tools help businesses grow and connect with their ideal clients.
               </p>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
@@ -70,7 +70,7 @@ const OurStory = () => {
               </p>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
-                The WedMeGood story is still being written, and we're excited to be part of countless couple's wedding journeys in the years to come.
+                The ShaadiSaathi story is still being written, and we're excited to be part of countless couple's wedding journeys in the years to come.
               </p>
             </div>
           </div>

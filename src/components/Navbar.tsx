@@ -49,7 +49,7 @@ const Navbar = () => {
           onClick={() => handleNavigation("/")}
         >
           <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-heading font-bold text-wedding-navy">
-            <span className="text-wedding-pink">Wed</span>MeGood
+            <span className="text-wedding-pink">Shaadi</span>Saathi
           </h1>
         </Link>
 

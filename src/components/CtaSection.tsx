@@ -52,7 +52,7 @@ const CtaSection = () => {
               Start Planning Your Dream Wedding Today
             </h2>
             <p className="text-gray-300 mb-4 xs:mb-6 px-1 xs:px-2 md:px-0 text-sm xs:text-base">
-              Join thousands of happy couples who planned their perfect wedding with Saadi Ride. Get access to top vendors, planning tools, and inspiration for your big day.
+              Join thousands of happy couples who planned their perfect wedding with ShaadiSaathi. Get access to top vendors, planning tools, and inspiration for your big day.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 xs:gap-3">
               <Button 

@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -53,7 +52,7 @@ const JoinAsVendor = () => {
             Join as a <span className="text-wedding-pink">Vendor</span>
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Connect with engaged couples and grow your wedding business with WedMeGood
+            Connect with engaged couples and grow your wedding business with ShaadiSaathi
           </p>
         </div>
 
@@ -128,7 +127,7 @@ const JoinAsVendor = () => {
           
           <div className="space-y-8">
             <div className="bg-wedding-pink/5 p-6 rounded-lg border border-wedding-pink/20">
-              <h3 className="text-xl font-semibold text-wedding-navy mb-4">Why Join WedMeGood?</h3>
+              <h3 className="text-xl font-semibold text-wedding-navy mb-4">Why Join ShaadiSaathi?</h3>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex">
@@ -158,7 +157,7 @@ const JoinAsVendor = () => {
             <div className="bg-wedding-cream/50 p-6 rounded-lg border">
               <h3 className="text-xl font-semibold text-wedding-navy mb-4">Need Help?</h3>
               <p className="text-gray-600 mb-4">
-                Our vendor support team is available to assist you with any questions about joining WedMeGood.
+                Our vendor support team is available to assist you with any questions about joining ShaadiSaathi.
               </p>
               <Button 
                 variant="link" 

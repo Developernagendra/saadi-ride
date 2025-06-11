@@ -53,7 +53,7 @@ const MeetOurTeam = () => {
             Meet Our <span className="text-wedding-pink">Team</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            The passionate people behind Saadi Ride who are dedicated to making your wedding transportation seamless and memorable.
+            The passionate people behind ShaadiSaathi who are dedicated to making your wedding transportation seamless and memorable.
           </p>
         </div>
 
@@ -84,17 +84,17 @@ const MeetOurTeam = () => {
           </h2>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             We're always looking for passionate individuals who want to help make weddings more beautiful and memorable. 
-            If you're interested in joining the Saadi Ride family, we'd love to hear from you.
+            If you're interested in joining the ShaadiSaathi family, we'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="mailto:careers@saadiride.com" 
+              href="mailto:careers@shaadisaathi.com" 
               className="bg-wedding-navy text-white px-8 py-3 rounded-lg hover:bg-wedding-navy/90 transition-colors"
             >
               View Open Positions
             </a>
             <a 
-              href="mailto:hello@saadiride.com" 
+              href="mailto:hello@shaadisaathi.com" 
               className="border border-wedding-pink text-wedding-pink px-8 py-3 rounded-lg hover:bg-wedding-pink/10 transition-colors"
             >
               Contact Us
