@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -6,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, CalendarDays, Clock, Share2 } from "lucide-react";
+import { ChevronLeft, CalendarDays, Clock, Share2, Home, Heart } from "lucide-react";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -217,31 +216,58 @@ const BlogPost = () => {
     post = blogPostsData.find(post => post.slug === slug);
   }
 
-  // If post not found, show error
+  // If post not found, show enhanced error
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-4">
+        <main className="flex-grow page-header page-content">
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <div className="mb-8">
+              <Heart className="h-12 w-12 sm:h-16 sm:w-16 text-wedding-pink mx-auto mb-4" />
+            </div>
+            <h1 className="text-responsive-3xl font-heading font-bold text-wedding-navy mb-4">
               Content Not Found
             </h1>
-            <p className="text-gray-600 mb-6">The content you're looking for could not be found.</p>
-            <div className="flex gap-4 justify-center">
+            <p className="text-gray-600 mb-8 text-responsive-base">
+              The wedding content you're looking for might have been moved or doesn't exist. 
+              Let's get you back to planning your perfect wedding!
+            </p>
+            <div className="flex-responsive-center mb-8">
               <Button 
                 onClick={() => navigate('/blog')}
-                className="bg-wedding-pink text-white hover:bg-wedding-pink/90"
+                className="bg-wedding-pink text-white hover:bg-wedding-pink/90 btn-responsive-lg"
               >
-                <ChevronLeft className="mr-2 h-4 w-4" /> Blog
+                <ChevronLeft className="mr-2 h-4 w-4" /> Wedding Blog
               </Button>
               <Button 
                 onClick={() => navigate('/ideas')}
                 variant="outline"
-                className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+                className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 btn-responsive-lg"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" /> Wedding Ideas
               </Button>
+              <Button 
+                onClick={() => navigate('/')}
+                variant="outline"
+                className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 btn-responsive-lg"
+              >
+                <Home className="mr-2 h-4 w-4" /> Home
+              </Button>
+            </div>
+            <div className="border-t border-gray-200 pt-6">
+              <p className="text-sm text-gray-500 mb-3">Popular wedding content:</p>
+              <div className="flex flex-wrap justify-center gap-2 text-sm">
+                <Button variant="link" size="sm" onClick={() => navigate('/vendors')} className="text-wedding-pink">
+                  Find Vendors
+                </Button>
+                <Button variant="link" size="sm" onClick={() => navigate('/real-weddings')} className="text-wedding-pink">
+                  Real Weddings
+                </Button>
+                <Button variant="link" size="sm" onClick={() => navigate('/planning-tools')} className="text-wedding-pink">
+                  Planning Tools
+                </Button>
+              </div>
             </div>
           </div>
         </main>
@@ -255,11 +281,11 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pt-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full">
-        <div className="mb-8">
+      <main className="flex-grow page-header page-content">
+        <div className="mb-6 sm:mb-8">
           <Button 
             variant="outline" 
-            className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+            className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 btn-responsive"
             onClick={() => navigate(isFromIdeas ? '/ideas' : '/blog')}
           >
             <ChevronLeft className="mr-2 h-4 w-4" /> 
@@ -268,40 +294,42 @@ const BlogPost = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="mb-6">
-            <Badge className="bg-wedding-pink text-white">{post.category}</Badge>
+          <div className="mb-4 sm:mb-6">
+            <Badge className="bg-wedding-pink text-white text-xs sm:text-sm">{post.category}</Badge>
           </div>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-6">
+          <h1 className="text-responsive-3xl font-heading font-bold text-wedding-navy mb-4 sm:mb-6">
             {post.title}
           </h1>
           
-          <div className="flex items-center mb-8">
-            <img 
-              src={post.authorImage} 
-              alt={post.author} 
-              className="w-10 h-10 rounded-full object-cover mr-3" 
-            />
-            <div>
-              <div className="font-medium">{post.author}</div>
-              <div className="text-sm text-gray-500 flex items-center gap-3">
-                <span className="flex items-center">
-                  <CalendarDays className="h-3 w-3 mr-1" /> {post.date}
-                </span>
-                {post.readTime && (
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-3">
+            <div className="flex items-center">
+              <img 
+                src={post.authorImage} 
+                alt={post.author} 
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover mr-3" 
+              />
+              <div>
+                <div className="font-medium text-sm sm:text-base">{post.author}</div>
+                <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-3">
                   <span className="flex items-center">
-                    <Clock className="h-3 w-3 mr-1" /> {post.readTime}
+                    <CalendarDays className="h-3 w-3 mr-1" /> {post.date}
                   </span>
-                )}
+                  {post.readTime && (
+                    <span className="flex items-center">
+                      <Clock className="h-3 w-3 mr-1" /> {post.readTime}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
             
-            <Button variant="ghost" className="ml-auto" title="Share this article">
+            <Button variant="ghost" size="sm" title="Share this article" className="self-start sm:self-auto">
               <Share2 className="h-4 w-4" />
             </Button>
           </div>
           
-          <AspectRatio ratio={16/9} className="mb-8 rounded-lg overflow-hidden">
+          <AspectRatio ratio={16/9} className="mb-6 sm:mb-8 rounded-lg overflow-hidden">
             <img 
               src={post.image} 
               alt={post.title} 
@@ -310,17 +338,17 @@ const BlogPost = () => {
           </AspectRatio>
           
           <div 
-            className="prose prose-lg max-w-none" 
+            className="prose prose-sm sm:prose-lg max-w-none prose-headings:font-heading prose-headings:text-wedding-navy prose-a:text-wedding-pink" 
             dangerouslySetInnerHTML={{ __html: post.content }} 
           />
           
-          <div className="border-t border-gray-200 my-12 pt-8">
-            <h3 className="text-xl font-heading font-semibold mb-4">Share this article</h3>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="rounded-full">Twitter</Button>
-              <Button variant="outline" size="sm" className="rounded-full">Facebook</Button>
-              <Button variant="outline" size="sm" className="rounded-full">Pinterest</Button>
-              <Button variant="outline" size="sm" className="rounded-full">Email</Button>
+          <div className="border-t border-gray-200 my-8 sm:my-12 pt-6 sm:pt-8">
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-4">Share this article</h3>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" className="rounded-full text-xs sm:text-sm">Twitter</Button>
+              <Button variant="outline" size="sm" className="rounded-full text-xs sm:text-sm">Facebook</Button>
+              <Button variant="outline" size="sm" className="rounded-full text-xs sm:text-sm">Pinterest</Button>
+              <Button variant="outline" size="sm" className="rounded-full text-xs sm:text-sm">Email</Button>
             </div>
           </div>
         </div>

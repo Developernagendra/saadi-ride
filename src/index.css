@@ -98,6 +98,13 @@
   html, body {
     @apply overflow-x-hidden;
   }
+
+  /* Improved text rendering */
+  body {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 @layer utilities {
@@ -123,7 +130,7 @@
     scroll-behavior: smooth;
   }
 
-  /* Mobile-first utilities */
+  /* Enhanced mobile-first utilities */
   .text-mobile-xs {
     @apply text-xs leading-tight;
   }
@@ -140,7 +147,7 @@
     @apply text-base xs:text-lg;
   }
 
-  /* Mobile spacing utilities */
+  /* Better mobile spacing utilities */
   .px-mobile {
     @apply px-3 xs:px-4 sm:px-6;
   }
@@ -151,6 +158,37 @@
   
   .p-mobile {
     @apply p-3 xs:p-4 sm:p-6;
+  }
+
+  /* Responsive grid utilities */
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+  }
+  
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6;
+  }
+  
+  .grid-responsive-4 {
+    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4;
+  }
+
+  /* Responsive flex utilities */
+  .flex-responsive {
+    @apply flex flex-col sm:flex-row gap-3 sm:gap-4;
+  }
+  
+  .flex-responsive-center {
+    @apply flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4;
+  }
+
+  /* Enhanced button responsiveness */
+  .btn-responsive {
+    @apply px-3 py-2 text-sm sm:px-4 sm:py-2.5 sm:text-base;
+  }
+  
+  .btn-responsive-lg {
+    @apply px-4 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base;
   }
 
   /* Safe area utilities for mobile devices */
@@ -169,6 +207,21 @@
   .pr-safe {
     @apply pr-safe-right;
   }
+
+  /* Container with better mobile padding */
+  .container-responsive {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Better mobile cards */
+  .card-responsive {
+    @apply rounded-lg sm:rounded-xl shadow-sm sm:shadow-md;
+  }
+
+  /* Mobile-friendly aspect ratios */
+  .aspect-mobile {
+    @apply aspect-square sm:aspect-video;
+  }
 }
 
 @layer components {
@@ -177,11 +230,11 @@
   }
   
   .wedding-btn-primary {
-    @apply bg-wedding-pink text-white px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium text-xs xs:text-sm sm:text-base touch-manipulation;
+    @apply bg-wedding-pink text-white btn-responsive rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium touch-manipulation;
   }
   
   .wedding-btn-outline {
-    @apply border border-wedding-pink text-wedding-pink px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-md hover:bg-wedding-pink hover:bg-opacity-10 transition-all duration-300 font-medium text-xs xs:text-sm sm:text-base touch-manipulation;
+    @apply border border-wedding-pink text-wedding-pink btn-responsive rounded-md hover:bg-wedding-pink hover:bg-opacity-10 transition-all duration-300 font-medium touch-manipulation;
   }
   
   .section-title {
@@ -194,14 +247,14 @@
   }
   
   .vendor-card {
-    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
+    @apply bg-white card-responsive overflow-hidden transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
   }
   
   .category-card {
-    @apply relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
+    @apply relative bg-white card-responsive overflow-hidden transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-wedding-pink;
   }
 
-  /* Mobile-first responsive text utilities */
+  /* Enhanced responsive text utilities */
   .text-responsive-xs {
     @apply text-xs sm:text-sm;
   }
@@ -230,7 +283,7 @@
     @apply text-2xl xs:text-3xl sm:text-4xl;
   }
 
-  /* Mobile-first responsive spacing utilities */
+  /* Enhanced responsive spacing utilities */
   .p-responsive {
     @apply p-3 xs:p-4 sm:p-6 lg:p-8;
   }
@@ -254,6 +307,19 @@
   .my-responsive {
     @apply my-3 xs:my-4 sm:my-6 lg:my-8;
   }
+
+  /* Page layout improvements */
+  .page-header {
+    @apply pt-20 sm:pt-24 pb-8 sm:pb-12;
+  }
+  
+  .page-content {
+    @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  }
+  
+  .page-section {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
 }
 
 @keyframes slideInFromRight {
@@ -267,4 +333,19 @@
 
 .animate-slide-in-from-right {
   animation: slideInFromRight 0.3s ease-out;
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 640px) {
+  .mobile-stack {
+    @apply flex-col;
+  }
+  
+  .mobile-full {
+    @apply w-full;
+  }
+  
+  .mobile-center {
+    @apply text-center;
+  }
 }
