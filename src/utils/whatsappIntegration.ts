@@ -1,6 +1,6 @@
 
 export const WHATSAPP_NUMBERS = {
-  main: "918800123456", // Main Saadi Ride number
+  main: "918800123456", // Main ShaadiSaathi number
   support: "919876543210", // Support number
   booking: "918800123456", // Booking number
   vendor: "919876543210" // Vendor inquiries
@@ -86,13 +86,14 @@ Looking forward to hearing from you!`;
       break;
       
     default:
-      message = `Hi Saadi Ride! I'm interested in your wedding services. Please contact me.`;
+      message = `Hi ShaadiSaathi! I'm interested in your wedding services. Please contact me.`;
   }
   
   return message;
 };
 
 export const openWhatsApp = (phoneNumber: string, message: string): void => {
+  console.log(`Opening WhatsApp for ${phoneNumber} with message:`, message);
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   window.open(whatsappUrl, '_blank');

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarCheck, ListCheck, Users, Book, Wallet, Calendar } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const PlanningTools = () => {
   const { toast } = useToast();
@@ -61,11 +61,30 @@ const PlanningTools = () => {
   ];
 
   const handleToolClick = (tool: typeof tools[0]) => {
+    console.log(`Tool clicked: ${tool.title}, Coming soon: ${tool.comingSoon}`);
     if (tool.comingSoon) {
       toast({
         title: "Coming Soon!",
         description: `${tool.title} will be available soon. We'll notify you when it's ready.`,
       });
+    } else {
+      console.log(`Navigating to: ${tool.route}`);
+      navigate(tool.route);
+    }
+  };
+
+  const handleNotifyMe = (toolTitle: string) => {
+    console.log(`Notify me clicked for: ${toolTitle}`);
+    toast({
+      title: "You'll be notified!",
+      description: `We'll send you an email when ${toolTitle} is available.`,
+    });
+  };
+
+  const handleGetStarted = (tool: typeof tools[0]) => {
+    console.log(`Get started clicked for: ${tool.title}`);
+    if (tool.comingSoon) {
+      handleNotifyMe(tool.title);
     } else {
       navigate(tool.route);
     }
@@ -114,7 +133,10 @@ const PlanningTools = () => {
                     "border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10" : 
                     "bg-wedding-pink text-white hover:bg-wedding-pink/90"
                   }
-                  disabled={tool.comingSoon}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleGetStarted(tool);
+                  }}
                 >
                   {tool.comingSoon ? "Notify Me" : "Get Started"}
                 </Button>
