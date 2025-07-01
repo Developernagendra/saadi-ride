@@ -23,20 +23,25 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleForm, onCloseDialog }) =>
     e.preventDefault();
     setIsSubmitting(true);
     
-    const success = await login(email, password);
-    
-    if (success && onCloseDialog) {
-      onCloseDialog();
+    try {
+      const success = await login(email, password);
+      
+      if (success) {
+        console.log("Login successful, closing dialog");
+        onCloseDialog?.();
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    setIsSubmitting(false);
   };
 
   return (
     <div className="w-full">
       <div className="mb-6 text-center">
         <h2 className="text-2xl font-bold text-wedding-navy">Welcome Back</h2>
-        <p className="text-gray-600 mt-2">Sign in to continue to WedMeGood</p>
+        <p className="text-gray-600 mt-2">Sign in to continue to ShaadiSaathi</p>
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-4">

@@ -24,20 +24,25 @@ const SignupForm: React.FC<SignupFormProps> = ({ onToggleForm, onCloseDialog }) 
     e.preventDefault();
     setIsSubmitting(true);
     
-    const success = await signup(email, password, name);
-    
-    if (success && onCloseDialog) {
-      onCloseDialog();
+    try {
+      const success = await signup(email, password, name);
+      
+      if (success) {
+        console.log("Signup successful, closing dialog");
+        onCloseDialog?.();
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    setIsSubmitting(false);
   };
 
   return (
     <div className="w-full">
       <div className="mb-6 text-center">
         <h2 className="text-2xl font-bold text-wedding-navy">Create Account</h2>
-        <p className="text-gray-600 mt-2">Join WedMeGood to plan your perfect wedding</p>
+        <p className="text-gray-600 mt-2">Join ShaadiSaathi to plan your perfect wedding</p>
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-4">

@@ -23,8 +23,14 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
   onNavigate 
 }) => {
   const navLinks = useNavigationLinks();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const { t } = useLanguage();
+
+  const handleLogout = () => {
+    console.log("Mobile logout clicked");
+    logout();
+    setIsOpen(false);
+  };
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -76,52 +82,38 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
               <Button 
                 variant="outline" 
                 className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
-                onClick={() => {
-                  const { logout } = require("@/contexts/AuthContext").useAuth();
-                  logout();
-                  setIsOpen(false);
-                }}
+                onClick={handleLogout}
               >
                 {t('nav.logout')}
               </Button>
             ) : (
               <>
-                <Button 
-                  variant="outline" 
-                  className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
-                  onClick={() => {
-                    setIsOpen(false);
-                    setTimeout(() => {
-                      const loginButton = document.querySelector('[data-trigger="login"]') as HTMLButtonElement | null;
-                      if (loginButton) loginButton.click();
-                    }, 100);
-                  }}
-                >
-                  {t('nav.login')}
-                </Button>
-                <Button 
-                  className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
-                  onClick={() => {
-                    setIsOpen(false);
-                    setTimeout(() => {
-                      const signupButton = document.querySelector('[data-trigger="signup"]') as HTMLButtonElement | null;
-                      if (signupButton) signupButton.click();
-                    }, 100);
-                  }}
-                >
-                  {t('nav.signup')}
-                </Button>
+                <AuthDialog 
+                  type="login" 
+                  trigger={
+                    <Button 
+                      variant="outline" 
+                      className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 w-full"
+                    >
+                      {t('nav.login')}
+                    </Button>
+                  }
+                />
+                <AuthDialog 
+                  type="signup" 
+                  trigger={
+                    <Button 
+                      className="bg-wedding-pink text-white hover:bg-wedding-pink/90 w-full"
+                    >
+                      {t('nav.signup')}
+                    </Button>
+                  }
+                />
               </>
             )}
           </div>
         </div>
       </SheetContent>
-      
-      {/* Hidden triggers for dialogs */}
-      <div className="hidden">
-        <AuthDialog type="login" trigger={<button data-trigger="login">Login</button>} />
-        <AuthDialog type="signup" trigger={<button data-trigger="signup">Sign Up</button>} />
-      </div>
     </Sheet>
   );
 };
