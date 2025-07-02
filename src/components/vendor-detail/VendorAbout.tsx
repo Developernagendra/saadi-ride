@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Check, ChevronDown, ChevronRight, MapPin } from 'lucide-react';
-import Map from '@/components/Map';
+import GoogleMap from '@/components/GoogleMap';
 
 interface VendorAboutProps {
   vendor: {
@@ -58,7 +58,7 @@ const VendorAbout: React.FC<VendorAboutProps> = ({ vendor }) => {
         {vendor.address}
       </p>
       <div className="w-full rounded-md mb-6">
-        <Map address={vendor.address} />
+        <GoogleMap address={vendor.address} className="h-64 w-full rounded-lg" />
       </div>
     </div>
   );
