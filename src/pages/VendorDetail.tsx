@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WriteReviewForm from "@/components/WriteReviewForm";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
+import VendorHero from "@/components/vendor-detail/VendorHero";
+import VendorImageGallery from "@/components/vendor-detail/VendorImageGallery";
+import VendorTabs from "@/components/vendor-detail/VendorTabs";
+import VendorSidebar from "@/components/vendor-detail/VendorSidebar";
 import { useToast } from "@/hooks/use-toast";
-import Map from "@/components/Map";
 import {
   Calendar,
   Check,
@@ -354,10 +352,8 @@ const VendorDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("about");
-  const [showFullDescription, setShowFullDescription] = useState(false);
-  const [showWriteReview, setShowWriteReview] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
   
   // Determine category from slug or default to Venue
   const determineCategory = (slug: string) => {
@@ -407,59 +403,11 @@ const VendorDetail = () => {
     packages: categoryData.packages
   };
 
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [wishlist, setWishlist] = useState(false);
-
-  const handleSendMessage = () => {
-    // In a real app, this would send the message to the vendor
-    console.log("Message to vendor:", message);
-    toast({
-      title: "Message Sent!",
-      description: "Your inquiry has been sent to the vendor. They will contact you shortly.",
-    });
-    setMessage("");
-  };
-
-  const toggleWishlist = () => {
-    setWishlist(!wishlist);
-    toast({
-      title: wishlist ? "Removed from Wishlist" : "Added to Wishlist",
-      description: wishlist 
-        ? `${vendor.name} has been removed from your wishlist.` 
-        : `${vendor.name} has been added to your wishlist.`,
-    });
-  };
-
-  const handleShare = () => {
-    // In a real app, this would use the Web Share API or copy to clipboard
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      toast({
-        title: "Link Copied!",
-        description: "Vendor link has been copied to your clipboard.",
-      });
-    });
-  };
-
   const handleCheckAvailability = () => {
-    // In a real app, this would open a modal or navigate to a booking page
     toast({
       title: "Checking Availability",
       description: "You'll be able to select dates and check vendor availability soon.",
     });
-  };
-
-  // Function to truncate text to a number of words and add ellipsis
-  const truncateText = (text, wordCount) => {
-    const words = text.split(' ');
-    if (words.length <= wordCount) return text;
-    
-    return words.slice(0, wordCount).join(' ') + '...';
-  };
-
-  const shortDescription = truncateText(vendor.description, 40);
-
-  const handleReviewSubmitted = () => {
-    setShowWriteReview(false);
   };
 
   return (
@@ -467,332 +415,31 @@ const VendorDetail = () => {
       <Navbar />
       
       <main className="flex-grow bg-wedding-cream">
-        {/* Hero Section */}
-        <div className="relative h-80 md:h-96 overflow-hidden">
-          <img 
-            src={vendor.images[selectedImage]} 
-            alt={vendor.name} 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full p-6 text-white">
-            <div className="wedding-container">
-              <div className="flex flex-col md:flex-row md:items-end justify-between">
-                <div>
-                  <span className="inline-block bg-wedding-pink px-3 py-1 rounded-full text-sm font-medium mb-2">
-                    {vendor.category}
-                  </span>
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
-                    {vendor.name}
-                  </h1>
-                  <div className="flex items-center mt-2">
-                    <MapPin size={16} className="mr-1" />
-                    <span className="text-sm md:text-base">{vendor.location}</span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center mt-4 md:mt-0">
-                  <div className="flex items-center bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                    <span className="ml-1 font-medium">{vendor.rating}</span>
-                    <span className="ml-1 text-sm opacity-80">({vendor.reviews.length} reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <VendorHero vendor={vendor} selectedImage={selectedImage} />
         
-        {/* Image Gallery */}
-        <div className="wedding-container py-6">
-          <div className="flex space-x-2 overflow-x-auto pb-2 no-scrollbar">
-            {vendor.images.map((image, index) => (
-              <div 
-                key={index} 
-                className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 ${
-                  selectedImage === index ? "border-wedding-pink" : "border-transparent"
-                }`}
-                onClick={() => setSelectedImage(index)}
-              >
-                <img 
-                  src={image} 
-                  alt={`${vendor.name} ${index + 1}`} 
-                  className="w-20 h-20 object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <VendorImageGallery 
+          images={vendor.images}
+          selectedImage={selectedImage}
+          onImageSelect={setSelectedImage}
+          vendorName={vendor.name}
+        />
         
         <div className="wedding-container pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Main Content */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
-                <Tabs 
-                  defaultValue="about" 
-                  value={activeTab} 
-                  onValueChange={setActiveTab}
-                  className="w-full"
-                >
-                  <div className="px-4 border-b">
-                    <TabsList className="w-full justify-start bg-transparent space-x-6 h-14">
-                      <TabsTrigger 
-                        value="about" 
-                        className="data-[state=active]:border-b-2 data-[state=active]:border-wedding-pink data-[state=active]:text-wedding-pink rounded-none border-b-2 border-transparent px-0 py-3"
-                      >
-                        About
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="packages" 
-                        className="data-[state=active]:border-b-2 data-[state=active]:border-wedding-pink data-[state=active]:text-wedding-pink rounded-none border-b-2 border-transparent px-0 py-3"
-                      >
-                        Packages
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="reviews" 
-                        className="data-[state=active]:border-b-2 data-[state=active]:border-wedding-pink data-[state=active]:text-wedding-pink rounded-none border-b-2 border-transparent px-0 py-3"
-                      >
-                        Reviews ({vendor.reviews.length})
-                      </TabsTrigger>
-                    </TabsList>
-                  </div>
-                  
-                  <TabsContent value="about" className="p-6 focus-visible:outline-none focus-visible:ring-0">
-                    <h2 className="text-xl font-heading font-semibold mb-3">About {vendor.name}</h2>
-                    <div className="text-gray-700 mb-6">
-                      <p>{showFullDescription ? vendor.description : shortDescription}</p>
-                      {vendor.description.length > shortDescription.length && (
-                        <button 
-                          onClick={() => setShowFullDescription(!showFullDescription)}
-                          className="mt-2 text-wedding-pink hover:text-wedding-pink/80 flex items-center font-medium transition-colors"
-                        >
-                          {showFullDescription ? (
-                            <>Show Less <ChevronDown className="ml-1 w-4 h-4" /></>
-                          ) : (
-                            <>Read More <ChevronRight className="ml-1 w-4 h-4" /></>
-                          )}
-                        </button>
-                      )}
-                    </div>
-                    
-                    <h3 className="text-lg font-semibold mb-2">Features & Amenities</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
-                      {vendor.features.map((feature, index) => (
-                        <div key={index} className="flex items-center">
-                          <Check size={16} className="text-wedding-pink mr-2" />
-                          <span className="text-gray-700">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <h3 className="text-lg font-semibold mb-2">Location</h3>
-                    <p className="text-gray-700 flex items-center mb-4">
-                      <MapPin size={18} className="text-wedding-pink mr-2" />
-                      {vendor.address}
-                    </p>
-                    {/* Map integration */}
-                    <div className="w-full rounded-md mb-6">
-                      <Map address={vendor.address} />
-                    </div>
-                  </TabsContent>
-                  
-                  <TabsContent value="packages" className="p-6 focus-visible:outline-none focus-visible:ring-0">
-                    <h2 className="text-xl font-heading font-semibold mb-4">Pricing & Packages</h2>
-                    
-                    <div className="space-y-4">
-                      {vendor.packages.map((pkg, index) => (
-                        <div key={index} className="border rounded-lg p-4 hover:border-wedding-pink transition-all">
-                          <div className="flex justify-between items-start">
-                            <h3 className="text-lg font-semibold text-wedding-navy">{pkg.name}</h3>
-                            <span className="text-lg font-bold text-wedding-pink">{pkg.price}</span>
-                          </div>
-                          <p className="text-gray-600 mt-2">{pkg.description}</p>
-                          <Button 
-                            className="mt-3 bg-wedding-pink hover:bg-wedding-pink/90 text-white w-full sm:w-auto"
-                            onClick={handleCheckAvailability}
-                          >
-                            <Calendar size={18} className="mr-2" />
-                            Check Availability
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="mt-6 bg-wedding-cream/50 p-4 rounded-md">
-                      <h3 className="font-medium text-wedding-navy mb-2">Custom Packages</h3>
-                      <p className="text-gray-600 text-sm">
-                        Don't see a package that fits your needs? Contact the vendor to discuss custom options tailored to your specific requirements.
-                      </p>
-                    </div>
-                  </TabsContent>
-                  
-                  <TabsContent value="reviews" className="p-6 focus-visible:outline-none focus-visible:ring-0">
-                    <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-xl font-heading font-semibold">Customer Reviews</h2>
-                      <div className="flex items-center">
-                        <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                        <span className="ml-1 font-medium">{vendor.rating}</span>
-                        <span className="ml-1 text-sm text-gray-500">({vendor.reviews.length} reviews)</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-6">
-                      {vendor.reviews.map((review) => (
-                        <div key={review.id} className="border-b pb-4 last:border-b-0">
-                          <div className="flex justify-between items-start">
-                            <div className="flex items-center">
-                              <div className="bg-wedding-pink/20 rounded-full p-2 mr-3">
-                                <User size={18} className="text-wedding-pink" />
-                              </div>
-                              <div>
-                                <h4 className="font-medium">{review.user}</h4>
-                                <p className="text-xs text-gray-500">{review.date}</p>
-                              </div>
-                            </div>
-                            <div className="flex">
-                              {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  size={16} 
-                                  className={i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          <p className="mt-3 text-gray-600">{review.content}</p>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="mt-6 bg-wedding-cream/50 p-4 rounded-md text-center">
-                      <p className="text-gray-600 mb-3">
-                        Have you used this vendor's services? Share your experience!
-                      </p>
-                      {!showWriteReview ? (
-                        <Button 
-                          className="bg-wedding-navy hover:bg-wedding-navy/90"
-                          onClick={() => setShowWriteReview(true)}
-                        >
-                          Write a Review
-                        </Button>
-                      ) : (
-                        <Button 
-                          variant="outline"
-                          onClick={() => setShowWriteReview(false)}
-                        >
-                          Cancel
-                        </Button>
-                      )}
-                    </div>
-
-                    {showWriteReview && (
-                      <WriteReviewForm 
-                        vendorName={vendor.name}
-                        onReviewSubmitted={handleReviewSubmitted}
-                      />
-                    )}
-                  </TabsContent>
-                </Tabs>
-              </div>
+              <VendorTabs 
+                vendor={vendor}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+                onCheckAvailability={handleCheckAvailability}
+              />
             </div>
             
-            {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg shadow-md p-6 mb-6 sticky top-24">
-                <div className="flex justify-between mb-4">
-                  <h3 className="text-xl font-heading font-semibold">Contact Vendor</h3>
-                  <div className="flex space-x-2">
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      className={`rounded-full border-gray-200 ${wishlist ? 'text-wedding-pink border-wedding-pink' : ''}`}
-                      onClick={toggleWishlist}
-                    >
-                      <Heart className={`h-5 w-5 ${wishlist ? 'fill-wedding-pink' : ''}`} />
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      className="rounded-full border-gray-200"
-                      onClick={handleShare}
-                    >
-                      <Share2 className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </div>
-                
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center">
-                    <Phone size={18} className="text-wedding-pink mr-3" />
-                    <div>
-                      <p className="text-sm text-gray-500">Phone</p>
-                      <p className="font-medium">{vendor.phone}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail size={18} className="text-wedding-pink mr-3" />
-                    <div>
-                      <p className="text-sm text-gray-500">Email</p>
-                      <p className="font-medium">{vendor.email}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin size={18} className="text-wedding-pink mr-3" />
-                    <div>
-                      <p className="text-sm text-gray-500">Address</p>
-                      <p className="font-medium">{vendor.address}</p>
-                    </div>
-                  </div>
-                  {vendor.website && (
-                    <div className="flex items-center">
-                      <ExternalLink size={18} className="text-wedding-pink mr-3" />
-                      <div>
-                        <p className="text-sm text-gray-500">Website</p>
-                        <a 
-                          href={`https://${vendor.website}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="font-medium text-wedding-navy hover:text-wedding-pink transition-colors"
-                        >
-                          {vendor.website}
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                <Separator className="my-4" />
-                
-                <div className="mb-4">
-                  <h4 className="font-medium mb-2">Send Inquiry</h4>
-                  <Textarea 
-                    placeholder="Write your message to the vendor..." 
-                    className="min-h-[120px]" 
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
-                </div>
-                
-                <Button 
-                  className="w-full bg-wedding-pink hover:bg-wedding-pink/90 text-white"
-                  onClick={handleSendMessage}
-                  disabled={!message.trim()}
-                >
-                  Send Message
-                </Button>
-                
-                <div className="mt-4">
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
-                    onClick={handleCheckAvailability}
-                  >
-                    <Calendar size={18} className="mr-2" />
-                    Check Availability
-                  </Button>
-                </div>
-              </div>
+              <VendorSidebar 
+                vendor={vendor}
+                onCheckAvailability={handleCheckAvailability}
+              />
             </div>
           </div>
         </div>
