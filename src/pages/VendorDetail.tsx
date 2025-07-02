@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -7,157 +8,173 @@ import VendorImageGallery from "@/components/vendor-detail/VendorImageGallery";
 import VendorTabs from "@/components/vendor-detail/VendorTabs";
 import VendorSidebar from "@/components/vendor-detail/VendorSidebar";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Calendar,
-  Check,
-  ChevronDown,
-  ChevronRight,
-  ExternalLink,
-  Heart,
-  Mail,
-  MapPin,
-  Phone,
-  Share2,
-  Star,
-  User,
-} from "lucide-react";
 
-// Category-specific data
+// Enhanced category-specific data with proper service information
 const getCategorySpecificData = (category: string) => {
   const categoryData = {
     "Venue": {
-      description: "Royal Gardens is a luxurious wedding venue situated in the heart of Chattarpur, Delhi NCR. With sprawling lawns and elegant interiors, it provides the perfect backdrop for your dream wedding. Our venue can accommodate up to 1000 guests and offers comprehensive services including catering, decoration, and event management. The Royal Gardens team works closely with couples to understand their vision and bring it to life with meticulous attention to detail.",
+      name: "Royal Gardens",
+      description: "Royal Gardens is a premier wedding venue located in the heart of Chattarpur, Delhi NCR. Our sprawling 5-acre property features beautifully landscaped gardens, elegant banquet halls, and state-of-the-art facilities. We specialize in creating magical wedding experiences with our all-inclusive packages that cover everything from decoration to catering. Our experienced event management team ensures every detail is perfect for your special day.",
+      address: "123, Chattarpur Farms, Delhi NCR, 110074",
+      images: [
+        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1478146059778-26028b07395a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
       features: [
         "Capacity for 500-1000 guests",
-        "Indoor and outdoor spaces",
+        "Indoor and outdoor ceremony spaces",
         "In-house catering services",
-        "Dedicated event planner",
-        "Ample parking space",
-        "Luxurious bridal suite",
-        "State-of-the-art sound system",
-        "Customizable decoration packages"
+        "Dedicated wedding planner",
+        "Ample parking for 200+ vehicles",
+        "Luxurious bridal preparation suite",
+        "Professional sound & lighting system",
+        "Customizable decoration packages",
+        "Generator backup power",
+        "Air-conditioned banquet halls"
       ],
       packages: [
         {
-          name: "Silver Package",
+          name: "Silver Wedding Package",
           price: "₹3,50,000",
-          description: "Basic venue rental with standard decoration and catering for up to 500 guests."
+          description: "Perfect for intimate weddings. Includes venue rental, basic decoration, vegetarian catering for 300 guests, sound system, and basic lighting."
         },
         {
-          name: "Gold Package",
+          name: "Gold Wedding Package", 
           price: "₹5,50,000",
-          description: "Premium venue rental with enhanced decoration, gourmet catering, and DJ for up to 750 guests."
+          description: "Our most popular package. Premium venue setup, enhanced floral decoration, multi-cuisine catering for 500 guests, DJ services, and photographer for 4 hours."
         },
         {
-          name: "Platinum Package",
+          name: "Platinum Royal Package",
           price: "₹8,50,000",
-          description: "Luxury all-inclusive package with custom decoration, premium catering, DJ, photography, and accommodation for up to 1000 guests."
+          description: "Luxury all-inclusive experience. Custom theme decoration, gourmet catering for 800 guests, live band, professional photography & videography, and VIP guest accommodation."
         }
       ],
       reviews: [
         {
           id: 1,
-          user: "Priya & Rahul",
+          user: "Priya & Rahul Sharma",
           rating: 5,
-          date: "June 15, 2023",
-          content: "We held our wedding reception at Royal Gardens and it was absolutely perfect! The staff was incredibly helpful and the venue looked stunning. All our guests were impressed with the beautiful setting and excellent service."
+          date: "November 15, 2023",
+          content: "Royal Gardens made our dream wedding come true! The venue is absolutely stunning with beautiful gardens and elegant halls. The catering was exceptional and our guests are still talking about the delicious food. The staff was incredibly professional and handled every detail perfectly."
         },
         {
           id: 2,
-          user: "Anjali & Vikram",
+          user: "Anjali & Vikram Gupta",
           rating: 4,
-          date: "March 22, 2023",
-          content: "Royal Gardens provided a magical setting for our wedding. The venue is gorgeous and the food was delicious. Only minor issue was parking management during peak hours, but overall an excellent experience."
+          date: "September 22, 2023", 
+          content: "Beautiful venue with excellent facilities. The event manager was very helpful throughout the planning process. The only minor issue was parking management during peak hours, but overall it was a wonderful experience. Highly recommend for large weddings."
         },
         {
           id: 3,
-          user: "Meera & Arjun",
+          user: "Meera & Arjun Patel",
           rating: 5,
-          date: "December 5, 2022",
-          content: "From the beautiful decor to the impeccable service, our wedding at Royal Gardens exceeded all expectations. The management team was responsive and accommodating to all our requests. Highly recommend!"
+          date: "August 5, 2023",
+          content: "Exceptional service and breathtaking venue! From the initial booking to the wedding day, everything was seamless. The decoration team did an amazing job and the food quality was outstanding. Our families were thoroughly impressed."
         }
       ]
     },
     "Photographer": {
-      description: "Moments Photography specializes in capturing the most precious moments of your wedding day with artistic flair and professional expertise. Our team of experienced photographers combines traditional and contemporary styles to create timeless memories. We use state-of-the-art equipment and offer comprehensive packages including pre-wedding shoots, ceremony coverage, reception photography, and post-production editing.",
+      name: "Moments Photography Studio",
+      description: "Moments Photography Studio is Delhi's premier wedding photography service with over 8 years of experience capturing love stories. Our team of skilled photographers specializes in candid photography, traditional portraits, and cinematic videography. We use the latest Canon and Sony equipment to ensure stunning image quality. Our style blends photojournalistic approach with artistic creativity to tell your unique love story.",
+      address: "45, Lajpat Nagar, New Delhi, 110024",
+      images: [
+        "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
       features: [
         "Pre-wedding photoshoot included",
-        "Professional cinematography",
-        "Drone photography available",
-        "Same-day photo highlights",
-        "Custom photo albums",
-        "Digital gallery access",
-        "Professional editing",
-        "Multiple photographer team"
+        "Professional 4K videography",
+        "Drone photography & aerial shots",
+        "Same-day photo highlights reel",
+        "Premium leather-bound albums",
+        "High-resolution digital gallery",
+        "Professional photo editing",
+        "Multiple photographer coverage",
+        "Traditional & candid styles",
+        "Engagement shoot included"
       ],
       packages: [
         {
-          name: "Basic Package",
-          price: "₹50,000",
-          description: "Wedding day photography with 300+ edited photos and online gallery access."
+          name: "Essential Photography",
+          price: "₹65,000",
+          description: "Wedding day coverage with 400+ edited photos, online gallery, and basic video highlights. Perfect for smaller ceremonies."
         },
         {
-          name: "Premium Package",
-          price: "₹1,20,000",
-          description: "Complete wedding coverage including pre-wedding shoot, ceremony, reception, and custom photo album."
+          name: "Premium Wedding Package",
+          price: "₹1,35,000", 
+          description: "Complete coverage including pre-wedding shoot, ceremony documentation, reception photography, professional album, and cinematic wedding film."
         },
         {
-          name: "Luxury Package",
-          price: "₹2,00,000",
-          description: "Full-service package with cinematography, drone shots, same-day highlights, premium albums, and extended coverage."
+          name: "Luxury Memories Package",
+          price: "₹2,25,000",
+          description: "Full-service premium package with dual photographer coverage, drone videography, same-day highlights, luxury albums, canvas prints, and extended ceremony coverage."
         }
       ],
       reviews: [
         {
           id: 1,
-          user: "Ravi & Pooja",
+          user: "Ravi & Pooja Mehta",
           rating: 5,
-          date: "July 20, 2023",
-          content: "Moments Photography captured our wedding beautifully! The photographers were professional and creative. We loved the candid shots and the quality of photos exceeded our expectations."
+          date: "October 20, 2023",
+          content: "Absolutely brilliant photographers! They captured every precious moment of our wedding beautifully. The candid shots were incredible and the quality exceeded our expectations. The team was professional, creative, and made us feel comfortable throughout."
         },
         {
           id: 2,
-          user: "Amit & Shreya",
+          user: "Amit & Shreya Singh",
           rating: 5,
-          date: "April 10, 2023",
-          content: "Excellent work by the team! They were unobtrusive during the ceremony but managed to capture every important moment. The pre-wedding shoot was amazing too!"
+          date: "July 10, 2023",
+          content: "Outstanding work by Moments Photography! They were unobtrusive during the ceremony but managed to capture every important moment. The pre-wedding shoot was amazing and the final photos were delivered quickly. Highly recommend!"
         },
         {
           id: 3,
-          user: "Deepak & Kavya",
+          user: "Deepak & Kavya Agarwal", 
           rating: 4,
-          date: "January 28, 2023",
-          content: "Great photography service with quick delivery of photos. The team was punctual and professional throughout the event. Highly recommend for wedding photography."
+          date: "May 28, 2023",
+          content: "Great photography service with excellent attention to detail. The team was punctual and professional throughout the event. The video quality was superb and we love our wedding album. Worth every penny!"
         }
       ]
     },
     "Makeup Artist": {
-      description: "Glamour Artists brings out your natural beauty with professional makeup artistry for your special day. Our experienced makeup artists specialize in bridal makeup, using high-quality products and techniques that ensure you look flawless throughout your wedding celebrations. We offer personalized consultations, trial sessions, and on-location services for your convenience.",
+      name: "Glamour Artistry",
+      description: "Glamour Artistry is Delhi's leading bridal makeup studio with certified makeup artists specializing in Indian bridal looks. Our team has over 6 years of experience creating flawless bridal makeup using premium international brands like MAC, Urban Decay, and Huda Beauty. We offer personalized consultations and trial sessions to ensure you look absolutely radiant on your special day.",
+      address: "78, Khan Market, New Delhi, 110003",
+      images: [
+        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
       features: [
-        "Bridal makeup specialization",
-        "Pre-wedding trial session",
-        "High-quality branded products",
-        "HD makeup techniques",
-        "On-location service",
-        "Hair styling included",
-        "Touch-up kit provided",
-        "Traditional and contemporary looks"
+        "Certified bridal makeup specialists",
+        "Pre-wedding makeup trial included",
+        "Premium international cosmetics",
+        "HD & airbrush makeup techniques",
+        "Professional hair styling service",
+        "On-location makeup service",
+        "Makeup touch-up kit provided",
+        "Traditional & contemporary looks",
+        "Family member makeup service",
+        "False eyelashes & contouring"
       ],
       packages: [
         {
-          name: "Bridal Basic",
-          price: "₹15,000",
-          description: "Complete bridal makeup with hair styling for the wedding day."
+          name: "Bridal Essential",
+          price: "₹18,000",
+          description: "Complete bridal makeup with hair styling for wedding day. Includes base makeup, eye makeup, and traditional jewelry styling."
         },
         {
-          name: "Bridal Deluxe",
-          price: "₹35,000",
-          description: "Includes trial session, wedding day makeup, hair styling, and family makeup for 2 members."
+          name: "Bridal Deluxe Package",
+          price: "₹42,000",
+          description: "Includes trial session, wedding day makeup, professional hair styling, makeup for 2 family members, and touch-up service during ceremony."
         },
         {
-          name: "Complete Bridal",
-          price: "₹60,000",
-          description: "Full package with multiple trials, all ceremony makeup, hair styling, family makeup, and touch-up services."
+          name: "Complete Bridal Experience",
+          price: "₹75,000",
+          description: "Premium package with multiple trials, all pre-wedding & wedding ceremony makeup, hair styling, family makeup for 4 members, and dedicated makeup assistant."
         }
       ],
       reviews: [
@@ -165,52 +182,62 @@ const getCategorySpecificData = (category: string) => {
           id: 1,
           user: "Sunita Sharma",
           rating: 5,
-          date: "August 12, 2023",
-          content: "Amazing makeup artist! She understood exactly what I wanted and made me look absolutely stunning on my wedding day. The makeup lasted the entire day and looked perfect in all photos."
+          date: "December 12, 2023",
+          content: "Absolutely amazing makeup artist! She understood my vision perfectly and made me look like a princess on my wedding day. The makeup lasted 12+ hours and looked flawless in all photos. Professional, talented, and so sweet!"
         },
         {
           id: 2,
           user: "Neha Gupta",
           rating: 5,
-          date: "May 25, 2023",
-          content: "Professional and talented team! They were punctual and created the perfect bridal look for me. My family members also loved their makeup. Highly recommended!"
+          date: "October 25, 2023",
+          content: "Exceptional service and incredible talent! The team was punctual, professional, and created the perfect bridal look. My family members also loved their makeup. The trial session was very helpful. Highly recommended!"
         },
         {
           id: 3,
           user: "Priyanka Singh",
           rating: 4,
-          date: "February 14, 2023",
-          content: "Excellent service and beautiful makeup. The artist was very patient during the trial and made adjustments according to my preferences. Great experience overall!"
+          date: "August 14, 2023",
+          content: "Excellent makeup service with great attention to detail. The artist was patient during trials and made adjustments based on my preferences. The final look was exactly what I wanted. Great experience overall!"
         }
       ]
     },
     "Bridal Wear": {
-      description: "Jaipur Jewels offers exquisite bridal wear collection featuring traditional and contemporary designs crafted with finest fabrics and intricate embroidery. Our collection includes lehengas, sarees, suits, and accessories that make every bride feel like royalty. We provide customization services and personal styling consultations to ensure the perfect fit and look for your special day.",
+      name: "Jaipur Jewels Couture",
+      description: "Jaipur Jewels Couture is a premium bridal fashion house specializing in exquisite Indian bridal wear. With over 15 years of expertise, we create stunning lehengas, sarees, and bridal ensembles using rich fabrics like silk, velvet, and organza. Our master craftsmen hand-embroider each piece with intricate zardozi, gota work, and stone embellishments to create timeless bridal masterpieces.",
+      address: "56, Connaught Place, New Delhi, 110001",
+      images: [
+        "https://images.unsplash.com/photo-1583391733956-6c78276477e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1566479179817-c8443b5c4fc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
       features: [
-        "Traditional and modern designs",
-        "Custom tailoring available",
-        "Premium fabric quality",
-        "Intricate embroidery work",
-        "Matching accessories",
+        "Traditional & contemporary designs",
+        "Custom tailoring & fittings",
+        "Premium silk & designer fabrics",
+        "Hand-embroidered zardozi work",
+        "Matching jewelry sets available",
         "Personal styling consultation",
-        "Alteration services",
-        "Designer collection"
+        "Multiple fitting sessions",
+        "Designer bridal collection",
+        "Groom wear coordination",
+        "Express alteration service"
       ],
       packages: [
         {
-          name: "Classic Collection",
-          price: "₹75,000",
-          description: "Beautiful bridal lehenga with matching dupatta and basic accessories."
+          name: "Classic Bridal Collection",
+          price: "₹85,000",
+          description: "Beautiful hand-crafted bridal lehenga with matching dupatta, basic jewelry set, and styling consultation."
         },
         {
-          name: "Designer Collection",
-          price: "₹1,50,000",
-          description: "Premium designer bridal outfit with heavy embroidery, matching jewelry set, and styling consultation."
+          name: "Designer Bridal Ensemble",
+          price: "₹1,65,000",
+          description: "Premium designer bridal outfit with heavy embroidery work, complete jewelry set, matching shoes, and personal stylist consultation."
         },
         {
-          name: "Royal Collection",
-          price: "₹3,00,000",
-          description: "Luxury bridal ensemble with custom design, premium fabrics, complete jewelry set, and personal stylist service."
+          name: "Royal Couture Collection",
+          price: "₹3,25,000",
+          description: "Luxury custom-designed bridal ensemble with premium fabrics, extensive handwork, complete bridal jewelry set, and dedicated stylist service."
         }
       ],
       reviews: [
@@ -218,128 +245,148 @@ const getCategorySpecificData = (category: string) => {
           id: 1,
           user: "Ankita Patel",
           rating: 5,
-          date: "September 5, 2023",
-          content: "Absolutely gorgeous bridal wear! The quality and craftsmanship are exceptional. The team helped me choose the perfect outfit and the fitting was flawless. I felt like a princess!"
+          date: "November 5, 2023",
+          content: "Absolutely gorgeous bridal wear! The craftsmanship and attention to detail are exceptional. The team helped me design my dream lehenga and the fitting was perfect. I felt like royalty on my wedding day!"
         },
         {
           id: 2,
           user: "Ritika Jain",
           rating: 5,
-          date: "June 18, 2023",
-          content: "Beautiful collection and excellent service! They customized my lehenga exactly as I wanted. The embroidery work is stunning and the fabric quality is top-notch."
+          date: "September 18, 2023",
+          content: "Outstanding quality and beautiful designs! They customized my bridal outfit exactly as envisioned. The embroidery work is stunning and the fabric quality is top-notch. The entire experience was wonderful."
         },
         {
           id: 3,
           user: "Sonia Agarwal",
           rating: 4,
-          date: "March 30, 2023",
-          content: "Great experience shopping for my bridal outfit. The staff was helpful and patient. The outfit was delivered on time and looked exactly as shown. Highly recommend!"
+          date: "July 30, 2023",
+          content: "Excellent shopping experience for bridal wear. The staff was knowledgeable and patient during selection. The outfit was delivered on time and looked exactly as promised. Great value for money!"
         }
       ]
     },
     "Catering": {
-      description: "Spice Delights offers exceptional catering services for weddings with a diverse menu featuring authentic Indian cuisine, continental dishes, and fusion specialties. Our experienced chefs use fresh ingredients and traditional cooking methods to create memorable dining experiences. We provide complete catering solutions including menu planning, food preparation, service staff, and cleanup.",
+      name: "Spice Garden Catering",
+      description: "Spice Garden Catering is Delhi's premium wedding catering service with 12+ years of experience serving authentic Indian, Continental, and fusion cuisines. Our master chefs use traditional recipes and fresh ingredients sourced daily to create unforgettable culinary experiences. We specialize in large-scale wedding catering with live cooking stations, customized menus, and impeccable service standards.",
+      address: "89, Rajouri Garden, New Delhi, 110027",
+      images: [
+        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
       features: [
-        "Multi-cuisine menu options",
-        "Fresh ingredients daily",
+        "Multi-cuisine wedding menus",
+        "Fresh ingredients sourced daily",
         "Professional service staff",
-        "Customizable menu",
+        "Customizable menu options",
         "Live cooking stations",
-        "Dietary restrictions catered",
-        "Complete setup & cleanup",
-        "Experienced chef team"
+        "Dietary restrictions accommodated",
+        "Complete setup & cleanup service",
+        "Experienced chef team",
+        "Premium tableware & linens",
+        "24/7 event coordination"
       ],
       packages: [
         {
-          name: "Standard Menu",
-          price: "₹800 per plate",
-          description: "Traditional Indian menu with appetizers, main course, desserts, and beverages for up to 300 guests."
+          name: "Traditional Wedding Menu",
+          price: "₹950 per plate",
+          description: "Authentic Indian menu with welcome drinks, appetizers, main course, desserts, and beverages. Perfect for traditional wedding celebrations up to 400 guests."
         },
         {
-          name: "Premium Menu",
-          price: "₹1,200 per plate",
-          description: "Extended menu with live counters, continental options, premium desserts, and enhanced service for up to 500 guests."
+          name: "Premium Fusion Menu",
+          price: "₹1,350 per plate",
+          description: "Extended menu with live counters, Indian & Continental options, premium desserts, and enhanced service for up to 600 guests."
         },
         {
-          name: "Royal Feast",
-          price: "₹1,800 per plate",
-          description: "Luxury dining experience with gourmet dishes, live cooking stations, premium beverages, and dedicated service team."
+          name: "Royal Feast Experience",
+          price: "₹1,950 per plate",
+          description: "Luxury dining with gourmet dishes, multiple live stations, premium beverages, dedicated chef service, and white-glove hospitality for discerning guests."
         }
       ],
       reviews: [
         {
           id: 1,
-          user: "Rajesh & Meena",
+          user: "Rajesh & Meena Khanna",
           rating: 5,
-          date: "October 8, 2023",
-          content: "Outstanding catering service! The food was delicious and the presentation was beautiful. All our guests complimented the variety and taste. Professional service throughout."
+          date: "November 8, 2023",
+          content: "Exceptional catering service! The food quality was outstanding and presentation was beautiful. All 500 guests complimented the variety and taste. The live cooking stations were a huge hit. Professional service throughout the event."
         },
         {
           id: 2,
-          user: "Vikram & Nisha",
+          user: "Vikram & Nisha Sharma",
           rating: 5,
-          date: "July 22, 2023",
-          content: "Excellent food quality and service! The live counters were a hit with our guests. The team was professional and handled everything smoothly. Highly recommended!"
+          date: "September 22, 2023",
+          content: "Fantastic food and impeccable service! The menu was perfectly planned and executed. The team accommodated all our dietary requirements and special requests. Our families were thoroughly impressed with the quality."
         },
         {
           id: 3,
-          user: "Suresh & Priya",
+          user: "Suresh & Priya Joshi",
           rating: 4,
-          date: "April 15, 2023",
-          content: "Great catering experience! The food was tasty and the service was prompt. They accommodated all our special requests and dietary requirements perfectly."
+          date: "August 15, 2023",
+          content: "Great catering experience with delicious food! The service was prompt and professional. They handled our 400-guest wedding smoothly and efficiently. The dessert selection was particularly impressive."
         }
       ]
     },
     "Decorator": {
-      description: "Flower Fantasies creates breathtaking wedding decorations that transform your venue into a magical wonderland. Our creative team specializes in floral arrangements, stage decoration, lighting design, and thematic setups. We work closely with couples to understand their vision and create personalized decorative elements that reflect their style and preferences.",
+      name: "Floral Dreams Decorators",
+      description: "Floral Dreams Decorators is Delhi's premier wedding decoration company specializing in creating breathtaking floral arrangements and thematic wedding setups. With 10+ years of experience, our creative team transforms venues into magical wonderlands using fresh flowers, elegant drapery, and innovative lighting designs. We work closely with couples to bring their vision to life with personalized decorative elements.",
+      address: "34, Karol Bagh, New Delhi, 110005",
+      images: [
+        "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1478146059778-26028b07395a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
       features: [
         "Custom floral arrangements",
         "Stage & mandap decoration",
-        "Ambient lighting design",
-        "Thematic decorations",
-        "Entrance decorations",
-        "Table centerpieces",
-        "Photo booth setups",
-        "Complete venue transformation"
+        "Professional lighting design",
+        "Themed wedding decorations",
+        "Grand entrance decorations",
+        "Elegant table centerpieces",
+        "Photo booth & backdrop setup",
+        "Complete venue transformation",
+        "Fresh flower sourcing",
+        "Balloon & fabric draping"
       ],
       packages: [
         {
-          name: "Essential Decor",
-          price: "₹75,000",
-          description: "Basic stage decoration, entrance decor, and table arrangements with fresh flowers."
+          name: "Essential Wedding Decor",
+          price: "₹85,000",
+          description: "Beautiful stage decoration, entrance decor, and table arrangements with fresh seasonal flowers for intimate ceremonies."
         },
         {
-          name: "Premium Decor",
-          price: "₹1,50,000",
-          description: "Complete venue decoration with themed setup, lighting, floral arrangements, and photo booth."
+          name: "Premium Decoration Package",
+          price: "₹1,65,000",
+          description: "Complete venue decoration with themed setup, ambient lighting, elaborate floral arrangements, photo booth, and entrance archway."
         },
         {
-          name: "Luxury Decor",
-          price: "₹2,50,000",
-          description: "Full venue transformation with custom themes, premium flowers, elaborate lighting, and designer elements."
+          name: "Luxury Theme Transformation",
+          price: "₹2,75,000",
+          description: "Full venue makeover with custom themes, premium imported flowers, designer lighting, ceiling draping, and complete ambiance transformation."
         }
       ],
       reviews: [
         {
           id: 1,
-          user: "Rohit & Kavita",
+          user: "Rohit & Kavita Agarwal",
           rating: 5,
-          date: "November 12, 2023",
-          content: "Absolutely magical decoration! The team transformed our venue beautifully. The floral arrangements were stunning and the lighting created the perfect ambiance. Everyone was amazed!"
+          date: "December 12, 2023",
+          content: "Absolutely magical decoration! The team transformed our venue beyond our wildest dreams. The floral arrangements were stunning and the lighting created perfect ambiance. Every guest was amazed by the beautiful setup!"
         },
         {
           id: 2,
-          user: "Arjun & Divya",
+          user: "Arjun & Divya Malhotra",
           rating: 5,
-          date: "August 28, 2023",
-          content: "Incredible work by Flower Fantasies! They brought our vision to life perfectly. The attention to detail was remarkable and the setup was flawless. Highly recommend!"
+          date: "October 28, 2023",
+          content: "Incredible work by Floral Dreams! They brought our Pinterest vision to life perfectly. The attention to detail was remarkable and setup was completed on time. The photo booth backdrop was especially beautiful."
         },
         {
           id: 3,
-          user: "Manish & Pooja",
+          user: "Manish & Pooja Gupta",
           rating: 4,
-          date: "May 20, 2023",
-          content: "Beautiful decoration work! The team was creative and professional. They completed the setup on time and everything looked exactly as we discussed. Great experience!"
+          date: "August 20, 2023",
+          content: "Beautiful decoration work with creative designs! The team was professional and completed everything as discussed. The mandap decoration was particularly impressive. Great value for the quality provided."
         }
       ]
     }
@@ -368,37 +415,25 @@ const VendorDetail = () => {
   const category = determineCategory(slug || '');
   const categoryData = getCategorySpecificData(category);
   
-  // In a real app, this data would be fetched from an API based on the slug
+  // Create vendor object with category-specific data
   const vendor = {
     id: 1,
-    name: category === 'Photographer' ? 'Moments Photography' :
-          category === 'Makeup Artist' ? 'Glamour Artists' :
-          category === 'Bridal Wear' ? 'Jaipur Jewels' :
-          category === 'Catering' ? 'Spice Delights' :
-          category === 'Decorator' ? 'Flower Fantasies' :
-          'Royal Gardens',
+    name: categoryData.name,
     category: category,
-    location: "Chattarpur, Delhi NCR",
+    location: "Delhi NCR",
     price: categoryData.packages[0].price,
     description: categoryData.description,
     features: categoryData.features,
-    email: "info@vendor.com",
+    email: "info@" + categoryData.name.toLowerCase().replace(/\s+/g, '') + ".com",
     phone: "+91 98765 43210",
-    address: "123, Chattarpur Farms, Delhi NCR, 110074",
-    website: "www.vendor.in",
+    address: categoryData.address,
+    website: "www." + categoryData.name.toLowerCase().replace(/\s+/g, '') + ".in",
     rating: 4.8,
     reviews: categoryData.reviews,
-    images: [
-      "https://images.unsplash.com/photo-1505944357431-27579db47357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
-      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
-      "https://images.unsplash.com/photo-1478146059778-26028b07395a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
-      "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80",
-    ],
+    images: categoryData.images,
     availability: {
       available: true,
-      nextAvailableDate: "2023-08-15"
+      nextAvailableDate: "2024-08-15"
     },
     packages: categoryData.packages
   };
