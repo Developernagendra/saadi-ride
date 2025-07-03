@@ -1,4 +1,3 @@
-
 export interface Vendor {
   id: number;
   name: string;
@@ -51,15 +50,10 @@ export const generateCategorySpecificVendors = (): Vendor[] => {
       priceRange: [50000, 300000],
       image: "https://images.unsplash.com/photo-1591291621164-2c6367723315?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80"
     },
-    "Mehendi Artists": {
+    "Mehendi Artist": {
       names: ["Henna Art Studio", "Artistic Henna", "Bridal Mehndi", "Traditional Patterns", "Intricate Designs", "Henna Heritage", "Mehndi Magic", "Pattern Paradise", "Artistic Arms", "Beautiful Bridal", "Creative Curves", "Delicate Designs", "Elegant Expressions", "Festive Fingers", "Gorgeous Graphics", "Henna Happiness", "Intricate Impressions", "Joyful Journeys", "Lovely Lines", "Marvelous Mehndi"],
       priceRange: [5000, 50000],
       image: "https://images.unsplash.com/photo-1595821927361-4238421d7baa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80"
-    },
-    "Music": {
-      names: ["Melody Makers", "Wedding Symphony", "Rhythm & Romance", "Musical Moments", "Harmony House", "Tune Tales", "Melodic Magic", "Sound Sensations", "Musical Memories", "Rhythm Revelry", "Harmonic Happiness", "Sonic Celebrations", "Melodious Moments", "Rhythmic Romance", "Musical Majesty", "Tuneful Tales", "Harmonic Hearts", "Sonic Splendor", "Melodic Memories", "Rhythmic Rhapsody"],
-      priceRange: [30000, 100000],
-      image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80"
     }
   };
 

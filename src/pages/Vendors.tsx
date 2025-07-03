@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -44,15 +43,14 @@ const Vendors = () => {
     if (categoryParam) {
       // Map URL category to display category
       const categoryMap: { [key: string]: string } = {
-        'venues': 'Venue',
-        'photographers': 'Photographer',
-        'makeup-artists': 'Makeup Artist',
-        'wedding-planners': 'Wedding Planner',
-        'decorators': 'Decorator',
-        'mehendi-artists': 'Mehendi Artists',
+        'venue': 'Venue',
+        'photographer': 'Photographer',
+        'makeup-artist': 'Makeup Artist',
+        'wedding-planner': 'Wedding Planner',
+        'decorator': 'Decorator',
+        'mehendi-artist': 'Mehendi Artist',
         'catering': 'Catering',
-        'bridal-wear': 'Bridal Wear',
-        'music': 'Music'
+        'bridal-wear': 'Bridal Wear'
       };
       
       const mappedCategory = categoryMap[categoryParam];
