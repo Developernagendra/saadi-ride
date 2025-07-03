@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -389,6 +388,132 @@ const getCategorySpecificData = (category: string) => {
           content: "Beautiful decoration work with creative designs! The team was professional and completed everything as discussed. The mandap decoration was particularly impressive. Great value for the quality provided."
         }
       ]
+    },
+    "Wedding Planner": {
+      name: "Dream Weavers Events",
+      description: "Dream Weavers Events is Delhi's most trusted wedding planning company with over 10 years of experience orchestrating magical celebrations. Our dedicated team of certified wedding planners specializes in creating personalized experiences that reflect your unique story. From intimate ceremonies to grand celebrations, we handle every detail with precision and creativity, ensuring your special day exceeds all expectations.",
+      address: "92, Defense Colony, New Delhi, 110024",
+      images: [
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1478146059778-26028b07395a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
+      features: [
+        "Complete wedding coordination",
+        "Vendor management & coordination",
+        "Budget planning & optimization",
+        "Timeline creation & management",
+        "Destination wedding expertise",
+        "Cultural ceremony coordination",
+        "Guest accommodation assistance",
+        "Emergency backup planning",
+        "Day-of coordination service",
+        "Post-wedding follow-up support"
+      ],
+      packages: [
+        {
+          name: "Essential Planning Package",
+          price: "₹1,25,000",
+          description: "Basic wedding coordination with vendor selection assistance, timeline creation, and day-of coordination for ceremonies up to 200 guests."
+        },
+        {
+          name: "Complete Wedding Management",
+          price: "₹2,75,000",
+          description: "Full-service planning including venue selection, vendor coordination, budget management, guest management, and comprehensive day-of coordination."
+        },
+        {
+          name: "Luxury Wedding Experience",
+          price: "₹4,50,000",
+          description: "Premium planning service with dedicated coordinator, custom theme development, destination wedding coordination, VIP guest services, and white-glove execution."
+        }
+      ],
+      reviews: [
+        {
+          id: 1,
+          user: "Sameer & Ritu Agarwal",
+          rating: 5,
+          date: "December 18, 2023",
+          content: "Dream Weavers made our wedding absolutely perfect! They handled every detail flawlessly and were incredibly organized throughout the planning process. Our coordinator was always available and made excellent vendor recommendations. Couldn't have asked for better service!"
+        },
+        {
+          id: 2,
+          user: "Karan & Preeti Malhotra",
+          rating: 5,
+          date: "October 14, 2023",
+          content: "Outstanding wedding planning service! They took care of everything from venue selection to final coordination. The team was professional, creative, and stayed within our budget. Our destination wedding was executed perfectly thanks to their expertise."
+        },
+        {
+          id: 3,
+          user: "Rohit & Sanya Sharma",
+          rating: 5,
+          date: "August 25, 2023",
+          content: "Exceptional planning and coordination! The team at Dream Weavers understood our vision and brought it to life beautifully. They managed all our vendors seamlessly and the day-of coordination was flawless. Highly recommended for stress-free wedding planning!"
+        }
+      ]
+    },
+    "Mehendi Artist": {
+      name: "Henna Heritage Studio",
+      description: "Henna Heritage Studio is Delhi's premier mehendi artistry service specializing in traditional and contemporary henna designs. Our master artists have over 8 years of experience creating intricate bridal mehendi with natural, skin-safe henna paste. We offer personalized consultations to design unique patterns that reflect your style, from classic Indian motifs to modern Arabic designs and personalized name art.",
+      address: "67, Chandni Chowk, New Delhi, 110006",
+      images: [
+        "https://images.unsplash.com/photo-1595821927361-4238421d7baa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1629033692266-c28707cd93d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80",
+        "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1548&q=80"
+      ],
+      features: [
+        "Traditional & contemporary designs",
+        "Natural organic henna paste",
+        "Personalized name art & motifs",
+        "Bridal mehendi specialization",
+        "Arabic & Indian pattern styles",
+        "On-location service available",
+        "Group mehendi parties",
+        "Quick-dry henna application",
+        "Pre-wedding consultation",
+        "Family member mehendi service"
+      ],
+      packages: [
+        {
+          name: "Bridal Mehendi Essential",
+          price: "₹12,000",
+          description: "Complete bridal mehendi for hands and feet with traditional Indian designs. Includes consultation and design customization."
+        },
+        {
+          name: "Bridal Mehendi Deluxe",
+          price: "₹25,000",
+          description: "Premium bridal mehendi with intricate patterns, personalized motifs, mehendi for 3 family members, and touch-up service."
+        },
+        {
+          name: "Complete Mehendi Ceremony",
+          price: "₹45,000",
+          description: "Full mehendi party service with bridal mehendi, family member designs (up to 8 people), Arabic patterns, and on-location team service."
+        }
+      ],
+      reviews: [
+        {
+          id: 1,
+          user: "Divya Sharma",
+          rating: 5,
+          date: "November 22, 2023",
+          content: "Absolutely beautiful mehendi work! The artist created the most intricate designs I've ever seen. The henna color came out so rich and dark, and the patterns were exactly what I envisioned. Professional service and stunning results!"
+        },
+        {
+          id: 2,
+          user: "Kavya Patel",
+          rating: 5,
+          date: "September 15, 2023",
+          content: "Amazing mehendi artistry! The team was punctual, professional, and incredibly talented. They accommodated all our design requests and the quality was outstanding. All my family members loved their mehendi designs too!"
+        },
+        {
+          id: 3,
+          user: "Riya Gupta",
+          rating: 4,
+          date: "July 28, 2023",
+          content: "Excellent mehendi service with beautiful traditional designs! The artist was patient and skilled, creating gorgeous patterns that photographed beautifully. The henna quality was excellent and lasted for weeks. Great experience overall!"
+        }
+      ]
     }
   };
 
@@ -409,6 +534,8 @@ const VendorDetail = () => {
     if (slug?.includes('bridal') || slug?.includes('wear')) return 'Bridal Wear';
     if (slug?.includes('catering') || slug?.includes('cater')) return 'Catering';
     if (slug?.includes('decorator') || slug?.includes('decor')) return 'Decorator';
+    if (slug?.includes('wedding-planner') || slug?.includes('planner')) return 'Wedding Planner';
+    if (slug?.includes('mehendi') || slug?.includes('henna')) return 'Mehendi Artist';
     return 'Venue';
   };
 
