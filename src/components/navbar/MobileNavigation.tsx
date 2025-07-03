@@ -58,22 +58,30 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
               <Button
                 variant="ghost"
                 className="w-full text-lg justify-start py-2 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors font-semibold"
-                onClick={() => onNavigate(link.href)}
+                onClick={() => {
+                  onNavigate(link.href);
+                  setIsOpen(false);
+                }}
               >
                 {link.title}
               </Button>
-              <div className="ml-4 mt-1 flex flex-col space-y-1">
-                {link.subItems?.map((service) => (
-                  <Button
-                    key={service.title}
-                    variant="ghost"
-                    className="w-full text-sm justify-start py-1.5 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors"
-                    onClick={() => onNavigate(service.href)}
-                  >
-                    {service.title}
-                  </Button>
-                ))}
-              </div>
+              {link.subItems && (
+                <div className="ml-4 mt-1 flex flex-col space-y-1">
+                  {link.subItems.map((service) => (
+                    <Button
+                      key={service.title}
+                      variant="ghost"
+                      className="w-full text-sm justify-start py-1.5 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors"
+                      onClick={() => {
+                        onNavigate(service.href);
+                        setIsOpen(false);
+                      }}
+                    >
+                      {service.title}
+                    </Button>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
           <div className="flex flex-col space-y-3 pt-4 mt-4 border-t">
