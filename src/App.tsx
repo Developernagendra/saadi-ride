@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/Dashboard";
 import Vendors from "./pages/Vendors";
 import VendorDetail from "./pages/VendorDetail";
 import RealWeddings from "./pages/RealWeddings";
@@ -48,6 +49,7 @@ const App: React.FC = () => {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/vendors" element={<Vendors />} />
                 <Route path="/vendor/:slug" element={<VendorDetail />} />
                 <Route path="/real-weddings" element={<RealWeddings />} />
