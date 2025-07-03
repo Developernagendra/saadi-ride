@@ -9,28 +9,26 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useNavigationLinks } from "./navigationConfig";
+import { navigationItems } from "./navigationConfig";
 
 interface DesktopNavigationProps {
   onNavigate: (path: string) => void;
 }
 
 const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ onNavigate }) => {
-  const navLinks = useNavigationLinks();
-
   return (
     <nav className="hidden md:block">
       <NavigationMenu>
         <NavigationMenuList>
-          {navLinks.map((link) => (
+          {navigationItems.map((link) => (
             <NavigationMenuItem key={link.title}>
               <NavigationMenuTrigger className="text-wedding-navy hover:text-wedding-pink">
                 {link.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {link.services.map((service) => (
-                    <li key={service.name} className="row-span-1">
+                  {link.subItems?.map((service) => (
+                    <li key={service.title} className="row-span-1">
                       <NavigationMenuLink asChild>
                         <Link
                           to={service.href}
@@ -40,7 +38,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ onNavigate }) => 
                             onNavigate(service.href);
                           }}
                         >
-                          <div className="text-sm font-medium leading-none">{service.name}</div>
+                          <div className="text-sm font-medium leading-none">{service.title}</div>
                         </Link>
                       </NavigationMenuLink>
                     </li>

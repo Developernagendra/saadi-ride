@@ -6,7 +6,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useNavigationLinks } from "./navigationConfig";
+import { navigationItems } from "./navigationConfig";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AuthDialog from "@/components/auth/AuthDialog";
@@ -22,7 +22,6 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
   setIsOpen, 
   onNavigate 
 }) => {
-  const navLinks = useNavigationLinks();
   const { isAuthenticated, logout } = useAuth();
   const { t } = useLanguage();
 
@@ -54,7 +53,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
       </SheetTrigger>
       <SheetContent>
         <div className="flex flex-col space-y-1 mt-8">
-          {navLinks.map((link) => (
+          {navigationItems.map((link) => (
             <div key={link.title} className="py-2">
               <Button
                 variant="ghost"
@@ -64,14 +63,14 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
                 {link.title}
               </Button>
               <div className="ml-4 mt-1 flex flex-col space-y-1">
-                {link.services.map((service) => (
+                {link.subItems?.map((service) => (
                   <Button
-                    key={service.name}
+                    key={service.title}
                     variant="ghost"
                     className="w-full text-sm justify-start py-1.5 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors"
                     onClick={() => onNavigate(service.href)}
                   >
-                    {service.name}
+                    {service.title}
                   </Button>
                 ))}
               </div>
