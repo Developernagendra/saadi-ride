@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { 
   CarFront, 
   Navigation, 
   Route, 
-  Clock 
+  Clock,
+  Users
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import Map from "@/components/Map";
+import GoogleMap from "@/components/GoogleMap";
 import CabSearchResult from "@/components/CabSearchResult";
 import CabSearch from "@/components/cab/CabSearch";
 import CabFilters from "@/components/cab/CabFilters";
@@ -66,6 +68,13 @@ const CabServices = () => {
     }
   };
 
+  const handleBookBaaratBundle = () => {
+    toast({
+      title: "Baarat Bundle Booking",
+      description: "Our team will contact you within 30 minutes to arrange your baarat convoy.",
+    });
+  };
+
   // Filter cabs based on the active tab and search term
   const filteredCabs = cabTypes.filter(cab => {
     // Filter by category
@@ -92,6 +101,39 @@ const CabServices = () => {
           </p>
         </div>
 
+        {/* Baarat Bundle Section */}
+        <Card className="mb-8 bg-gradient-to-r from-wedding-pink/5 to-wedding-navy/5 border-2 border-wedding-pink/20">
+          <CardContent className="p-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                  <Users className="h-8 w-8 text-wedding-pink" />
+                  <h2 className="text-2xl font-heading font-bold text-wedding-navy">Baarat Bundle</h2>
+                </div>
+                <p className="text-gray-600 mb-2">
+                  Book a convoy of decorated cars for your wedding procession
+                </p>
+                <ul className="text-sm text-gray-500 space-y-1">
+                  <li>• 5-15 decorated vehicles</li>
+                  <li>• Professional drivers</li>
+                  <li>• Flower decorations included</li>
+                  <li>• Music system setup</li>
+                </ul>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-wedding-pink mb-2">Starting ₹15,000</div>
+                <Button 
+                  onClick={handleBookBaaratBundle}
+                  className="bg-wedding-pink hover:bg-wedding-pink/90 text-white px-8 py-3"
+                >
+                  <Users className="mr-2 h-5 w-5" />
+                  Book Baarat Bundle
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card className="mb-12">
           <CardContent className="pt-6">
             <CabSearch
@@ -115,7 +157,7 @@ const CabServices = () => {
             <h2 className="text-2xl font-heading font-bold text-wedding-navy mb-4">
               Location Preview
             </h2>
-            <Map address={mapAddress} className="h-64 w-full rounded-lg shadow-md" />
+            <GoogleMap address={mapAddress} className="h-64 w-full rounded-lg shadow-md" />
             <p className="mt-2 text-sm text-gray-500 text-center">
               <Navigation className="inline h-4 w-4 mr-1" /> 
               Showing map for: {mapAddress}

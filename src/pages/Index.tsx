@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import InteractiveFeatures from "@/components/InteractiveFeatures";
 import GoogleMap from "@/components/GoogleMap";
+import ThreeDView from "@/components/3DView";
 
 const Index = () => {
   return (
@@ -22,6 +23,30 @@ const Index = () => {
       </div>
       <FeaturedVendors />
       <InteractiveFeatures />
+      
+      {/* 3D View Section */}
+      <section className="py-16 bg-white">
+        <div className="wedding-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-wedding-navy mb-4">
+              Experience in <span className="text-wedding-pink">3D</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Get an immersive preview of our featured wedding venues and setups
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ThreeDView
+              title="Luxury Wedding Venue"
+              image="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1470&auto=format&fit=crop"
+            />
+            <ThreeDView
+              title="Traditional Mandap Setup"
+              image="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1470&auto=format&fit=crop"
+            />
+          </div>
+        </div>
+      </section>
       
       {/* Map Section */}
       <section className="py-16 bg-gray-50">

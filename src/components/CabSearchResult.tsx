@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CarFront, MapPin, Route, Navigation } from "lucide-react";
 import { Link } from "react-router-dom";
+import BookingButton from "@/components/BookingButton";
 
 interface Cab {
   id: number;
@@ -13,6 +14,7 @@ interface Cab {
   features: string[];
   category: string;
   location: string;
+  company?: string;
 }
 
 interface CabSearchResultProps {
@@ -84,6 +86,11 @@ const CabSearchResult: React.FC<CabSearchResultProps> = ({ results, onViewMap, o
                     <div className="flex items-center text-xs text-gray-500 mb-2">
                       <MapPin className="h-3 w-3 mr-1" /> {cab.location}
                     </div>
+                    {cab.company && (
+                      <div className="text-xs text-gray-600 mb-2">
+                        by {cab.company}
+                      </div>
+                    )}
                   </div>
                   <div className="text-wedding-pink font-semibold">{cab.price}</div>
                 </div>
@@ -97,12 +104,14 @@ const CabSearchResult: React.FC<CabSearchResultProps> = ({ results, onViewMap, o
                 </div>
                 
                 <div className="flex gap-2 mt-2">
-                  <Button 
-                    className="flex-1 h-8 text-sm bg-wedding-pink hover:bg-wedding-pink/90"
-                    onClick={() => onBook(cab.id)}
-                  >
-                    Book Now
-                  </Button>
+                  <BookingButton
+                    serviceName={cab.name}
+                    serviceType="cab"
+                    serviceId={cab.id}
+                    price={cab.price}
+                    location={cab.location}
+                    className="flex-1 h-8 text-sm"
+                  />
                   <Button 
                     variant="outline" 
                     className="flex-none h-8 w-8 p-0 border-wedding-navy text-wedding-navy" 

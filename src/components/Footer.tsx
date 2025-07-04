@@ -5,7 +5,7 @@ import {
   Users, Globe, CalendarCheck, Wallet, List,
   UserPlus, User, Megaphone, Star, HelpCircle,
   Heart, Image, Book, Lightbulb, TrendingUp, CreditCard, Gift,
-  Map, MessageCircle, Headphones, Phone
+  Map, MessageCircle, Headphones, Phone, MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
@@ -22,6 +22,21 @@ const Footer = () => {
       description: "Connect with our 24/7 support team directly."
     });
   };
+
+  const biharCities = [
+    { name: "Patna", link: "/vendors?city=patna" },
+    { name: "Gaya", link: "/vendors?city=gaya" },
+    { name: "Bhagalpur", link: "/vendors?city=bhagalpur" },
+    { name: "Muzaffarpur", link: "/vendors?city=muzaffarpur" },
+    { name: "Darbhanga", link: "/vendors?city=darbhanga" },
+    { name: "Bihar Sharif", link: "/vendors?city=bihar-sharif" },
+    { name: "Arrah", link: "/vendors?city=arrah" },
+    { name: "Begusarai", link: "/vendors?city=begusarai" },
+    { name: "Katihar", link: "/vendors?city=katihar" },
+    { name: "Chapra", link: "/vendors?city=chapra" },
+    { name: "Sasaram", link: "/vendors?city=sasaram" },
+    { name: "Hajipur", link: "/vendors?city=hajipur" }
+  ];
 
   const footerLinks = [
     {
@@ -170,8 +185,27 @@ const Footer = () => {
             </div>
           ))}
         </div>
+
+        {/* Bihar Cities Section */}
+        <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 mb-6 sm:mb-8">
+          <div className="flex items-center gap-2 mb-4">
+            <MapPin className="h-5 w-5 text-wedding-pink" />
+            <h3 className="text-lg sm:text-xl font-semibold">Popular Cities in Bihar</h3>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {biharCities.map((city) => (
+              <Link
+                key={city.name}
+                to={city.link}
+                className="text-gray-300 hover:text-wedding-pink transition-colors text-sm py-1 px-2 rounded hover:bg-wedding-pink/10"
+              >
+                {city.name}
+              </Link>
+            ))}
+          </div>
+        </div>
         
-        <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-4 sm:pt-6">
+        <div className="border-t border-gray-800 pt-4 sm:pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
             <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
               © 2025 Saadi Ride. All rights reserved.
