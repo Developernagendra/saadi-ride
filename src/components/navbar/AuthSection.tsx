@@ -14,13 +14,16 @@ const AuthSection: React.FC = () => {
       {isAuthenticated ? (
         <UserAvatar />
       ) : (
-        <>
-          <AuthDialog type="login" />
+        <div className="flex items-center space-x-2">
+          <AuthDialog 
+            type="login"
+            className="text-gray-900 hover:text-wedding-pink transition-all duration-300 font-semibold border border-gray-300 hover:border-wedding-pink/50 hover:bg-wedding-pink/5 px-4 py-2 rounded-lg"
+          />
           <AuthDialog 
             type="signup" 
-            className="bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 hover:scale-[1.02] active:scale-95"
+            className="bg-gradient-to-r from-wedding-pink to-pink-600 text-white hover:from-wedding-pink/90 hover:to-pink-700 transition-all duration-300 hover:scale-[1.02] active:scale-95 px-6 py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl border border-wedding-pink"
           />
-        </>
+        </div>
       )}
     </div>
   );

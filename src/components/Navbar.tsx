@@ -38,18 +38,21 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md py-1 xs:py-2" : "bg-transparent py-2 xs:py-3 sm:py-4"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md ${
+        isScrolled 
+          ? "bg-white/95 shadow-lg border-b border-gray-200/50 py-1 xs:py-2" 
+          : "bg-white/80 backdrop-blur-sm py-2 xs:py-3 sm:py-4"
       }`}
     >
       <div className="wedding-container flex items-center justify-between">
         <Link 
           to="/" 
-          className="flex items-center transition-transform hover:scale-[1.02] active:scale-95 touch-manipulation"
+          className="flex items-center transition-transform hover:scale-[1.02] active:scale-95 touch-manipulation group"
           onClick={() => handleNavigation("/")}
         >
-          <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-heading font-bold text-wedding-navy">
-            <span className="text-wedding-pink">Shaadi</span>Saathi
+          <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-heading font-bold transition-colors duration-300">
+            <span className="text-wedding-pink group-hover:text-pink-600 transition-colors">Shaadi</span>
+            <span className="text-wedding-navy group-hover:text-blue-700 transition-colors">Saathi</span>
           </h1>
         </Link>
 
