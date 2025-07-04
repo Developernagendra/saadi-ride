@@ -50,7 +50,8 @@ const Vendors = () => {
         'decorator': 'Decorator',
         'mehendi-artist': 'Mehendi Artist',
         'catering': 'Catering',
-        'bridal-wear': 'Bridal Wear'
+        'bridal-wear': 'Bridal Wear',
+        'digital-card-print': 'Digital Card Print'
       };
       
       const mappedCategory = categoryMap[categoryParam];
@@ -58,85 +59,96 @@ const Vendors = () => {
         setSelectedCategory(mappedCategory);
       }
     }
-  }, [location.search]);
+  }, [location.search, categoryOptions]);
 
-  // Filtering logic
-  const filteredVendors = allVendors.filter((vendor) => {
-    // Filter by search term
-    if (searchTerm && !vendor.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-      return false;
-    }
-    
-    // Filter by category
-    if (selectedCategory !== "All" && vendor.category !== selectedCategory) {
-      return false;
-    }
-    
-    // Filter by city
-    if (selectedCity !== "All" && vendor.location !== selectedCity) {
-      return false;
-    }
-    
-    // Filter by price range
-    if (vendor.priceRange < priceRange[0] || vendor.priceRange > priceRange[1]) {
-      return false;
-    }
-    
-    return true;
-  });
+  // Helper functions
+  function filteredVendors() {
+    return allVendors.filter((vendor) => {
+      // Filter by search term
+      if (searchTerm && !vendor.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return false;
+      }
+      
+      // Filter by category
+      if (selectedCategory !== "All" && vendor.category !== selectedCategory) {
+        return false;
+      }
+      
+      // Filter by city
+      if (selectedCity !== "All" && vendor.location !== selectedCity) {
+        return false;
+      }
+      
+      // Filter by price range
+      if (vendor.priceRange < priceRange[0] || vendor.priceRange > priceRange[1]) {
+        return false;
+      }
+      
+      return true;
+    });
+  }
 
-  // Pagination logic
-  const indexOfLastVendor = currentPage * vendorsPerPage;
-  const indexOfFirstVendor = indexOfLastVendor - vendorsPerPage;
-  const currentVendors = filteredVendors.slice(indexOfFirstVendor, indexOfLastVendor);
-  const totalPages = Math.ceil(filteredVendors.length / vendorsPerPage);
-  
-  const handlePageChange = (page: number) => {
-    if (page < 1 || page > totalPages) return;
+  function currentVendors() {
+    const filtered = filteredVendors();
+    const indexOfLastVendor = currentPage * vendorsPerPage;
+    const indexOfFirstVendor = indexOfLastVendor - vendorsPerPage;
+    return filtered.slice(indexOfFirstVendor, indexOfLastVendor);
+  }
+
+  function totalPages() {
+    return Math.ceil(filteredVendors().length / vendorsPerPage);
+  }
+
+  function handlePageChange(page: number) {
+    const totalPgs = totalPages();
+    if (page < 1 || page > totalPgs) return;
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    const filtered = filteredVendors();
+    const indexOfLastVendor = page * vendorsPerPage;
+    const indexOfFirstVendor = indexOfLastVendor - vendorsPerPage;
     toast({
       title: `Page ${page}`,
-      description: `Showing vendors ${indexOfFirstVendor + 1}-${Math.min(indexOfLastVendor, filteredVendors.length)} of ${filteredVendors.length}`,
+      description: `Showing vendors ${indexOfFirstVendor + 1}-${Math.min(indexOfLastVendor, filtered.length)} of ${filtered.length}`,
       duration: 2000,
     });
-  };
+  }
 
-  const handleViewDetails = (vendorId: number, slug: string = "") => {
+  function handleViewDetails(vendorId: number, slug: string = "") {
     navigate(`/vendor/${slug || vendorId}`);
-  };
+  }
 
-  const resetFilters = () => {
+  function resetFilters() {
     setSelectedCategory("All");
     setSelectedCity("All");
     setPriceRange([1000, 500000]);
     setSearchTerm("");
     setCurrentPage(1);
-  };
+  }
 
-  const handleCategoryChange = (category: string) => {
+  function handleCategoryChange(category: string) {
     setSelectedCategory(category);
     setCurrentPage(1);
-  };
+  }
 
-  const handleCityChange = (city: string) => {
+  function handleCityChange(city: string) {
     setSelectedCity(city);
     setCurrentPage(1);
-  };
+  }
 
-  const handleSearchChange = (term: string) => {
+  function handleSearchChange(term: string) {
     setSearchTerm(term);
     setCurrentPage(1);
-  };
+  }
 
-  const handlePriceRangeChange = (range: number[]) => {
+  function handlePriceRangeChange(range: number[]) {
     setPriceRange(range);
     setCurrentPage(1);
-  };
+  }
 
-  const toggleMobileFilters = () => {
+  function toggleMobileFilters() {
     setShowMobileFilters(!showMobileFilters);
-  };
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -180,14 +192,14 @@ const Vendors = () => {
             {/* Results */}
             <div className="mb-4">
               <p className="text-gray-600 text-center">
-                Showing {currentVendors.length} of {filteredVendors.length} vendors
-                {filteredVendors.length > vendorsPerPage && ` (Page ${currentPage} of ${totalPages})`}
+                Showing {currentVendors().length} of {filteredVendors().length} vendors
+                {filteredVendors().length > vendorsPerPage && ` (Page ${currentPage} of ${totalPages()})`}
               </p>
             </div>
             
             {/* Vendors grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-2 sm:px-0">
-              {currentVendors.map((vendor) => (
+              {currentVendors().map((vendor) => (
                 <VendorCard
                   key={vendor.id}
                   vendor={vendor}
@@ -196,7 +208,7 @@ const Vendors = () => {
               ))}
             </div>
             
-            {filteredVendors.length === 0 && (
+            {filteredVendors().length === 0 && (
               <div className="text-center py-10">
                 <div className="text-wedding-navy text-lg">No vendors found matching your filters</div>
                 <p className="text-gray-500 mt-2">Try adjusting your search criteria</p>
@@ -210,10 +222,10 @@ const Vendors = () => {
             )}
             
             {/* Pagination */}
-            {filteredVendors.length > vendorsPerPage && (
+            {filteredVendors().length > vendorsPerPage && (
               <VendorPagination
                 currentPage={currentPage}
-                totalPages={totalPages}
+                totalPages={totalPages()}
                 onPageChange={handlePageChange}
               />
             )}

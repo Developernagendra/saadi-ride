@@ -6,6 +6,9 @@ export interface Vendor {
   rating: number;
   reviews: number;
   startingPrice: string;
+  price: string;
+  priceRange: number;
+  slug: string;
   image: string;
   featured: boolean;
   description: string;
@@ -39,15 +42,36 @@ export interface Category {
   count: number;
 }
 
+export const formatPrice = (price: number): string => {
+  if (price >= 100000) {
+    return `₹${(price / 100000).toFixed(1)}L`;
+  } else if (price >= 1000) {
+    return `₹${(price / 1000).toFixed(0)}K`;
+  }
+  return `₹${price}`;
+};
+
+export const generateCategorySpecificVendors = (): Vendor[] => {
+  return vendors.map(vendor => ({
+    ...vendor,
+    price: vendor.startingPrice,
+    priceRange: parseInt(vendor.startingPrice.replace(/[₹,]/g, '')),
+    slug: vendor.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+  }));
+};
+
 export const vendors = [
   {
     id: 1,
     name: "The Grand Ballroom",
-    category: "venue",
+    category: "Venue",
     location: "Patna, Bihar",
     rating: 4.9,
     reviews: 320,
     startingPrice: "₹50,000",
+    price: "₹50,000",
+    priceRange: 50000,
+    slug: "the-grand-ballroom",
     image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Elegant venue with stunning decor and spacious halls, perfect for grand weddings.",
@@ -97,11 +121,14 @@ export const vendors = [
   {
     id: 2,
     name: "Royal Photography",
-    category: "photographer",
+    category: "Photographer",
     location: "Patna, Bihar",
     rating: 4.8,
     reviews: 280,
     startingPrice: "₹20,000",
+    price: "₹20,000",
+    priceRange: 20000,
+    slug: "royal-photography",
     image: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Professional photographers capturing your special moments with creativity and precision.",
@@ -151,11 +178,14 @@ export const vendors = [
   {
     id: 3,
     name: "Glamour Makeup Studio",
-    category: "makeup-artist",
+    category: "Makeup Artist",
     location: "Patna, Bihar",
     rating: 4.7,
     reviews: 250,
     startingPrice: "₹10,000",
+    price: "₹10,000",
+    priceRange: 10000,
+    slug: "glamour-makeup-studio",
     image: "https://images.unsplash.com/photo-1560869713-7d0b29837512?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Professional makeup artists providing stunning bridal looks for your special day.",
@@ -205,11 +235,14 @@ export const vendors = [
   {
     id: 4,
     name: "Elegance Bridal Wear",
-    category: "bridal-wear",
+    category: "Bridal Wear",
     location: "Patna, Bihar",
     rating: 4.6,
     reviews: 220,
     startingPrice: "₹30,000",
+    price: "₹30,000",
+    priceRange: 30000,
+    slug: "elegance-bridal-wear",
     image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Exquisite collection of bridal wear, offering a wide range of traditional and modern outfits.",
@@ -259,11 +292,14 @@ export const vendors = [
   {
     id: 5,
     name: "Flavors Catering Services",
-    category: "catering",
+    category: "Catering",
     location: "Patna, Bihar",
     rating: 4.5,
     reviews: 200,
     startingPrice: "₹15,000",
+    price: "₹15,000",
+    priceRange: 15000,
+    slug: "flavors-catering-services",
     image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Delicious and diverse catering services, offering a wide range of cuisines for your wedding.",
@@ -313,11 +349,14 @@ export const vendors = [
   {
     id: 6,
     name: "Creative Decorators",
-    category: "decorator",
+    category: "Decorator",
     location: "Patna, Bihar",
     rating: 4.4,
     reviews: 180,
     startingPrice: "₹25,000",
+    price: "₹25,000",
+    priceRange: 25000,
+    slug: "creative-decorators",
     image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Transform your venue with creative and stunning decor, tailored to your wedding theme.",
@@ -367,11 +406,14 @@ export const vendors = [
   {
     id: 7,
     name: "Perfect Planners",
-    category: "wedding-planner",
+    category: "Wedding Planner",
     location: "Patna, Bihar",
     rating: 4.3,
     reviews: 150,
     startingPrice: "₹30,000",
+    price: "₹30,000",
+    priceRange: 30000,
+    slug: "perfect-planners",
     image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Expert wedding planners providing comprehensive services to make your wedding day perfect.",
@@ -421,11 +463,14 @@ export const vendors = [
   {
     id: 8,
     name: "Henna Artistry",
-    category: "mehendi-artist",
+    category: "Mehendi Artist",
     location: "Patna, Bihar",
     rating: 4.2,
     reviews: 130,
     startingPrice: "₹5,000",
+    price: "₹5,000",
+    priceRange: 5000,
+    slug: "henna-artistry",
     image: "https://images.unsplash.com/photo-1606800052052-1d431e9ce605?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Beautiful henna designs for brides, creating intricate and stunning patterns for your special day.",
@@ -472,16 +517,17 @@ export const vendors = [
       }
     ]
   },
-  
-  // Shaadi Digital Card Print vendors
   {
     id: 101,
     name: "Digital Dreams Cards",
-    category: "shaadi-digital-card",
+    category: "Digital Card Print",
     location: "Patna, Bihar",
     rating: 4.8,
     reviews: 245,
     startingPrice: "₹299",
+    price: "₹299",
+    priceRange: 299,
+    slug: "digital-dreams-cards",
     image: "https://images.unsplash.com/photo-1472722259018-1ea500ebb7f4?q=80&w=1470&auto=format&fit=crop",
     featured: true,
     description: "Premium digital wedding card designs with modern aesthetics and traditional elements.",
@@ -531,12 +577,16 @@ export const vendors = [
   {
     id: 102,
     name: "E-Invite Creations",
-    category: "shaadi-digital-card",
+    category: "Digital Card Print",
     location: "Muzaffarpur, Bihar",
     rating: 4.6,
     reviews: 189,
     startingPrice: "₹199",
+    price: "₹199",
+    priceRange: 199,
+    slug: "e-invite-creations",
     image: "https://images.unsplash.com/photo-1472722259018-1ea500ebb7f4?q=80&w=1470&auto=format&fit=crop",
+    featured: false,
     description: "Creative digital wedding invitations with personalized touch and eco-friendly approach.",
     features: ["Eco-Friendly", "Instant Delivery", "Real-time Analytics", "Social Media Integration"],
     phone: "+91 87654 32109",
@@ -589,62 +639,62 @@ export const categories = [
     name: "Venues",
     description: "Beautiful wedding venues across Bihar",
     icon: "🏛️",
-    count: vendors.filter(v => v.category === "venue").length
+    count: vendors.filter(v => v.category === "Venue").length
   },
   {
     id: "photographer",
     name: "Photographers",
     description: "Capture your special moments perfectly",
     icon: "📸",
-    count: vendors.filter(v => v.category === "photographer").length
+    count: vendors.filter(v => v.category === "Photographer").length
   },
   {
     id: "makeup-artist",
     name: "Makeup Artists",
     description: "Look stunning on your big day",
     icon: "💄",
-    count: vendors.filter(v => v.category === "makeup-artist").length
+    count: vendors.filter(v => v.category === "Makeup Artist").length
   },
   {
     id: "bridal-wear",
     name: "Bridal Wear",
     description: "Exquisite outfits for bride and groom",
     icon: "👗",
-    count: vendors.filter(v => v.category === "bridal-wear").length
+    count: vendors.filter(v => v.category === "Bridal Wear").length
   },
   {
     id: "catering",
     name: "Catering",
     description: "Delicious food for your celebration",
     icon: "🍽️",
-    count: vendors.filter(v => v.category === "catering").length
+    count: vendors.filter(v => v.category === "Catering").length
   },
   {
     id: "decorator",
     name: "Decorators",
     description: "Transform your venue beautifully",
     icon: "🎨",
-    count: vendors.filter(v => v.category === "decorator").length
+    count: vendors.filter(v => v.category === "Decorator").length
   },
   {
     id: "wedding-planner",
     name: "Wedding Planners",
     description: "Expert planning for your perfect day",
     icon: "📋",
-    count: vendors.filter(v => v.category === "wedding-planner").length
+    count: vendors.filter(v => v.category === "Wedding Planner").length
   },
   {
     id: "mehendi-artist",
     name: "Mehendi Artists",
     description: "Beautiful henna designs for brides",
     icon: "🤲",
-    count: vendors.filter(v => v.category === "mehendi-artist").length
+    count: vendors.filter(v => v.category === "Mehendi Artist").length
   },
   {
-    id: "shaadi-digital-card",
+    id: "digital-card-print",
     name: "Digital Card Print",
     description: "Digital wedding invitations and e-cards",
     icon: "📱",
-    count: vendors.filter(v => v.category === "shaadi-digital-card").length
+    count: vendors.filter(v => v.category === "Digital Card Print").length
   }
 ];
