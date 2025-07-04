@@ -24,7 +24,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ onNavigate }) => 
             <NavigationMenuItem key={link.title}>
               {link.subItems ? (
                 <>
-                  <NavigationMenuTrigger className="text-wedding-navy hover:text-wedding-pink">
+                  <NavigationMenuTrigger className="text-black font-semibold hover:text-wedding-pink">
                     {link.title}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -34,7 +34,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ onNavigate }) => 
                           <NavigationMenuLink asChild>
                             <Link
                               to={service.href}
-                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-gray-700 hover:text-wedding-pink"
                               onClick={(e) => {
                                 e.preventDefault();
                                 onNavigate(service.href);
@@ -52,7 +52,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ onNavigate }) => 
                 <NavigationMenuLink asChild>
                   <Link
                     to={link.href}
-                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 text-wedding-navy hover:text-wedding-pink"
+                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-semibold transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 text-black hover:text-wedding-pink"
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate(link.href);

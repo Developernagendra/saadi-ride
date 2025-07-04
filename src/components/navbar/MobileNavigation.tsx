@@ -40,7 +40,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
             fill="none" 
             viewBox="0 0 24 24" 
             stroke="currentColor" 
-            className="w-6 h-6"
+            className="w-6 h-6 text-black"
           >
             <path 
               strokeLinecap="round" 
@@ -57,7 +57,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
             <div key={link.title} className="py-2">
               <Button
                 variant="ghost"
-                className="w-full text-lg justify-start py-2 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors font-semibold"
+                className="w-full text-lg justify-start py-2 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors font-semibold text-black hover:text-wedding-pink"
                 onClick={() => {
                   onNavigate(link.href);
                   setIsOpen(false);
@@ -71,7 +71,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
                     <Button
                       key={service.title}
                       variant="ghost"
-                      className="w-full text-sm justify-start py-1.5 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors"
+                      className="w-full text-sm justify-start py-1.5 px-4 hover:bg-wedding-pink/10 rounded-md transition-colors text-gray-700 hover:text-wedding-pink"
                       onClick={() => {
                         onNavigate(service.href);
                         setIsOpen(false);
