@@ -42,15 +42,17 @@ const BudgetCalculator = () => {
     return guestCount > 0 ? Math.round(totalBudget / guestCount) : 0;
   }, [totalBudget, guestCount]);
 
-  // Optimized handlers with useCallback
-  const handleTotalBudgetChange = useCallback((value: string) => {
+  // Input handlers with real-time updates
+  const handleTotalBudgetChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     const numValue = parseInt(value) || 0;
     if (numValue >= 0 && numValue <= 10000000) {
       setTotalBudget(numValue);
     }
   }, []);
 
-  const handleGuestCountChange = useCallback((value: string) => {
+  const handleGuestCountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     const numValue = parseInt(value) || 1;
     if (numValue >= 1 && numValue <= 5000) {
       setGuestCount(numValue);
@@ -65,8 +67,8 @@ const BudgetCalculator = () => {
     setGuestCount(value[0]);
   }, []);
 
-  // Enhanced download functionality
-  const handleDownloadBudget = useCallback(async () => {
+  // Download functionality
+  const handleDownloadBudget = useCallback(() => {
     try {
       const budgetData = calculatedBudget.map(item => 
         `${item.category}: ₹${item.amount.toLocaleString('en-IN')} (${item.percentage}%)`
@@ -102,7 +104,7 @@ Time: ${new Date().toLocaleTimeString('en-IN')}`;
     }
   }, [calculatedBudget, totalBudget, guestCount, perPersonCost]);
 
-  // Enhanced share functionality
+  // Share functionality
   const handleShareBudget = useCallback(async () => {
     const shareText = `🎉 My Wedding Budget Planning 🎉
 Total Budget: ₹${totalBudget.toLocaleString('en-IN')}
@@ -117,11 +119,10 @@ Top Categories:
 Planned with ShaadiSaathi 💕`;
     
     try {
-      if (navigator.share && navigator.canShare && navigator.canShare({ text: shareText })) {
+      if (navigator.share) {
         await navigator.share({
           title: 'My Wedding Budget',
           text: shareText,
-          url: window.location.href
         });
         toast.success("Budget shared successfully!");
       } else if (navigator.clipboard) {
@@ -131,6 +132,8 @@ Planned with ShaadiSaathi 💕`;
         // Fallback for older browsers
         const textArea = document.createElement('textarea');
         textArea.value = shareText;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand('copy');
@@ -139,7 +142,13 @@ Planned with ShaadiSaathi 💕`;
       }
     } catch (error) {
       console.error('Share error:', error);
-      toast.error("Failed to share budget. Please try again.");
+      // Fallback to clipboard
+      try {
+        await navigator.clipboard.writeText(shareText);
+        toast.success("Budget details copied to clipboard!");
+      } catch (clipboardError) {
+        toast.error("Unable to share. Please copy the text manually.");
+      }
     }
   }, [totalBudget, guestCount, perPersonCost, calculatedBudget]);
 
@@ -161,7 +170,7 @@ Planned with ShaadiSaathi 💕`;
                   id="totalBudget"
                   type="number"
                   value={totalBudget}
-                  onChange={(e) => handleTotalBudgetChange(e.target.value)}
+                  onChange={handleTotalBudgetChange}
                   className="mt-1"
                   min="0"
                   max="10000000"
@@ -190,7 +199,7 @@ Planned with ShaadiSaathi 💕`;
                   id="guestCount"
                   type="number"
                   value={guestCount}
-                  onChange={(e) => handleGuestCountChange(e.target.value)}
+                  onChange={handleGuestCountChange}
                   className="mt-1"
                   min="1"
                   max="5000"

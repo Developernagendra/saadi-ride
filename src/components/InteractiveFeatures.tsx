@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,7 +15,8 @@ import {
   Clock,
   Sparkles
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const InteractiveFeatures = () => {
   const [expandedTool, setExpandedTool] = useState<string | null>(null);
@@ -28,7 +28,12 @@ const InteractiveFeatures = () => {
 
   const handleToolClick = (toolId: string, link: string) => {
     console.log(`Navigating to tool: ${toolId}`);
-    navigate(link);
+    if (toolId === "budget-calculator") {
+      navigate("/planning-tools");
+      toast.success("Navigate to Planning Tools to access Budget Calculator!");
+    } else {
+      navigate(link);
+    }
   };
 
   const planningTools = [
