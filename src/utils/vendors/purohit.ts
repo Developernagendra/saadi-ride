@@ -8,14 +8,21 @@ export const purohitVendors: Vendor[] = [
     category: "purohit",
     location: "Patna, Bihar",
     rating: 4.9,
+    reviews: 156,
     reviewCount: 156,
     startingPrice: "₹5,000",
+    price: "₹5,000",
+    priceRange: 5000,
     image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1000&auto=format&fit=crop",
     description: "Experienced Vedic priest specializing in traditional Hindu wedding ceremonies",
     services: ["Wedding Ceremonies", "Engagement Rituals", "Pre-wedding Pujas", "Griha Pravesh"],
     experience: "15+ years",
     languages: ["Hindi", "Sanskrit", "Bhojpuri"],
     specializations: ["Vedic Mantras", "Traditional Rituals", "Astrology Consultation"],
+    features: ["Vedic Mantras", "Traditional Rituals", "Astrology Consultation"],
+    phone: "+91-9876543210",
+    email: "panditrajesh@email.com",
+    address: "Patna, Bihar",
     packages: [
       {
         name: "Basic Wedding Package",
@@ -36,8 +43,9 @@ export const purohitVendors: Vendor[] = [
         features: ["Multi-day ceremonies", "All rituals", "Personalized consultations", "Complete puja setup", "Post-wedding blessings"]
       }
     ],
-    reviews: [
+    reviewsData: [
       {
+        name: "Priya & Amit",
         userName: "Priya & Amit",
         rating: 5,
         comment: "Pandit ji conducted our wedding beautifully. Very knowledgeable and explained each ritual.",
@@ -63,14 +71,21 @@ export const purohitVendors: Vendor[] = [
     category: "purohit",
     location: "Gaya, Bihar", 
     rating: 4.8,
+    reviews: 89,
     reviewCount: 89,
     startingPrice: "₹4,500",
+    price: "₹4,500",
+    priceRange: 4500,
     image: "https://images.unsplash.com/photo-1609952430799-af47d4c4bfe8?q=80&w=1000&auto=format&fit=crop",
     description: "Traditional priest with expertise in South Indian and North Indian wedding customs",
     services: ["Hindu Weddings", "Sacred Thread Ceremony", "Housewarming Pujas", "Festival Celebrations"],
     experience: "12+ years",
     languages: ["Hindi", "Sanskrit", "Tamil", "Telugu"],
     specializations: ["Cross-cultural ceremonies", "Multiple traditions", "Spiritual guidance"],
+    features: ["Cross-cultural ceremonies", "Multiple traditions", "Spiritual guidance"],
+    phone: "+91-9876543211",
+    email: "acharyavinod@email.com",
+    address: "Gaya, Bihar",
     packages: [
       {
         name: "Standard Package",
@@ -85,8 +100,9 @@ export const purohitVendors: Vendor[] = [
         features: ["Full wedding rituals", "Pre-ceremony pujas", "Detailed explanations", "Puja items"]
       }
     ],
-    reviews: [
+    reviewsData: [
       {
+        name: "Kavya & Ravi",
         userName: "Kavya & Ravi",
         rating: 5,
         comment: "Excellent knowledge of both North and South Indian traditions. Made our intercultural wedding perfect.",
@@ -111,14 +127,21 @@ export const purohitVendors: Vendor[] = [
     category: "purohit",
     location: "Muzaffarpur, Bihar",
     rating: 4.7,
+    reviews: 124,
     reviewCount: 124,
     startingPrice: "₹3,500",
+    price: "₹3,500",
+    priceRange: 3500,
     image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1000&auto=format&fit=crop",
     description: "Young and energetic priest who explains rituals in simple language",
     services: ["Modern Hindu Weddings", "Simplified Ceremonies", "Youth-friendly Approach", "Quick Rituals"],
     experience: "8+ years",
     languages: ["Hindi", "English", "Bhojpuri"],
     specializations: ["Modern approach", "Time-efficient ceremonies", "Youth engagement"],
+    features: ["Modern approach", "Time-efficient ceremonies", "Youth engagement"],
+    phone: "+91-9876543212",
+    email: "panditsuresh@email.com",
+    address: "Muzaffarpur, Bihar",
     packages: [
       {
         name: "Express Package",
@@ -133,8 +156,9 @@ export const purohitVendors: Vendor[] = [
         features: ["Complete traditional ceremony", "Modern explanations", "Interactive rituals", "Photography friendly"]
       }
     ],
-    reviews: [
+    reviewsData: [
       {
+        name: "Sneha & Rohit",
         userName: "Sneha & Rohit",
         rating: 5,
         comment: "Perfect for modern couples! Explained everything beautifully and kept the ceremony engaging.",
