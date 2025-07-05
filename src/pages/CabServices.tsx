@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,6 +17,7 @@ import CabSearch from "@/components/cab/CabSearch";
 import CabFilters from "@/components/cab/CabFilters";
 import CabGrid from "@/components/cab/CabGrid";
 import { cabTypes, locations, CabType } from "@/utils/cabData";
+import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
 
 const CabServices = () => {
   const { toast } = useToast();
@@ -69,13 +69,23 @@ const CabServices = () => {
   };
 
   const handleBookBaaratBundle = () => {
+    console.log("Booking Baarat Bundle via WhatsApp");
+    
+    // Send WhatsApp message for Baarat Bundle booking
+    sendWhatsAppMessage({
+      type: 'booking',
+      serviceName: 'Baarat Bundle - Wedding Convoy',
+      serviceType: 'cab',
+      price: 'Starting ₹15,000',
+      message: 'I would like to book a Baarat Bundle for my wedding. Please provide details about decorated vehicles, pricing, and availability.'
+    });
+
     toast({
-      title: "Baarat Bundle Booking",
-      description: "Our team will contact you within 30 minutes to arrange your baarat convoy.",
+      title: "Baarat Bundle Booking Request Sent!",
+      description: "Our team will contact you via WhatsApp within 30 minutes to arrange your baarat convoy with decorated vehicles.",
     });
   };
 
-  // Filter cabs based on the active tab and search term
   const filteredCabs = cabTypes.filter(cab => {
     // Filter by category
     if (activeTab === "all") return true;
@@ -101,34 +111,55 @@ const CabServices = () => {
           </p>
         </div>
 
-        {/* Baarat Bundle Section */}
-        <Card className="mb-8 bg-gradient-to-r from-wedding-pink/5 to-wedding-navy/5 border-2 border-wedding-pink/20">
-          <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
-                  <Users className="h-8 w-8 text-wedding-pink" />
-                  <h2 className="text-2xl font-heading font-bold text-wedding-navy">Baarat Bundle</h2>
+        {/* Enhanced Baarat Bundle Section */}
+        <Card className="mb-8 bg-gradient-to-r from-wedding-pink/10 via-purple-50 to-wedding-navy/10 border-2 border-wedding-pink/30 shadow-xl">
+          <CardContent className="p-8">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+              <div className="text-center lg:text-left flex-1">
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-wedding-pink to-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-heading font-bold text-wedding-navy">Baarat Bundle</h2>
+                  <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Most Popular</span>
                 </div>
-                <p className="text-gray-600 mb-2">
-                  Book a convoy of decorated cars for your wedding procession
+                <p className="text-gray-700 mb-4 text-lg">
+                  Book a spectacular convoy of decorated cars for your wedding procession
                 </p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• 5-15 decorated vehicles</li>
-                  <li>• Professional drivers</li>
-                  <li>• Flower decorations included</li>
-                  <li>• Music system setup</li>
-                </ul>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-white/60 backdrop-blur-sm p-4 rounded-lg">
+                    <h4 className="font-semibold text-wedding-navy mb-2">Package Includes:</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• 5-15 decorated vehicles</li>
+                      <li>• Professional chauffeurs</li>
+                      <li>• Premium flower decorations</li>
+                      <li>• Music system setup</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white/60 backdrop-blur-sm p-4 rounded-lg">
+                    <h4 className="font-semibold text-wedding-navy mb-2">Special Features:</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• LED lighting decoration</li>
+                      <li>• Coordinated convoy arrival</li>
+                      <li>• Photography support</li>
+                      <li>• Route planning included</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-wedding-pink mb-2">Starting ₹15,000</div>
+              <div className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+                <div className="text-4xl font-bold text-wedding-pink mb-2">Starting ₹15,000</div>
+                <p className="text-gray-600 mb-4">Complete baarat convoy package</p>
                 <Button 
                   onClick={handleBookBaaratBundle}
-                  className="bg-wedding-pink hover:bg-wedding-pink/90 text-white px-8 py-3"
+                  className="bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
                 >
                   <Users className="mr-2 h-5 w-5" />
-                  Book Baarat Bundle
+                  Book Baarat Bundle via WhatsApp
                 </Button>
+                <p className="text-xs text-gray-500 mt-2">
+                  Instant booking via WhatsApp • 30 min response time
+                </p>
               </div>
             </div>
           </CardContent>

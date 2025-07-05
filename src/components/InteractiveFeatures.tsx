@@ -1,192 +1,241 @@
 
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calculator, CheckCircle, Calendar, Mail, Scale, DollarSign, Palette } from "lucide-react";
-import BudgetCalculator from "./BudgetCalculator";
-import WeddingChecklist from "./WeddingChecklist";
-import BookingCalendar from "./BookingCalendar";
-import NewsletterSubscription from "./NewsletterSubscription";
-import VendorComparison from "./VendorComparison";
-import WeddingCostEstimator from "./WeddingCostEstimator";
-import ColorPaletteGenerator from "./ColorPaletteGenerator";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Calculator,
+  Calendar,
+  CheckSquare,
+  Palette,
+  Search,
+  Users,
+  Heart,
+  Star,
+  ChevronDown,
+  ChevronUp,
+  Target,
+  Clock,
+  Sparkles
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const InteractiveFeatures = () => {
-  const [activeTab, setActiveTab] = useState("budget");
+  const [expandedTool, setExpandedTool] = useState<string | null>(null);
 
-  const features = [
+  const toggleTool = (toolId: string) => {
+    setExpandedTool(expandedTool === toolId ? null : toolId);
+  };
+
+  const planningTools = [
     {
-      id: "budget",
+      id: "budget-calculator",
       title: "Budget Calculator",
-      icon: <Calculator className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Plan your wedding budget with our smart calculator"
+      icon: Calculator,
+      description: "Plan your wedding expenses with our smart budget calculator",
+      features: [
+        "Category-wise budget breakdown",
+        "Expense tracking and alerts",
+        "Cost comparison tools", 
+        "Savings recommendations",
+        "Vendor cost estimates"
+      ],
+      color: "from-green-500 to-emerald-600",
+      link: "/planning-tools"
     },
     {
-      id: "checklist",
-      title: "Planning Checklist",
-      icon: <CheckCircle className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Stay organized with our comprehensive wedding checklist"
+      id: "wedding-checklist",
+      title: "Wedding Checklist",
+      icon: CheckSquare,
+      description: "Never miss a task with our comprehensive wedding checklist",
+      features: [
+        "12-month timeline planning",
+        "Task prioritization system",
+        "Progress tracking dashboard",
+        "Custom reminder notifications",
+        "Sharing with family & vendors"
+      ],
+      color: "from-blue-500 to-cyan-600",
+      link: "/planning-tools"
     },
     {
-      id: "booking",
-      title: "Book Appointment",
-      icon: <Calendar className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Schedule consultations with our wedding experts"
+      id: "guest-manager",
+      title: "Guest Manager",
+      icon: Users,
+      description: "Manage your guest list and RSVPs effortlessly",
+      features: [
+        "Guest list organization",
+        "RSVP tracking system",
+        "Seating arrangement planner",
+        "Dietary preferences tracker",
+        "Digital invitation sender"
+      ],
+      color: "from-purple-500 to-violet-600",
+      link: "/planning-tools"
     },
     {
-      id: "newsletter",
-      title: "Newsletter",
-      icon: <Mail className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Get the latest wedding trends and tips"
+      id: "color-palette",
+      title: "Color Palette Generator",
+      icon: Palette,
+      description: "Create beautiful color schemes for your wedding theme",
+      features: [
+        "AI-powered color matching",
+        "Seasonal palette suggestions",
+        "Mood board creator",
+        "Vendor color coordination",
+        "Print-ready color codes"
+      ],
+      color: "from-pink-500 to-rose-600",
+      link: "/planning-tools"
     },
     {
-      id: "comparison",
-      title: "Compare Vendors",
-      icon: <Scale className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Compare different vendors side by side"
+      id: "timeline-planner",
+      title: "Timeline Planner",
+      icon: Calendar,
+      description: "Create detailed schedules for your wedding day",
+      features: [
+        "Hour-by-hour timeline",
+        "Vendor coordination schedule",
+        "Photography timeline",
+        "Transportation planning",
+        "Emergency backup plans"
+      ],
+      color: "from-orange-500 to-amber-600",
+      link: "/planning-tools"
     },
     {
-      id: "estimator",
-      title: "Cost Estimator",
-      icon: <DollarSign className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Get detailed wedding cost estimates"
-    },
-    {
-      id: "colors",
-      title: "Color Palettes",
-      icon: <Palette className="w-3 h-3 xs:w-4 xs:h-4" />,
-      description: "Discover perfect color combinations"
+      id: "vendor-comparison",
+      title: "Vendor Comparison",
+      icon: Search,
+      description: "Compare vendors side-by-side to make informed decisions",
+      features: [
+        "Price comparison matrix",
+        "Service feature analysis",
+        "Review aggregation",
+        "Availability checker",
+        "Contract term comparison"
+      ],
+      color: "from-indigo-500 to-blue-700",
+      link: "/vendors"
     }
   ];
 
   return (
-    <section className="py-8 xs:py-12 sm:py-16 bg-gradient-to-b from-wedding-cream/30 to-white">
+    <section className="py-20 bg-gradient-to-br from-pink-50 via-white to-blue-50">
       <div className="wedding-container">
-        <div className="text-center mb-6 xs:mb-8 sm:mb-12">
-          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-wedding-navy mb-2 xs:mb-4">
-            Interactive Planning Tools
+        <div className="text-center mb-16">
+          <div className="flex justify-center mb-4">
+            <div className="bg-gradient-to-r from-wedding-pink to-pink-600 p-3 rounded-full">
+              <Sparkles className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-wedding-navy mb-6">
+            Your Wedding Planning <span className="text-wedding-pink">Toolkit</span>
           </h2>
-          <p className="text-sm xs:text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
-            Make your wedding planning easier with our comprehensive set of interactive tools and features
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Comprehensive tools and resources to make your wedding planning journey smooth, 
+            organized, and stress-free from start to finish.
           </p>
         </div>
 
-        <Card className="shadow-xl border-0 overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-wedding-pink to-wedding-navy text-white p-4 xs:p-6">
-            <CardTitle className="text-center text-lg xs:text-xl sm:text-2xl font-heading">
-              Your Wedding Planning Toolkit
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              {/* Enhanced Tab Navigation */}
-              <div className="border-b bg-gray-50/50">
-                <TabsList className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 w-full h-auto bg-transparent p-0 gap-0">
-                  {features.map((feature) => (
-                    <TabsTrigger
-                      key={feature.id}
-                      value={feature.id}
-                      className="flex flex-col items-center justify-center p-2 xs:p-3 sm:p-4 min-h-[60px] xs:min-h-[70px] sm:min-h-[80px] data-[state=active]:bg-white data-[state=active]:text-wedding-pink data-[state=active]:border-b-2 data-[state=active]:border-wedding-pink border-b border-transparent hover:bg-white/50 transition-all duration-200 rounded-none touch-manipulation"
-                    >
-                      <div className="flex flex-col items-center space-y-1 xs:space-y-2">
-                        <div className="p-1 xs:p-2 rounded-full bg-wedding-pink/10 data-[state=active]:bg-wedding-pink/20">
-                          {feature.icon}
-                        </div>
-                        <div className="text-center">
-                          <span className="font-medium text-2xs xs:text-xs sm:text-sm block leading-tight">
-                            {feature.title}
-                          </span>
-                          <span className="text-2xs xs:text-xs text-gray-500 hidden md:block mt-1 leading-tight">
-                            {feature.description}
-                          </span>
-                        </div>
-                      </div>
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </div>
-
-              {/* Tab Content with Better Spacing */}
-              <div className="p-3 xs:p-4 sm:p-6 min-h-[400px] xs:min-h-[450px] sm:min-h-[500px] bg-white">
-                <TabsContent value="budget" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <BudgetCalculator />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {planningTools.map((tool) => {
+            const IconComponent = tool.icon;
+            const isExpanded = expandedTool === tool.id;
+            
+            return (
+              <Card 
+                key={tool.id} 
+                className={`group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-gray-100 hover:border-wedding-pink/30 bg-white/90 backdrop-blur-sm ${
+                  isExpanded ? 'ring-2 ring-wedding-pink/50 shadow-xl' : ''
+                }`}
+              >
+                <CardHeader className="text-center pb-4">
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className="h-8 w-8 text-white" />
                   </div>
-                </TabsContent>
+                  <CardTitle className="text-xl font-heading font-bold text-wedding-navy group-hover:text-wedding-pink transition-colors">
+                    {tool.title}
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent className="text-center space-y-4">
+                  <p className="text-gray-600 leading-relaxed">
+                    {tool.description}
+                  </p>
+                  
+                  <Button
+                    onClick={() => toggleTool(tool.id)}
+                    variant="outline"
+                    className="w-full border-wedding-pink/30 text-wedding-pink hover:bg-wedding-pink hover:text-white transition-all duration-300"
+                  >
+                    {isExpanded ? (
+                      <>
+                        Hide Features <ChevronUp className="ml-2 h-4 w-4" />
+                      </>
+                    ) : (
+                      <>
+                        View Features <ChevronDown className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
+                  
+                  {isExpanded && (
+                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200 animate-in slide-in-from-top-2 duration-300">
+                      <h4 className="font-semibold text-wedding-navy mb-3 flex items-center">
+                        <Target className="h-4 w-4 mr-2" />
+                        Key Features:
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        {tool.features.map((feature, index) => (
+                          <li key={index} className="flex items-start">
+                            <div className="w-1.5 h-1.5 bg-wedding-pink rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link to={tool.link}>
+                        <Button className="w-full mt-4 bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white">
+                          Try Now <Star className="ml-2 h-4 w-4" />
+                        </Button>  
+                      </Link>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
 
-                <TabsContent value="checklist" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <WeddingChecklist />
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="booking" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <BookingCalendar />
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="newsletter" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <NewsletterSubscription />
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="comparison" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <VendorComparison />
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="estimator" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <WeddingCostEstimator />
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="colors" className="mt-0 focus-visible:outline-none">
-                  <div className="animate-fade-in">
-                    <ColorPaletteGenerator />
-                  </div>
-                </TabsContent>
-              </div>
-            </Tabs>
-          </CardContent>
-        </Card>
-
-        {/* Enhanced Quick Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 lg:gap-6 mt-8 xs:mt-10 sm:mt-12">
-          <div className="text-center p-3 xs:p-4 sm:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-wedding-pink/10 rounded-full flex items-center justify-center mx-auto mb-2 xs:mb-3">
-              <span className="text-lg xs:text-xl sm:text-2xl">👰</span>
+        {/* Quick Stats */}
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-200/50">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-wedding-pink">50K+</div>
+              <div className="text-sm text-gray-600">Weddings Planned</div>
             </div>
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-pink mb-1 xs:mb-2">1000+</div>
-            <div className="text-xs xs:text-sm text-gray-600 font-medium">Happy Couples</div>
-          </div>
-          <div className="text-center p-3 xs:p-4 sm:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-wedding-navy/10 rounded-full flex items-center justify-center mx-auto mb-2 xs:mb-3">
-              <span className="text-lg xs:text-xl sm:text-2xl">🏪</span>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-wedding-pink">95%</div>
+              <div className="text-sm text-gray-600">Client Satisfaction</div>
             </div>
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-navy mb-1 xs:mb-2">500+</div>
-            <div className="text-xs xs:text-sm text-gray-600 font-medium">Trusted Vendors</div>
-          </div>
-          <div className="text-center p-3 xs:p-4 sm:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-wedding-pink/10 rounded-full flex items-center justify-center mx-auto mb-2 xs:mb-3">
-              <span className="text-lg xs:text-xl sm:text-2xl">🏙️</span>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-wedding-pink">30+</div>
+              <div className="text-sm text-gray-600">Planning Tools</div>
             </div>
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-pink mb-1 xs:mb-2">50+</div>
-            <div className="text-xs xs:text-sm text-gray-600 font-medium">Cities Covered</div>
-          </div>
-          <div className="text-center p-3 xs:p-4 sm:p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-wedding-navy/10 rounded-full flex items-center justify-center mx-auto mb-2 xs:mb-3">
-              <span className="text-lg xs:text-xl sm:text-2xl">⭐</span>
-            </div>
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-navy mb-1 xs:mb-2">4.9</div>
-            <div className="text-xs xs:text-sm text-gray-600 font-medium flex items-center justify-center">
-              <span className="text-yellow-400 mr-1">⭐</span>
-              Average Rating
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-wedding-pink">24/7</div>
+              <div className="text-sm text-gray-600">Support Available</div>
             </div>
           </div>
+        </div>
+
+        <div className="text-center mt-12">
+          <Link to="/planning-tools">
+            <Button className="bg-gradient-to-r from-wedding-navy to-blue-700 hover:from-wedding-navy/90 hover:to-blue-800 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300">
+              <Clock className="mr-2 h-5 w-5" />
+              Access All Planning Tools
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -9,10 +9,11 @@ import { decorators } from './vendors/decorators';
 import { weddingPlanners } from './vendors/planners';
 import { mehendiArtists } from './vendors/mehendi';
 import { digitalCards } from './vendors/digital';
+import { purohitVendors } from './vendors/purohit';
 import { formatPrice, generateSlug } from './vendorUtils';
 
 // Export all vendor arrays
-export { venues, photographers, makeupArtists, bridalWear, catering, decorators, weddingPlanners, mehendiArtists, digitalCards };
+export { venues, photographers, makeupArtists, bridalWear, catering, decorators, weddingPlanners, mehendiArtists, digitalCards, purohitVendors };
 
 // Export types and utilities
 export type { Vendor, Package, Review, Category } from './types';
@@ -28,7 +29,8 @@ export const vendors: Vendor[] = [
   ...decorators,
   ...weddingPlanners,
   ...mehendiArtists,
-  ...digitalCards
+  ...digitalCards,
+  ...purohitVendors
 ];
 
 // Generate category-specific vendors with proper mapping
@@ -52,7 +54,7 @@ export const categories: Category[] = [
   },
   {
     id: "photographer",
-    name: "Photographers",
+    name: "Photographers", 
     description: "Capture your special moments perfectly",
     icon: "📸",
     count: photographers.length
@@ -98,6 +100,13 @@ export const categories: Category[] = [
     description: "Beautiful henna designs for brides",
     icon: "🤲",
     count: mehendiArtists.length
+  },
+  {
+    id: "purohit",
+    name: "Purohit",
+    description: "Experienced priests for wedding ceremonies",
+    icon: "🕉️",
+    count: purohitVendors.length
   },
   {
     id: "digital-card-print",

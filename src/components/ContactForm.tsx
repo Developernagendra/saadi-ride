@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
+import { MessageCircle, Send } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -46,45 +47,72 @@ const ContactForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // In a real app, this would send the data to your backend
     console.log("Form submitted:", values);
+    
+    // Send WhatsApp message with form data
+    sendWhatsAppMessage({
+      type: 'inquiry',
+      customerName: values.name,
+      customerEmail: values.email,
+      customerPhone: values.phone,
+      message: values.message
+    });
     
     toast({
       title: "Inquiry Submitted!",
-      description: "Thank you for your message. We'll be in touch shortly.",
+      description: "Thank you for your message. We'll contact you via WhatsApp shortly.",
     });
     
     form.reset();
   }
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-xl font-heading font-semibold mb-4 text-wedding-navy">Contact Us</h3>
+    <div className="bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-2xl border border-gray-200/50 hover:shadow-3xl transition-all duration-300">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 bg-gradient-to-r from-wedding-pink to-pink-600 rounded-full flex items-center justify-center">
+          <MessageCircle className="h-5 w-5 text-white" />
+        </div>
+        <h3 className="text-2xl font-heading font-bold text-wedding-navy">Contact Us</h3>
+      </div>
+      
+      <p className="text-gray-600 mb-6">
+        Get in touch with our wedding experts. We'll respond via WhatsApp within 30 minutes!
+      </p>
+
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-wedding-navy">Name</FormLabel>
+                <FormLabel className="text-wedding-navy font-semibold">Full Name *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} />
+                  <Input 
+                    placeholder="Enter your full name" 
+                    className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-12"
+                    {...field} 
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-wedding-navy">Email</FormLabel>
+                  <FormLabel className="text-wedding-navy font-semibold">Email Address *</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="Your email" {...field} />
+                    <Input 
+                      type="email" 
+                      placeholder="your.email@example.com" 
+                      className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-12"
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -96,9 +124,14 @@ const ContactForm = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-wedding-navy">Phone</FormLabel>
+                  <FormLabel className="text-wedding-navy font-semibold">Phone Number *</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="Your phone number" {...field} />
+                    <Input 
+                      type="tel" 
+                      placeholder="+91 XXXXX XXXXX" 
+                      className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-12"
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -111,11 +144,11 @@ const ContactForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-wedding-navy">Message</FormLabel>
+                <FormLabel className="text-wedding-navy font-semibold">Your Message *</FormLabel>
                 <FormControl>
                   <Textarea 
-                    placeholder="Tell us about your wedding plans or how we can help you" 
-                    className="min-h-[120px]" 
+                    placeholder="Tell us about your wedding plans, preferred dates, budget, or any specific requirements..." 
+                    className="min-h-[140px] border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg resize-none" 
                     {...field} 
                   />
                 </FormControl>
@@ -126,10 +159,15 @@ const ContactForm = () => {
           
           <Button 
             type="submit" 
-            className="bg-wedding-pink hover:bg-wedding-pink/90 text-white w-full transition-all duration-300 transform hover:scale-[1.01] active:scale-95"
+            className="bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white w-full h-12 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-xl"
           >
-            Send Message
+            <Send className="mr-2 h-5 w-5" />
+            Send Message via WhatsApp
           </Button>
+          
+          <p className="text-xs text-gray-500 text-center">
+            By submitting this form, you agree to be contacted via WhatsApp for wedding planning assistance.
+          </p>
         </form>
       </Form>
     </div>
