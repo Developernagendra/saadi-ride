@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Calculator,
   Calendar,
@@ -10,7 +9,6 @@ import {
   Palette,
   Search,
   Users,
-  Heart,
   Star,
   ChevronDown,
   ChevronUp,
@@ -18,13 +16,19 @@ import {
   Clock,
   Sparkles
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const InteractiveFeatures = () => {
   const [expandedTool, setExpandedTool] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const toggleTool = (toolId: string) => {
     setExpandedTool(expandedTool === toolId ? null : toolId);
+  };
+
+  const handleToolClick = (toolId: string, link: string) => {
+    console.log(`Navigating to tool: ${toolId}`);
+    navigate(link);
   };
 
   const planningTools = [
@@ -34,11 +38,11 @@ const InteractiveFeatures = () => {
       icon: Calculator,
       description: "Plan your wedding expenses with our smart budget calculator",
       features: [
-        "Category-wise budget breakdown",
-        "Expense tracking and alerts",
-        "Cost comparison tools", 
-        "Savings recommendations",
-        "Vendor cost estimates"
+        "Real-time budget calculations",
+        "Category-wise expense breakdown",
+        "Cost per person calculator",
+        "Download & share functionality",
+        "Interactive sliders for easy input"
       ],
       color: "from-green-500 to-emerald-600",
       link: "/planning-tools"
@@ -146,9 +150,10 @@ const InteractiveFeatures = () => {
             return (
               <Card 
                 key={tool.id} 
-                className={`group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-gray-100 hover:border-wedding-pink/30 bg-white/90 backdrop-blur-sm ${
+                className={`group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-gray-100 hover:border-wedding-pink/30 bg-white/90 backdrop-blur-sm cursor-pointer ${
                   isExpanded ? 'ring-2 ring-wedding-pink/50 shadow-xl' : ''
                 }`}
+                onClick={() => handleToolClick(tool.id, tool.link)}
               >
                 <CardHeader className="text-center pb-4">
                   <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
@@ -165,7 +170,10 @@ const InteractiveFeatures = () => {
                   </p>
                   
                   <Button
-                    onClick={() => toggleTool(tool.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTool(tool.id);
+                    }}
                     variant="outline"
                     className="w-full border-wedding-pink/30 text-wedding-pink hover:bg-wedding-pink hover:text-white transition-all duration-300"
                   >
@@ -194,11 +202,15 @@ const InteractiveFeatures = () => {
                           </li>
                         ))}
                       </ul>
-                      <Link to={tool.link}>
-                        <Button className="w-full mt-4 bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white">
-                          Try Now <Star className="ml-2 h-4 w-4" />
-                        </Button>  
-                      </Link>
+                      <Button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleToolClick(tool.id, tool.link);
+                        }}
+                        className="w-full mt-4 bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white"
+                      >
+                        Try Now <Star className="ml-2 h-4 w-4" />
+                      </Button>  
                     </div>
                   )}
                 </CardContent>
@@ -230,12 +242,13 @@ const InteractiveFeatures = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Link to="/planning-tools">
-            <Button className="bg-gradient-to-r from-wedding-navy to-blue-700 hover:from-wedding-navy/90 hover:to-blue-800 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300">
-              <Clock className="mr-2 h-5 w-5" />
-              Access All Planning Tools
-            </Button>
-          </Link>
+          <Button 
+            onClick={() => navigate('/planning-tools')}
+            className="bg-gradient-to-r from-wedding-navy to-blue-700 hover:from-wedding-navy/90 hover:to-blue-800 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
+          >
+            <Clock className="mr-2 h-5 w-5" />
+            Access All Planning Tools
+          </Button>
         </div>
       </div>
     </section>
