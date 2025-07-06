@@ -10,7 +10,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import InteractiveFeatures from "@/components/InteractiveFeatures";
-import GoogleMap from "@/components/GoogleMap";
+import BiharMap from "@/components/BiharMap";
 import ThreeDView from "@/components/3DView";
 
 const Index = () => {
@@ -60,28 +60,10 @@ const Index = () => {
             </p>
           </div>
           <div className="max-w-6xl mx-auto">
-            <GoogleMap
-              address="Patna, Bihar, India"
-              lat={25.5941}
-              lng={85.1376}
-              zoom={11}
-              className="h-[500px] w-full rounded-xl shadow-lg"
-              markers={[
-                { lat: 25.6093, lng: 85.1025, title: "Royal Palace Wedding Venue", address: "Gandhi Maidan, Patna - Premium Wedding Halls" },
-                { lat: 25.5738, lng: 85.1563, title: "Elite Photography Studio", address: "Boring Road, Patna - Professional Wedding Photography" },
-                { lat: 25.6279, lng: 85.1359, title: "Spice Garden Catering", address: "Fraser Road, Patna - Traditional & Modern Cuisine" },
-                { lat: 25.5918, lng: 85.1273, title: "Glamour Bridal Makeup", address: "Exhibition Road, Patna - Bridal Beauty Services" },
-                { lat: 25.6158, lng: 85.1198, title: "Dream Wedding Decorators", address: "Dak Bunglow Road, Patna - Event Decoration" },
-                { lat: 25.6045, lng: 85.0863, title: "Melody Music & DJ", address: "Kankarbagh, Patna - Wedding Entertainment" },
-                { lat: 25.5823, lng: 85.1411, title: "Heritage Banquet Hall", address: "Patliputra Colony, Patna - Luxury Venue" },
-                { lat: 25.6234, lng: 85.1456, title: "Floral Fantasy", address: "Rajendra Nagar, Patna - Wedding Flowers & Decor" },
-                { lat: 25.5967, lng: 85.1789, title: "Royal Caterers", address: "Bailey Road, Patna - Wedding Catering Services" },
-                { lat: 25.6112, lng: 85.0943, title: "Bridal Boutique", address: "Anisabad, Patna - Wedding Attire & Jewelry" }
-              ]}
-            />
+            <BiharMap className="h-[500px] w-full rounded-xl shadow-lg mb-8" />
             
             {/* Vendor Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center p-4 bg-white rounded-lg shadow-md">
                 <div className="text-2xl font-bold text-wedding-pink">50+</div>
                 <div className="text-sm text-gray-600">Wedding Venues</div>
