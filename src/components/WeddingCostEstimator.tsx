@@ -89,7 +89,7 @@ const WeddingCostEstimator = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 relative z-10">
       <div className="text-center">
         <h3 className="text-2xl font-heading font-bold text-wedding-navy mb-2">
           Wedding Cost Estimator
@@ -99,7 +99,7 @@ const WeddingCostEstimator = () => {
         </p>
       </div>
 
-      <Card>
+      <Card className="relative z-20">
         <CardHeader>
           <CardTitle className="flex items-center">
             <Calculator className="w-5 h-5 mr-2 text-wedding-pink" />
@@ -127,52 +127,52 @@ const WeddingCostEstimator = () => {
               </div>
             </div>
 
-            <div>
+            <div className="relative z-50">
               <Label className="flex items-center mb-2">
                 <MapPin className="w-4 h-4 mr-1" />
                 Location Type
               </Label>
-              <Select onValueChange={setLocation}>
-                <SelectTrigger>
+              <Select onValueChange={setLocation} value={location}>
+                <SelectTrigger className="bg-white border-gray-300 focus:ring-2 focus:ring-wedding-pink focus:border-wedding-pink">
                   <SelectValue placeholder="Select location type" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="metro">Metro Cities (Mumbai, Delhi, Bangalore)</SelectItem>
-                  <SelectItem value="tier1">Tier 1 Cities (Pune, Hyderabad, Chennai)</SelectItem>
-                  <SelectItem value="tier2">Tier 2 Cities (Jaipur, Kochi, Indore)</SelectItem>
-                  <SelectItem value="tier3">Tier 3 Cities & Towns</SelectItem>
+                <SelectContent className="bg-white border border-gray-200 shadow-xl z-50 max-h-60 overflow-y-auto">
+                  <SelectItem value="metro" className="hover:bg-gray-100 focus:bg-gray-100">Metro Cities (Mumbai, Delhi, Bangalore)</SelectItem>
+                  <SelectItem value="tier1" className="hover:bg-gray-100 focus:bg-gray-100">Tier 1 Cities (Pune, Hyderabad, Chennai)</SelectItem>
+                  <SelectItem value="tier2" className="hover:bg-gray-100 focus:bg-gray-100">Tier 2 Cities (Jaipur, Kochi, Indore)</SelectItem>
+                  <SelectItem value="tier3" className="hover:bg-gray-100 focus:bg-gray-100">Tier 3 Cities & Towns</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            <div>
+            <div className="relative z-40">
               <Label className="mb-2 block">Budget Category</Label>
-              <Select onValueChange={setBudgetType}>
-                <SelectTrigger>
+              <Select onValueChange={setBudgetType} value={budgetType}>
+                <SelectTrigger className="bg-white border-gray-300 focus:ring-2 focus:ring-wedding-pink focus:border-wedding-pink">
                   <SelectValue placeholder="Select budget type" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="luxury">Luxury (₹20L+)</SelectItem>
-                  <SelectItem value="premium">Premium (₹10-20L)</SelectItem>
-                  <SelectItem value="standard">Standard (₹5-10L)</SelectItem>
-                  <SelectItem value="budget">Budget (Under ₹5L)</SelectItem>
+                <SelectContent className="bg-white border border-gray-200 shadow-xl z-40 max-h-60 overflow-y-auto">
+                  <SelectItem value="luxury" className="hover:bg-gray-100 focus:bg-gray-100">Luxury (₹20L+)</SelectItem>
+                  <SelectItem value="premium" className="hover:bg-gray-100 focus:bg-gray-100">Premium (₹10-20L)</SelectItem>
+                  <SelectItem value="standard" className="hover:bg-gray-100 focus:bg-gray-100">Standard (₹5-10L)</SelectItem>
+                  <SelectItem value="budget" className="hover:bg-gray-100 focus:bg-gray-100">Budget (Under ₹5L)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            <div>
+            <div className="relative z-30">
               <Label className="flex items-center mb-2">
                 <Calendar className="w-4 h-4 mr-1" />
                 Wedding Duration
               </Label>
-              <Select onValueChange={setDuration}>
-                <SelectTrigger>
+              <Select onValueChange={setDuration} value={duration}>
+                <SelectTrigger className="bg-white border-gray-300 focus:ring-2 focus:ring-wedding-pink focus:border-wedding-pink">
                   <SelectValue placeholder="Select duration" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">1 Day</SelectItem>
-                  <SelectItem value="2">2 Days</SelectItem>
-                  <SelectItem value="3">3+ Days</SelectItem>
+                <SelectContent className="bg-white border border-gray-200 shadow-xl z-30 max-h-60 overflow-y-auto">
+                  <SelectItem value="1" className="hover:bg-gray-100 focus:bg-gray-100">1 Day</SelectItem>
+                  <SelectItem value="2" className="hover:bg-gray-100 focus:bg-gray-100">2 Days</SelectItem>
+                  <SelectItem value="3" className="hover:bg-gray-100 focus:bg-gray-100">3+ Days</SelectItem>
                 </SelectContent>
               </Select>
             </div>

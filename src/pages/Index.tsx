@@ -10,7 +10,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import InteractiveFeatures from "@/components/InteractiveFeatures";
-import GoogleMap from "@/components/GoogleMap";
+import SimpleMap from "@/components/SimpleMap";
 import ThreeDView from "@/components/3DView";
 
 const Index = () => {
@@ -60,11 +60,10 @@ const Index = () => {
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
-            <GoogleMap
+            <SimpleMap
               address="Patna, Bihar, India"
               lat={25.5941}
               lng={85.1376}
-              zoom={12}
               className="h-96 w-full rounded-xl shadow-lg"
               markers={[
                 { lat: 25.6093, lng: 85.1025, title: "Wedding Venue 1", address: "Gandhi Maidan, Patna" },
