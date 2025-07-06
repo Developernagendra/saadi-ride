@@ -29,8 +29,20 @@ const InteractiveFeatures = () => {
   const handleToolClick = (toolId: string, link: string) => {
     console.log(`Navigating to tool: ${toolId}`);
     if (toolId === "budget-calculator") {
+      navigate("/budget-calculator");
+      toast.success("Opening Budget Calculator!");
+    } else if (toolId === "wedding-checklist") {
       navigate("/planning-tools");
-      toast.success("Navigate to Planning Tools to access Budget Calculator!");
+      toast.success("Navigate to Planning Tools for Wedding Checklist!");
+    } else if (toolId === "guest-manager") {
+      navigate("/planning-tools");
+      toast.success("Navigate to Planning Tools for Guest Manager!");
+    } else if (toolId === "color-palette") {
+      navigate("/planning-tools");
+      toast.success("Navigate to Planning Tools for Color Palette Generator!");
+    } else if (toolId === "timeline-planner") {
+      navigate("/planning-tools");
+      toast.success("Navigate to Planning Tools for Timeline Planner!");
     } else {
       navigate(link);
     }
@@ -50,7 +62,7 @@ const InteractiveFeatures = () => {
         "Interactive sliders for easy input"
       ],
       color: "from-green-500 to-emerald-600",
-      link: "/planning-tools"
+      link: "/budget-calculator"
     },
     {
       id: "wedding-checklist",

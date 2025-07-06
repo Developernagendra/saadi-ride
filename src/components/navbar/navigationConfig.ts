@@ -47,6 +47,10 @@ export const navigationItems = [
     description: "Wedding planning tools and resources",
     subItems: [
       { title: "Planning Tools", href: "/planning-tools" },
+      { title: "Budget Calculator", href: "/budget-calculator" },
+      { title: "Wedding Website", href: "/planning-tools" },
+      { title: "Wedding Checklist", href: "/planning-tools" },
+      { title: "Guest List Manager", href: "/planning-tools" },
       { title: "Dashboard", href: "/dashboard" },
       { title: "Live Tracking", href: "/live-track" },
       { title: "Referral & Earn", href: "/referral-earn" }

@@ -17,6 +17,7 @@ import WeddingGalleryDetail from "./pages/WeddingGalleryDetail";
 import Photos from "./pages/Photos";
 import Ideas from "./pages/Ideas";
 import PlanningTools from "./pages/PlanningTools";
+import BudgetCalculatorPage from "./pages/BudgetCalculatorPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import AboutUs from "./pages/AboutUs";
@@ -59,6 +60,7 @@ const App: React.FC = () => {
                 <Route path="/ideas/all" element={<AllIdeas />} />
                 <Route path="/ideas/trending" element={<TrendingIdeas />} />
                 <Route path="/planning-tools" element={<PlanningTools />} />
+                <Route path="/budget-calculator" element={<BudgetCalculatorPage />} />
                 <Route path="/referral-earn" element={<ReferralEarn />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
