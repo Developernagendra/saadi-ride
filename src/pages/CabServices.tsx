@@ -18,6 +18,7 @@ import CabFilters from "@/components/cab/CabFilters";
 import CabGrid from "@/components/cab/CabGrid";
 import { cabTypes, locations, CabType } from "@/utils/cabData";
 import { sendWhatsAppMessage } from "@/utils/whatsappIntegration";
+import AuthDialog from "@/components/auth/AuthDialog";
 
 const CabServices = () => {
   const { toast } = useToast();
@@ -150,13 +151,23 @@ const CabServices = () => {
               <div className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
                 <div className="text-4xl font-bold text-wedding-pink mb-2">Starting ₹15,000</div>
                 <p className="text-gray-600 mb-4">Complete baarat convoy package</p>
-                <Button 
-                  onClick={handleBookBaaratBundle}
-                  className="bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
-                >
-                  <Users className="mr-2 h-5 w-5" />
-                  Book Baarat Bundle via WhatsApp
-                </Button>
+                <div className="space-y-3">
+                  <Button 
+                    onClick={handleBookBaaratBundle}
+                    className="w-full bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
+                  >
+                    <Users className="mr-2 h-5 w-5" />
+                    Book Baarat Bundle via WhatsApp
+                  </Button>
+                  <AuthDialog
+                    type="login"
+                    trigger={
+                      <Button variant="outline" className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10">
+                        Login to Book & Track
+                      </Button>
+                    }
+                  />
+                </div>
                 <p className="text-xs text-gray-500 mt-2">
                   Instant booking via WhatsApp • 30 min response time
                 </p>

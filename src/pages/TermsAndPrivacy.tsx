@@ -26,7 +26,7 @@ const TermsAndPrivacy = () => {
                 </p>
                 
                 <p className="text-gray-700 mb-4">
-                  Welcome to WedMeGood. By accessing or using our website, mobile applications, or services, you agree to be bound by these Terms of Service. Please read them carefully.
+                  Welcome to ShaadiShaati. By accessing or using our website, mobile applications, or services, you agree to be bound by these Terms of Service. Please read them carefully.
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">1. Acceptance of Terms</h3>
@@ -36,7 +36,7 @@ const TermsAndPrivacy = () => {
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">2. Description of Service</h3>
                 <p className="text-gray-700 mb-4">
-                  WedMeGood provides a platform for couples to discover wedding vendors, create wedding websites, manage guest lists, and access other wedding planning tools. We also provide a platform for wedding vendors to showcase their services to potential clients.
+                  ShaadiShaati provides a platform for couples to discover wedding vendors, create wedding websites, manage guest lists, and access other wedding planning tools. We also provide a platform for wedding vendors to showcase their services to potential clients.
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">3. User Accounts</h3>
@@ -57,22 +57,22 @@ const TermsAndPrivacy = () => {
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">5. Vendor Listings</h3>
                 <p className="text-gray-700 mb-4">
-                  WedMeGood does not guarantee the accuracy of information provided by vendors on the platform. While we make efforts to verify vendor information, you should independently verify information before making any decisions or entering into contracts with vendors.
+                  ShaadiShaati does not guarantee the accuracy of information provided by vendors on the platform. While we make efforts to verify vendor information, you should independently verify information before making any decisions or entering into contracts with vendors.
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">6. Reviews and Ratings</h3>
                 <p className="text-gray-700 mb-4">
-                  Users may post reviews and ratings of vendors. All reviews must be based on genuine experiences and must not contain offensive, defamatory, or misleading content. WedMeGood reserves the right to remove any review that violates these guidelines.
+                  Users may post reviews and ratings of vendors. All reviews must be based on genuine experiences and must not contain offensive, defamatory, or misleading content. ShaadiShaati reserves the right to remove any review that violates these guidelines.
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">7. Intellectual Property</h3>
                 <p className="text-gray-700 mb-4">
-                  The Service and its original content, features, and functionality are and will remain the exclusive property of WedMeGood and its licensors. The Service is protected by copyright, trademark, and other laws of both India and foreign countries.
+                  The Service and its original content, features, and functionality are and will remain the exclusive property of ShaadiShaati and its licensors. The Service is protected by copyright, trademark, and other laws of both India and foreign countries.
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">8. Limitation of Liability</h3>
                 <p className="text-gray-700 mb-4">
-                  In no event shall WedMeGood, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
+                  In no event shall ShaadiShaati, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">9. Governing Law</h3>
@@ -87,7 +87,7 @@ const TermsAndPrivacy = () => {
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">11. Contact Us</h3>
                 <p className="text-gray-700 mb-4">
-                  If you have any questions about these Terms, please contact us at legal@wedmegood.com.
+                  If you have any questions about these Terms, please contact us at legal@shaadishaati.com.
                 </p>
               </TabsContent>
               
@@ -98,7 +98,7 @@ const TermsAndPrivacy = () => {
                 </p>
                 
                 <p className="text-gray-700 mb-4">
-                  This Privacy Policy describes how WedMeGood ("we", "us", or "our") collects, uses, and discloses your personal information when you use our website, mobile applications, or services (collectively, the "Service").
+                  This Privacy Policy describes how ShaadiShaati ("we", "us", or "our") collects, uses, and discloses your personal information when you use our website, mobile applications, or services (collectively, the "Service").
                 </p>
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">1. Information We Collect</h3>
@@ -166,7 +166,7 @@ const TermsAndPrivacy = () => {
                 
                 <h3 className="text-xl font-semibold mb-3 mt-8 text-wedding-navy">9. Contact Us</h3>
                 <p className="text-gray-700 mb-4">
-                  If you have any questions about this Privacy Policy, please contact us at privacy@wedmegood.com.
+                  If you have any questions about this Privacy Policy, please contact us at privacy@shaadishaati.com.
                 </p>
               </TabsContent>
             </Tabs>

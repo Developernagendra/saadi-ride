@@ -42,9 +42,28 @@ const WeddingCostEstimator = () => {
     miscellaneous: 50000
   };
 
+  const calculateQuickEstimate = () => {
+    const guests = guestCount[0];
+    const locationMult = location ? locationMultipliers[location] : 1.0;
+    
+    // Calculate base cost without budget multiplier for quick estimate
+    const quickCosts = {
+      venue: Math.round(baseCosts.venue * locationMult),
+      catering: Math.round(baseCosts.catering * guests * locationMult),
+      photography: Math.round(baseCosts.photography),
+      decoration: Math.round(baseCosts.decoration * locationMult),
+      music: Math.round(baseCosts.music),
+      transport: Math.round(baseCosts.transport * locationMult),
+      invitation: Math.round(baseCosts.invitation * (guests / 100)),
+      miscellaneous: Math.round(baseCosts.miscellaneous)
+    };
+
+    return Object.values(quickCosts).reduce((sum, cost) => sum + cost, 0);
+  };
+
   const calculateEstimate = () => {
     if (!location || !budgetType || !duration) {
-      toast.error("Please fill in all fields");
+      toast.error("Please fill in all fields for detailed estimate");
       return;
     }
 
@@ -84,6 +103,8 @@ const WeddingCostEstimator = () => {
 
   const COLORS = ['#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57', '#FF9FF3', '#54A0FF', '#5F27CD'];
 
+  const quickEstimateTotal = calculateQuickEstimate();
+  
   const downloadEstimate = () => {
     toast.success("Estimate downloaded! (Feature demonstration)");
   };
@@ -178,11 +199,23 @@ const WeddingCostEstimator = () => {
             </div>
           </div>
 
+          {/* Quick Estimate Display */}
+          <div className="bg-gradient-to-r from-wedding-pink/10 to-purple-50 p-6 rounded-lg border-2 border-wedding-pink/20">
+            <div className="text-center">
+              <h4 className="text-lg font-semibold text-wedding-navy mb-2">Quick Estimate</h4>
+              <p className="text-3xl font-bold text-wedding-pink mb-2">₹{quickEstimateTotal.toLocaleString()}</p>
+              <p className="text-sm text-gray-600 mb-4">Base cost for {guestCount[0]} guests</p>
+              <p className="text-xs text-gray-500">
+                *This is a base estimate. Use the detailed calculator below for personalized pricing.
+              </p>
+            </div>
+          </div>
+
           <Button 
             onClick={calculateEstimate}
             className="w-full bg-wedding-pink hover:bg-wedding-pink/90"
           >
-            Calculate Wedding Cost
+            Get Detailed Wedding Cost Estimate
           </Button>
         </CardContent>
       </Card>

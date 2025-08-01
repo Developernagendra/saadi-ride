@@ -15,6 +15,7 @@ export const navigationItems = [
       { title: "Groom Wear", href: "/vendors?category=groom-wear" },
       { title: "Wedding Planners", href: "/vendors?category=wedding-planner" },
       { title: "Mehendi Artists", href: "/vendors?category=mehendi-artist" },
+      { title: "Purohit/Priests", href: "/vendors?category=purohit" },
       { title: "Cab Services", href: "/vendors/cab-services" },
       { title: "Join as Vendor", href: "/vendors/join" },
       { title: "Vendor Login", href: "/vendors/login" },

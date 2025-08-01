@@ -15,7 +15,7 @@ const AboutUs = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-gray-700 mb-6">
-                WedMeGood is India's favorite wedding planning platform helping couples create magical weddings since 2014. 
+                ShaadiShaati is India's favorite wedding planning platform helping couples create magical weddings since 2014. 
                 We bring together the best wedding vendors, inspirational content, and planning tools to make your wedding journey seamless and joyful.
               </p>
               
@@ -49,7 +49,7 @@ const AboutUs = () => {
                     <div className="w-20 text-wedding-pink font-bold">2014</div>
                     <div>
                       <h3 className="font-semibold text-xl mb-1">The Beginning</h3>
-                      <p className="text-gray-700">WedMeGood was founded with a mission to transform wedding planning in India.</p>
+                      <p className="text-gray-700">ShaadiShaati was founded with a mission to transform wedding planning in India.</p>
                     </div>
                   </div>
                   
@@ -92,11 +92,11 @@ const AboutUs = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Link to="/about/our-story" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-wedding-pink transition-colors">Our Story</h3>
-                    <p className="text-gray-700">Learn about how WedMeGood started and our journey.</p>
+                    <p className="text-gray-700">Learn about how ShaadiShaati started and our journey.</p>
                   </Link>
-                  <Link to="/about/careers" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-wedding-pink transition-colors">Careers</h3>
-                    <p className="text-gray-700">Join our passionate team and help transform wedding planning.</p>
+                  <Link to="/about/mission-vision" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-wedding-pink transition-colors">Mission & Vision</h3>
+                    <p className="text-gray-700">Discover our mission, vision, and core values.</p>
                   </Link>
                   <Link to="/about/press" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-wedding-pink transition-colors">Press</h3>

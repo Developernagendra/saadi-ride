@@ -68,7 +68,7 @@ const AuthDialog: React.FC<AuthDialogProps> = ({
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md z-[9998] bg-white">
         {formType === "login" ? (
           <LoginForm 
             onToggleForm={toggleFormType} 

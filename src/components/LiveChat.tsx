@@ -114,8 +114,8 @@ const LiveChat = () => {
 
   // Responsive chat window
   const chatWindowClass = isMobile 
-    ? "fixed inset-0 z-50 flex flex-col bg-white"
-    : "fixed bottom-24 right-6 z-50 w-96 h-[600px] flex flex-col";
+    ? "fixed inset-0 z-[9999] flex flex-col bg-white"
+    : "fixed bottom-24 right-6 z-[9999] w-96 h-[600px] flex flex-col max-h-[80vh]";
 
   return (
     <div className={chatWindowClass}>

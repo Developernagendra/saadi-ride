@@ -98,7 +98,7 @@ const Chatbot = () => {
     }
     
     if (normalizedMsg.includes("help") || normalizedMsg.includes("support")) {
-      return "I'm here to help! You can also reach our support team 24/7 via the support button or by emailing support@wedmegood.com";
+      return "I'm here to help! You can also reach our support team 24/7 via the support button or by emailing support@shaadishaati.com";
     }
     
     // Default response

@@ -8,7 +8,7 @@ interface ChatButtonProps {
 
 const ChatButton: React.FC<ChatButtonProps> = ({ onOpen }) => {
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-[9999]">
       <Button
         onClick={onOpen}
         className="bg-wedding-pink hover:bg-wedding-pink/90 rounded-full w-16 h-16 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 animate-pulse"
