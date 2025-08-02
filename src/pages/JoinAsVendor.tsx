@@ -71,18 +71,22 @@ const JoinAsVendor = () => {
                   
                   <div className="space-y-2">
                     <Label htmlFor="category">Business Category</Label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {vendorCategories.map((category) => (
-                          <SelectItem key={category} value={category.toLowerCase().replace(/\s+/g, "-")}>
-                            {category}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                     <Select>
+                       <SelectTrigger className="bg-background border-border">
+                         <SelectValue placeholder="Select a category" />
+                       </SelectTrigger>
+                       <SelectContent className="bg-background border border-border shadow-lg z-50">
+                         {vendorCategories.map((category) => (
+                           <SelectItem 
+                             key={category} 
+                             value={category.toLowerCase().replace(/\s+/g, "-")}
+                             className="hover:bg-accent focus:bg-accent"
+                           >
+                             {category}
+                           </SelectItem>
+                         ))}
+                       </SelectContent>
+                     </Select>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

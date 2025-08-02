@@ -71,8 +71,6 @@ export const navigationItems = [
       { title: "Our Story", href: "/about/our-story" },
       { title: "Our Team", href: "/about/our-team" },
       { title: "Mission & Vision", href: "/about/mission-vision" },
-      { title: "Careers", href: "/about/careers" },
-      { title: "Press", href: "/about/press" },
       { title: "Contact Us", href: "/about/contact" },
       { title: "Terms & Privacy", href: "/about/terms-privacy" }
     ]
