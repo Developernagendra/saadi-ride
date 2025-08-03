@@ -24,9 +24,9 @@ const CabDetailModal: React.FC<CabDetailModalProps> = ({ cab, isOpen, onClose })
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-heading text-wedding-navy">
+          <DialogTitle className="text-xl sm:text-2xl font-heading text-foreground">
             {cab.name}
           </DialogTitle>
         </DialogHeader>
@@ -34,28 +34,39 @@ const CabDetailModal: React.FC<CabDetailModalProps> = ({ cab, isOpen, onClose })
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Image Gallery */}
           <div className="space-y-4">
-            <div className="aspect-video relative bg-gray-100 rounded-lg overflow-hidden">
+            <div className="aspect-[4/3] relative bg-muted rounded-lg overflow-hidden shadow-sm">
               <img 
                 src={images[selectedImageIndex]} 
                 alt={cab.name} 
-                className="object-cover w-full h-full" 
+                className="object-cover w-full h-full transition-all duration-300" 
+                onError={(e) => {
+                  e.currentTarget.src = '/placeholder.svg';
+                }}
               />
+              {images.length > 1 && (
+                <div className="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
+                  {selectedImageIndex + 1} / {images.length}
+                </div>
+              )}
             </div>
             
             {images.length > 1 && (
-              <div className="flex space-x-2 overflow-x-auto pb-2">
+              <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
                 {images.map((image, index) => (
                   <div 
                     key={index}
-                    className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 ${
-                      selectedImageIndex === index ? "border-wedding-pink" : "border-transparent"
+                    className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-200 hover:border-primary/50 ${
+                      selectedImageIndex === index ? "border-primary ring-2 ring-primary/20" : "border-border"
                     }`}
                     onClick={() => setSelectedImageIndex(index)}
                   >
                     <img 
                       src={image} 
                       alt={`${cab.name} ${index + 1}`} 
-                      className="w-16 h-16 object-cover"
+                      className="w-20 h-20 sm:w-16 sm:h-16 object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = '/placeholder.svg';
+                      }}
                     />
                   </div>
                 ))}
