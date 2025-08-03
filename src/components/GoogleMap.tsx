@@ -22,7 +22,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
   lat = 25.5941, 
   lng = 85.1376, 
   zoom = 12,
-  className = "h-64 w-full rounded-lg",
+  className = "h-48 sm:h-64 md:h-80 w-full rounded-lg",
   markers = []
 }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -89,7 +89,13 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
             elementType: "labels",
             stylers: [{ visibility: "off" }]
           }
-        ]
+        ],
+        // Responsive map controls
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: true,
+        zoomControl: true,
+        gestureHandling: 'cooperative'
       });
 
       // Add main marker
@@ -151,6 +157,15 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
         });
       });
 
+      // Make map responsive
+      const resizeMap = () => {
+        window.google.maps.event.trigger(map, 'resize');
+        map.setCenter({ lat, lng });
+      };
+
+      // Listen for window resize
+      window.addEventListener('resize', resizeMap);
+
       setIsLoading(false);
     } catch (error) {
       console.error("Map initialization error:", error);
@@ -191,26 +206,26 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
 
   if (!googleApiKey) {
     return (
-      <div className={`${className} bg-gray-100 flex flex-col items-center justify-center text-gray-600 text-sm p-4 border rounded-lg`}>
-        <Map className="w-8 h-8 mb-2 text-gray-400" />
-        <p className="mb-3 text-center">Please provide your Google Maps API key to display the map:</p>
-        <div className="flex gap-2 w-full max-w-sm">
+      <div className={`${className} bg-muted flex flex-col items-center justify-center text-muted-foreground text-sm p-4 border rounded-lg`}>
+        <Map className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-muted-foreground" />
+        <p className="mb-3 text-center text-xs sm:text-sm">Please provide your Google Maps API key to display the map:</p>
+        <div className="flex flex-col sm:flex-row gap-2 w-full max-w-sm">
           <input 
             type="text" 
             placeholder="Enter Google Maps API key"
-            className="px-3 py-2 border rounded text-sm flex-1"
+            className="px-2 py-2 sm:px-3 border rounded text-xs sm:text-sm flex-1 min-w-0"
             value={googleApiKey}
             onChange={(e) => setGoogleApiKey(e.target.value)}
           />
           <button 
-            className="bg-wedding-pink text-white px-3 py-2 rounded text-sm hover:bg-wedding-pink/90"
+            className="bg-primary text-primary-foreground px-2 py-2 sm:px-3 rounded text-xs sm:text-sm hover:bg-primary/90 whitespace-nowrap"
             onClick={saveApiKey}
           >
             Save
           </button>
         </div>
-        <p className="mt-3 text-xs text-gray-500 text-center">
-          Get your API key at <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="noopener noreferrer" className="underline text-wedding-pink">Google Cloud Console</a>
+        <p className="mt-3 text-xs text-muted-foreground text-center">
+          Get your API key at <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="noopener noreferrer" className="underline text-primary">Google Cloud Console</a>
         </p>
       </div>
     );
@@ -218,22 +233,22 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
 
   if (isLoading) {
     return (
-      <div className={`${className} bg-gray-100 flex flex-col items-center justify-center text-gray-600 border rounded-lg`}>
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-wedding-pink"></div>
-        <p className="mt-2">Loading map...</p>
+      <div className={`${className} bg-muted flex flex-col items-center justify-center text-muted-foreground border rounded-lg`}>
+        <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-primary"></div>
+        <p className="mt-2 text-xs sm:text-sm">Loading map...</p>
       </div>
     );
   }
 
   return (
-    <div className="relative">
-      <div ref={mapContainer} className={className} />
+    <div className="relative w-full">
+      <div ref={mapContainer} className={`${className} min-h-[200px]`} />
       <button 
-        className="absolute top-2 right-2 bg-white/90 hover:bg-white text-xs text-gray-600 px-2 py-1 rounded shadow-sm flex items-center gap-1"
+        className="absolute top-2 right-2 bg-background/90 hover:bg-background text-xs text-muted-foreground px-2 py-1 rounded shadow-sm flex items-center gap-1 border"
         onClick={removeApiKey}
       >
         <MapPin className="w-3 h-3" />
-        Change API Key
+        <span className="hidden sm:inline">Change API Key</span>
       </button>
     </div>
   );
