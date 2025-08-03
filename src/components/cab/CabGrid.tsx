@@ -78,14 +78,6 @@ const CabGrid: React.FC<CabGridProps> = ({ cabs, onViewMap }) => {
                     <MapPin className="h-4 w-4" />
                   </Button>
                 </div>
-                <Button 
-                  variant="ghost" 
-                  className="w-full text-wedding-pink hover:text-wedding-pink hover:bg-wedding-pink/10"
-                  onClick={() => handleViewDetails(cab)}
-                >
-                  <Eye className="h-4 w-4 mr-2" />
-                  View Details & Gallery
-                </Button>
               </CardContent>
             </Card>
           ))
