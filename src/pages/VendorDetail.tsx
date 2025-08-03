@@ -524,7 +524,7 @@ const VendorDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [activeTab, setActiveTab] = useState("about");
+  const [activeTab, setActiveTab] = useState("overview");
   const [selectedImage, setSelectedImage] = useState(0);
   
   // Determine category from slug or default to Venue
