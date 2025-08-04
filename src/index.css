@@ -28,7 +28,44 @@ body {
 }
 
 .wedding-container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8;
+}
+
+/* Enhanced responsive utilities */
+.section-title {
+  @apply text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-wedding-navy mb-4 text-center;
+}
+
+.responsive-grid-2-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.responsive-grid-1-2-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.responsive-spacing {
+  @apply p-3 sm:p-4 lg:p-6;
+}
+
+.responsive-text {
+  @apply text-sm sm:text-base lg:text-lg;
+}
+
+/* Touch-friendly mobile interactions */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .mobile-padding {
+    padding: 0.75rem;
+  }
+  
+  .mobile-text {
+    font-size: clamp(0.875rem, 4vw, 1.125rem);
+  }
 }
 
 .perspective-1000 {

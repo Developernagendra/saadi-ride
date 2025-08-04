@@ -86,22 +86,22 @@ const FeaturedVendors = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-wedding-white">
+    <section className="py-8 sm:py-12 lg:py-16 bg-wedding-white">
       <div className="wedding-container">
-        <h2 className="section-title">Featured Vendors</h2>
-        <p className="text-center text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
+        <h2 className="section-title px-4">Featured Vendors</h2>
+        <p className="text-center text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto px-4 text-sm sm:text-base">
           Discover our hand-picked selection of top-rated wedding professionals who will make your special day unforgettable
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-2 sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
           {vendors.map((vendor) => (
             <Card 
               key={vendor.id} 
-              className="vendor-card group shadow-md hover:shadow-xl transition-shadow"
+              className="vendor-card group shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full"
             >
-              <CardContent className="p-0">
+              <CardContent className="p-0 h-full flex flex-col">
                 <div 
-                  className="relative overflow-hidden aspect-[4/3] cursor-pointer"
+                  className="relative overflow-hidden aspect-[4/3] cursor-pointer touch-target"
                   onClick={() => handleViewDetails(vendor.id, vendor.slug)}
                   role="button"
                   tabIndex={0}
@@ -117,39 +117,39 @@ const FeaturedVendors = () => {
                     alt={vendor.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 bg-wedding-pink/90 text-white px-3 py-1 rounded-full text-xs font-medium">
+                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3 bg-wedding-pink/90 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
                     {vendor.category}
                   </div>
                 </div>
                 
-                <div className="p-4">
-                  <div className="flex justify-between items-start">
+                <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                  <div className="flex justify-between items-start mb-2">
                     <h3 
-                      className="font-heading text-xl font-semibold text-wedding-navy hover:text-wedding-pink cursor-pointer"
+                      className="font-heading text-lg sm:text-xl font-semibold text-wedding-navy hover:text-wedding-pink cursor-pointer touch-target flex-1 pr-2"
                       onClick={() => handleViewDetails(vendor.id, vendor.slug)}
                     >
                       {vendor.name}
                     </h3>
-                    <div className="flex items-center bg-wedding-cream px-2 py-1 rounded">
-                      <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                      <span className="ml-1 text-sm font-medium">{vendor.rating}</span>
+                    <div className="flex items-center bg-wedding-cream px-2 py-1 rounded shrink-0">
+                      <Star className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-500 fill-yellow-500" />
+                      <span className="ml-1 text-xs sm:text-sm font-medium">{vendor.rating}</span>
                       <span className="ml-1 text-xs text-gray-500">({vendor.reviews})</span>
                     </div>
                   </div>
                   
-                  <div className="mt-2 flex items-center text-gray-500">
-                    <MapPin className="w-4 h-4 mr-1" strokeWidth={2} />
-                    <span className="text-sm">{vendor.location}</span>
+                  <div className="flex items-center text-gray-500 mb-3">
+                    <MapPin className="w-3 sm:w-4 h-3 sm:h-4 mr-1" strokeWidth={2} />
+                    <span className="text-xs sm:text-sm">{vendor.location}</span>
                   </div>
                   
-                  <div className="mt-3">
-                    <div className="text-wedding-navy font-medium">Starting at {vendor.price}</div>
+                  <div className="mb-4 flex-1">
+                    <div className="text-wedding-navy font-medium text-sm sm:text-base">Starting at {vendor.price}</div>
                   </div>
                   
-                  <div className="mt-4">
+                  <div className="mt-auto">
                     <Button 
                       onClick={() => handleViewDetails(vendor.id, vendor.slug)} 
-                      className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 transform hover:scale-[1.01] active:scale-95"
+                      className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 transform hover:scale-[1.01] active:scale-95 touch-target text-sm sm:text-base"
                     >
                       View Details
                     </Button>
@@ -160,11 +160,11 @@ const FeaturedVendors = () => {
           ))}
         </div>
         
-        <div className="text-center mt-8 sm:mt-10">
+        <div className="text-center mt-8 sm:mt-10 px-4">
           <Button 
             onClick={handleViewAllVendors} 
             variant="outline" 
-            className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 transition-all duration-300 transform hover:scale-[1.01] active:scale-95"
+            className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 transition-all duration-300 transform hover:scale-[1.01] active:scale-95 w-full sm:w-auto touch-target"
           >
             View All Vendors
           </Button>
