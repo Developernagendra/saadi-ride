@@ -38,6 +38,8 @@ import CabServices from "./pages/CabServices";
 import LiveTrack from "./pages/LiveTrack";
 import TrendingIdeas from "./pages/TrendingIdeas";
 import ReferralEarn from "./pages/ReferralEarn";
+import WeddingChecklistPage from "./pages/WeddingChecklistPage";
+import GuestListManagerPage from "./pages/GuestListManagerPage";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +62,8 @@ const App: React.FC = () => {
                 <Route path="/ideas/all" element={<AllIdeas />} />
                 <Route path="/ideas/trending" element={<TrendingIdeas />} />
                 <Route path="/planning-tools" element={<PlanningTools />} />
+                <Route path="/planning-tools/checklist" element={<WeddingChecklistPage />} />
+                <Route path="/planning-tools/guest-list" element={<GuestListManagerPage />} />
                 <Route path="/budget-calculator" element={<BudgetCalculatorPage />} />
                 <Route path="/referral-earn" element={<ReferralEarn />} />
                 <Route path="/blog" element={<Blog />} />

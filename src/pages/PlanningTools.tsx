@@ -19,7 +19,7 @@ const PlanningTools = () => {
       description: "Keep track of all your wedding tasks with our comprehensive checklist.",
       icon: <ListCheck className="h-8 w-8 text-wedding-pink" />,
       comingSoon: false,
-      route: "/"
+      route: "/planning-tools/checklist"
     },
     {
       id: "budget",
@@ -27,7 +27,7 @@ const PlanningTools = () => {
       description: "Plan and manage your wedding expenses with our easy-to-use budget planner.",
       icon: <Wallet className="h-8 w-8 text-wedding-pink" />,
       comingSoon: false,
-      route: "/"
+      route: "/budget-calculator"
     },
     {
       id: "guests",
@@ -35,7 +35,7 @@ const PlanningTools = () => {
       description: "Organize your guest list, track RSVPs, and manage seating arrangements.",
       icon: <Users className="h-8 w-8 text-wedding-pink" />,
       comingSoon: false,
-      route: "/"
+      route: "/planning-tools/guest-list"
     },
     {
       id: "vendors",
