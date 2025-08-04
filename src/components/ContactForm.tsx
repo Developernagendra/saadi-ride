@@ -67,7 +67,7 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-2xl border border-gray-200/50 hover:shadow-3xl transition-all duration-300">
+    <div className="bg-card/95 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl border border-border/50 hover:shadow-3xl transition-all duration-300 w-full max-w-lg mx-auto">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 bg-gradient-to-r from-wedding-pink to-pink-600 rounded-full flex items-center justify-center">
           <MessageCircle className="h-5 w-5 text-white" />

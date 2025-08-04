@@ -15,8 +15,25 @@ const VendorGallery: React.FC<VendorGalleryProps> = ({ vendor }) => {
 
   const categories = ['all', 'ceremonies', 'decorations', 'candid', 'portraits'];
   
-  // Create extended gallery with categories
-  const galleryImages = vendor.images.map((image: string, index: number) => ({
+  // Create extended gallery with categories and additional photos
+  const additionalImages = [
+    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1470&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=1469&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1469&auto=format&fit=crop"
+  ];
+  
+  const allImages = [...vendor.images, ...additionalImages];
+  
+  const galleryImages = allImages.map((image: string, index: number) => ({
     src: image,
     category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1],
     title: `${vendor.name} - Image ${index + 1}`
