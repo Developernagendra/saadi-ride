@@ -90,12 +90,44 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
             stylers: [{ visibility: "off" }]
           }
         ],
-        // Responsive map controls
-        mapTypeControl: false,
-        streetViewControl: false,
+        // Enhanced responsive controls
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: window.google.maps.ControlPosition.TOP_CENTER
+        },
+        streetViewControl: true,
+        streetViewControlOptions: {
+          position: window.google.maps.ControlPosition.RIGHT_TOP
+        },
         fullscreenControl: true,
+        fullscreenControlOptions: {
+          position: window.google.maps.ControlPosition.TOP_RIGHT
+        },
         zoomControl: true,
-        gestureHandling: 'cooperative'
+        zoomControlOptions: {
+          position: window.google.maps.ControlPosition.RIGHT_CENTER
+        },
+        scaleControl: true,
+        rotateControl: true,
+        // Enhanced gesture handling
+        gestureHandling: 'auto', // Allows single-finger scrolling on mobile
+        scrollwheel: true,
+        disableDoubleClickZoom: false,
+        draggable: true,
+        keyboardShortcuts: true,
+        clickableIcons: true,
+        // Mobile-friendly options
+        minZoom: 5,
+        maxZoom: 20,
+        restriction: {
+          latLngBounds: {
+            north: 85,
+            south: -85,
+            west: -180,
+            east: 180
+          }
+        }
       });
 
       // Add main marker

@@ -84,12 +84,49 @@ const Map: React.FC<MapProps> = ({ address, className = "h-48 w-full rounded-md"
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v12',
         center: center,
-        zoom: 14
+        zoom: 14,
+        // Enable responsive features
+        scrollZoom: true,
+        boxZoom: true,
+        dragRotate: true,
+        dragPan: true,
+        keyboard: true,
+        doubleClickZoom: true,
+        touchZoomRotate: true,
+        touchPitch: true,
+        cooperativeGestures: false, // Allow single-finger pan/zoom
+        maxZoom: 20,
+        minZoom: 8
       });
 
-      // Add navigation controls
+      // Add navigation controls with responsive sizing
       map.current.addControl(
-        new mapboxgl.NavigationControl(),
+        new mapboxgl.NavigationControl({
+          showCompass: true,
+          showZoom: true,
+          visualizePitch: true
+        }),
+        'top-right'
+      );
+
+      // Add scale control for mobile
+      map.current.addControl(new mapboxgl.ScaleControl({
+        maxWidth: 100,
+        unit: 'metric'
+      }), 'bottom-left');
+
+      // Add fullscreen control
+      map.current.addControl(new mapboxgl.FullscreenControl(), 'top-left');
+
+      // Add geolocate control for mobile users
+      map.current.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true,
+          showUserHeading: true
+        }),
         'top-right'
       );
 
