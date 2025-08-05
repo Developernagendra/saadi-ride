@@ -115,11 +115,11 @@ const LiveChat = () => {
   // Responsive chat window
   const chatWindowClass = isMobile 
     ? "fixed inset-0 z-[9999] flex flex-col bg-white"
-    : "fixed bottom-24 right-6 z-[9999] w-96 h-[600px] flex flex-col max-h-[80vh]";
+    : "fixed bottom-4 right-4 z-[9999] w-80 sm:w-96 h-[500px] sm:h-[600px] flex flex-col max-h-[85vh] sm:max-h-[80vh]";
 
   return (
     <div className={chatWindowClass}>
-      <Card className="flex-1 flex flex-col shadow-2xl border-0 rounded-none md:rounded-xl overflow-hidden">
+      <Card className="flex-1 flex flex-col shadow-2xl border-0 rounded-none sm:rounded-xl overflow-hidden">
         <ChatHeader onClose={() => setIsOpen(false)} />
 
         <CardContent className="flex-1 flex flex-col p-0">
