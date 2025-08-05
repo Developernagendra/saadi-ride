@@ -67,30 +67,30 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="bg-card/95 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl border border-border/50 hover:shadow-3xl transition-all duration-300 w-full max-w-lg mx-auto">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-gradient-to-r from-wedding-pink to-pink-600 rounded-full flex items-center justify-center">
-          <MessageCircle className="h-5 w-5 text-white" />
+    <div className="bg-card/95 backdrop-blur-sm p-4 xs:p-6 sm:p-8 rounded-xl shadow-2xl border border-border/50 hover:shadow-3xl transition-all duration-300 w-full max-w-lg mx-auto">
+      <div className="flex items-center gap-2 xs:gap-3 mb-4 sm:mb-6">
+        <div className="w-8 h-8 xs:w-10 xs:h-10 bg-gradient-to-r from-wedding-pink to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+          <MessageCircle className="h-4 w-4 xs:h-5 xs:w-5 text-white" />
         </div>
-        <h3 className="text-2xl font-heading font-bold text-wedding-navy">Contact Us</h3>
+        <h3 className="text-xl xs:text-2xl font-heading font-bold text-wedding-navy">Contact Us</h3>
       </div>
       
-      <p className="text-gray-600 mb-6">
+      <p className="text-sm xs:text-base text-gray-600 mb-4 sm:mb-6">
         Get in touch with our wedding experts. We'll respond via WhatsApp within 30 minutes!
       </p>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-wedding-navy font-semibold">Full Name *</FormLabel>
+                <FormLabel className="text-sm xs:text-base text-wedding-navy font-semibold">Full Name *</FormLabel>
                 <FormControl>
                   <Input 
                     placeholder="Enter your full name" 
-                    className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-12"
+                    className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-10 xs:h-12 text-sm xs:text-base touch-target"
                     {...field} 
                   />
                 </FormControl>
@@ -99,18 +99,18 @@ const ContactForm = () => {
             )}
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-wedding-navy font-semibold">Email Address *</FormLabel>
+                  <FormLabel className="text-sm xs:text-base text-wedding-navy font-semibold">Email Address *</FormLabel>
                   <FormControl>
                     <Input 
                       type="email" 
                       placeholder="your.email@example.com" 
-                      className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-12"
+                      className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-10 xs:h-12 text-sm xs:text-base touch-target"
                       {...field} 
                     />
                   </FormControl>
@@ -124,12 +124,12 @@ const ContactForm = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-wedding-navy font-semibold">Phone Number *</FormLabel>
+                  <FormLabel className="text-sm xs:text-base text-wedding-navy font-semibold">Phone Number *</FormLabel>
                   <FormControl>
                     <Input 
                       type="tel" 
                       placeholder="+91 XXXXX XXXXX" 
-                      className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-12"
+                      className="border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg h-10 xs:h-12 text-sm xs:text-base touch-target"
                       {...field} 
                     />
                   </FormControl>
@@ -144,11 +144,11 @@ const ContactForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-wedding-navy font-semibold">Your Message *</FormLabel>
+                <FormLabel className="text-sm xs:text-base text-wedding-navy font-semibold">Your Message *</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="Tell us about your wedding plans, preferred dates, budget, or any specific requirements..." 
-                    className="min-h-[140px] border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg resize-none" 
+                    className="min-h-[120px] xs:min-h-[140px] border-2 border-gray-200 focus:border-wedding-pink focus:ring-wedding-pink/20 rounded-lg resize-none text-sm xs:text-base" 
                     {...field} 
                   />
                 </FormControl>
@@ -159,9 +159,9 @@ const ContactForm = () => {
           
           <Button 
             type="submit" 
-            className="bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white w-full h-12 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white w-full h-11 xs:h-12 text-sm xs:text-base lg:text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-xl touch-target"
           >
-            <Send className="mr-2 h-5 w-5" />
+            <Send className="mr-2 h-4 w-4 xs:h-5 xs:w-5" />
             Send Message via WhatsApp
           </Button>
           
