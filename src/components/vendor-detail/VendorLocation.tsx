@@ -96,29 +96,6 @@ const VendorLocation: React.FC<VendorLocationProps> = ({ vendor }) => {
         </CardContent>
       </Card>
 
-      {/* Transportation Options */}
-      <Card>
-        <CardHeader>
-          <CardTitle>How to Reach</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {transportOptions.map((option, index) => (
-              <div key={index} className="p-4 border rounded-lg">
-                <div className="flex items-center space-x-3 mb-3">
-                  <option.icon className="h-6 w-6 text-primary" />
-                  <div>
-                    <div className="font-medium text-foreground">{option.mode}</div>
-                    <div className="text-sm text-muted-foreground">{option.time}</div>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">{option.description}</p>
-                <Badge variant="outline" className="text-xs">{option.parking}</Badge>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Nearby Landmarks */}
       <Card>
