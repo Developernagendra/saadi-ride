@@ -86,20 +86,34 @@ const FeaturedVendors = () => {
   };
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-wedding-white">
-      <div className="wedding-container">
-        <h2 className="section-title px-4">Featured Vendors</h2>
-        <p className="text-center text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto px-4 text-sm sm:text-base">
-          Discover our hand-picked selection of top-rated wedding professionals who will make your special day unforgettable
-        </p>
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-white via-gray-50/30 to-white relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+        <div className="absolute top-40 right-20 w-80 h-80 bg-gradient-to-br from-wedding-gold/5 to-orange-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute bottom-40 left-20 w-96 h-96 bg-gradient-to-tl from-wedding-pink/5 to-purple-500/5 rounded-full blur-3xl animate-pulse delay-1500"></div>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
-          {vendors.map((vendor) => (
+      <div className="wedding-container relative z-10">
+        <div className="text-center mb-12 sm:mb-16 px-4 animate-fade-in">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-wedding-gold/10 to-orange-500/10 backdrop-blur-sm px-6 py-2 rounded-full border border-wedding-gold/20 mb-6">
+            <span className="text-sm font-medium text-wedding-gold">⭐ Featured</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-wedding-navy mb-4 sm:mb-6 leading-tight">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-wedding-gold via-orange-500 to-wedding-gold animate-shimmer bg-[length:200%_100%]">Vendors</span>
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover our hand-picked selection of top-rated wedding professionals who will make your special day unforgettable
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 px-4 sm:px-0">
+          {vendors.map((vendor, index) => (
             <Card 
               key={vendor.id} 
-              className="vendor-card group shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full"
+              className={`vendor-card group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 h-full border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-gray-50/50 animate-fade-in hover:scale-[1.02]`}
+              style={{animationDelay: `${index * 150}ms`}}
             >
-              <CardContent className="p-0 h-full flex flex-col">
+              <CardContent className="p-0 h-full flex flex-col relative overflow-hidden">
                 <div 
                   className="relative overflow-hidden aspect-[4/3] cursor-pointer touch-target"
                   onClick={() => handleViewDetails(vendor.id, vendor.slug)}
@@ -115,43 +129,66 @@ const FeaturedVendors = () => {
                   <img
                     src={vendor.image}
                     alt={vendor.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3 bg-wedding-pink/90 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/60 transition-all duration-300" />
+                  
+                  {/* Enhanced category badge */}
+                  <div className="absolute top-3 left-3 bg-gradient-to-r from-wedding-pink to-purple-500 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
                     {vendor.category}
                   </div>
+                  
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  </div>
+                  
+                  {/* Featured badge for highly rated vendors */}
+                  {vendor.rating >= 4.8 && (
+                    <div className="absolute top-3 right-3 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
+                      ⭐ TOP
+                    </div>
+                  )}
                 </div>
                 
-                <div className="p-3 sm:p-4 flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-2">
+                <div className="p-4 sm:p-6 flex-1 flex flex-col relative">
+                  <div className="flex justify-between items-start mb-3">
                     <h3 
-                      className="font-heading text-lg sm:text-xl font-semibold text-wedding-navy hover:text-wedding-pink cursor-pointer touch-target flex-1 pr-2"
+                      className="font-heading text-xl sm:text-2xl font-bold text-wedding-navy hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-wedding-pink hover:to-purple-500 cursor-pointer touch-target flex-1 pr-2 transition-all duration-300 leading-tight"
                       onClick={() => handleViewDetails(vendor.id, vendor.slug)}
                     >
                       {vendor.name}
                     </h3>
-                    <div className="flex items-center bg-wedding-cream px-2 py-1 rounded shrink-0">
-                      <Star className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-500 fill-yellow-500" />
-                      <span className="ml-1 text-xs sm:text-sm font-medium">{vendor.rating}</span>
+                    <div className="flex items-center bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 px-3 py-1.5 rounded-full shrink-0 shadow-sm">
+                      <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                      <span className="ml-1 text-sm font-bold text-yellow-700">{vendor.rating}</span>
                       <span className="ml-1 text-xs text-gray-500">({vendor.reviews})</span>
                     </div>
                   </div>
                   
-                  <div className="flex items-center text-gray-500 mb-3">
-                    <MapPin className="w-3 sm:w-4 h-3 sm:h-4 mr-1" strokeWidth={2} />
-                    <span className="text-xs sm:text-sm">{vendor.location}</span>
+                  <div className="flex items-center text-gray-500 mb-4">
+                    <MapPin className="w-4 h-4 mr-2 text-wedding-pink" strokeWidth={2} />
+                    <span className="text-sm font-medium">{vendor.location}</span>
                   </div>
                   
-                  <div className="mb-4 flex-1">
-                    <div className="text-wedding-navy font-medium text-sm sm:text-base">Starting at {vendor.price}</div>
+                  <div className="mb-6 flex-1">
+                    <div className="text-wedding-navy font-bold text-lg bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 px-3 py-2 rounded-lg shadow-sm">
+                      Starting at <span className="text-green-600">{vendor.price}</span>
+                    </div>
                   </div>
                   
                   <div className="mt-auto">
                     <Button 
                       onClick={() => handleViewDetails(vendor.id, vendor.slug)} 
-                      className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 transform hover:scale-[1.01] active:scale-95 touch-target text-sm sm:text-base"
+                      className="w-full bg-gradient-to-r from-wedding-pink to-purple-500 hover:from-wedding-pink/90 hover:to-purple-600 text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-95 touch-target text-base font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl group relative overflow-hidden"
                     >
-                      View Details
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                      <span className="relative z-10 flex items-center justify-center">
+                        View Details
+                        <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
                     </Button>
                   </div>
                 </div>
@@ -160,13 +197,19 @@ const FeaturedVendors = () => {
           ))}
         </div>
         
-        <div className="text-center mt-8 sm:mt-10 px-4">
+        <div className="text-center mt-12 sm:mt-16 px-4 animate-fade-in delay-1000">
           <Button 
             onClick={handleViewAllVendors} 
             variant="outline" 
-            className="border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 transition-all duration-300 transform hover:scale-[1.01] active:scale-95 w-full sm:w-auto touch-target"
+            className="border-2 border-wedding-pink text-wedding-pink hover:bg-wedding-pink hover:text-white transition-all duration-300 transform hover:scale-105 active:scale-95 w-full sm:w-auto touch-target px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg rounded-full shadow-lg hover:shadow-xl group relative overflow-hidden bg-white/50 backdrop-blur-sm"
           >
-            View All Vendors
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-wedding-pink/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+            <span className="relative z-10 flex items-center justify-center font-semibold">
+              View All Vendors
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
           </Button>
         </div>
       </div>
