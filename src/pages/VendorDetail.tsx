@@ -576,7 +576,7 @@ const VendorDetail = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-grow bg-wedding-cream">
+      <main className="flex-grow bg-wedding-cream pt-16 xs:pt-18 sm:pt-20 lg:pt-24">
         <VendorHero vendor={vendor} selectedImage={selectedImage} />
         
         <VendorImageGallery 
@@ -586,20 +586,21 @@ const VendorDetail = () => {
           vendorName={vendor.name}
         />
         
-        <div className="wedding-container pb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <VendorTabs 
+        <div className="wedding-container responsive-padding">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+            {/* Mobile: Sidebar first, Desktop: Content first */}
+            <div className="lg:col-span-1 order-first lg:order-last">
+              <VendorSidebar 
                 vendor={vendor}
-                activeTab={activeTab}
-                onTabChange={setActiveTab}
                 onCheckAvailability={handleCheckAvailability}
               />
             </div>
             
-            <div className="lg:col-span-1">
-              <VendorSidebar 
+            <div className="lg:col-span-2 order-last lg:order-first">
+              <VendorTabs 
                 vendor={vendor}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
                 onCheckAvailability={handleCheckAvailability}
               />
             </div>

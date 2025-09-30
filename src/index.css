@@ -33,11 +33,11 @@ body {
 
 /* Enhanced responsive utilities */
 .section-title {
-  @apply text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-wedding-navy mb-3 sm:mb-4 lg:mb-6 text-center;
+  @apply text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-bold text-wedding-navy mb-3 sm:mb-4 lg:mb-6 text-center leading-tight;
 }
 
 .section-subtitle {
-  @apply text-sm xs:text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 lg:mb-12 text-center max-w-3xl mx-auto px-4;
+  @apply text-sm xs:text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 lg:mb-12 text-center max-w-4xl mx-auto px-2 xs:px-4 leading-relaxed;
 }
 
 .responsive-grid-2-3 {
@@ -102,12 +102,12 @@ body {
 }
 
 /* Touch-friendly mobile interactions */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 @media (max-width: 768px) {
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  
   .mobile-padding {
     padding: 0.75rem;
   }
@@ -123,6 +123,18 @@ body {
 
   .mobile-container {
     @apply px-4 max-w-full;
+  }
+
+  .mobile-first-layout {
+    @apply flex flex-col space-y-4;
+  }
+
+  .mobile-card {
+    @apply p-4 rounded-lg shadow-sm;
+  }
+
+  .mobile-button {
+    @apply w-full justify-center py-3 text-base;
   }
 }
 
@@ -387,4 +399,28 @@ body {
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive layout utilities */
+.responsive-flex {
+  @apply flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center;
+}
+
+.responsive-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+}
+
+.responsive-card {
+  @apply p-3 xs:p-4 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow;
+}
+
+/* Enhanced responsive breakpoints */
+@media (min-width: 1536px) {
+  .section-title {
+    @apply text-7xl;
+  }
+  
+  .section-subtitle {
+    @apply text-2xl;
+  }
 }

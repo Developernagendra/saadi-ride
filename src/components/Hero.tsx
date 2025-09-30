@@ -54,7 +54,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden px-2 xs:px-3 sm:px-4 lg:px-8">
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Enhanced background with multiple layers */}
       <div
         className={cn(
@@ -91,35 +91,34 @@ const Hero = () => {
       </div>
 
       {/* Enhanced content with better typography and animations */}
-      <div className="relative z-10 text-white text-center max-w-6xl w-full mt-16 md:mt-0 px-1 xs:px-2">
+      <div className="relative z-10 text-white text-center max-w-7xl w-full wedding-container">
         {/* Decorative element above title */}
-        <div className="flex justify-center mb-4 animate-fade-in">
-          <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-            <Sparkles className="w-4 h-4 text-wedding-gold" />
-            <span className="text-sm font-medium tracking-wide">Premium Wedding Services</span>
-            <Sparkles className="w-4 h-4 text-wedding-gold" />
+        <div className="flex justify-center mb-4 sm:mb-6 animate-fade-in">
+          <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-3 xs:px-4 py-2 rounded-full border border-white/20">
+            <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 text-wedding-gold" />
+            <span className="text-xs xs:text-sm font-medium tracking-wide">Premium Wedding Services</span>
+            <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 text-wedding-gold" />
           </div>
         </div>
 
-        <h1 className="font-heading font-bold mb-2 xs:mb-3 sm:mb-6 leading-tight text-lg xs:text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl drop-shadow-2xl animate-fade-in">
+        <h1 className="section-title text-white mb-4 xs:mb-6 sm:mb-8 drop-shadow-2xl animate-fade-in">
           <span className="block transform hover:scale-105 transition-all duration-500 text-transparent bg-clip-text bg-gradient-to-r from-white via-wedding-light-pink to-white animate-shimmer bg-[length:200%_100%]">
             {t('hero.title')}
           </span>
         </h1>
         
-        <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl mb-4 xs:mb-6 sm:mb-10 max-w-4xl mx-auto opacity-90 leading-relaxed tracking-wide drop-shadow-lg font-light px-1 xs:px-2 animate-fade-in delay-300">
+        <p className="section-subtitle text-white/90 animate-fade-in delay-300">
           <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
             {t('hero.subtitle')}
           </span>
         </p>
         
         {/* Enhanced button section with better animations */}
-        <div className="flex flex-col gap-2 xs:gap-3 sm:gap-4 relative px-1 xs:px-2 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-none mx-auto animate-fade-in delay-500">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center max-w-lg mx-auto animate-fade-in delay-500">
           <Button
             onClick={handleFindVendors}
-            size={isMobile ? "default" : "lg"}
             className={cn(
-              "bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white px-3 xs:px-4 sm:px-6 lg:px-8 py-2.5 xs:py-3 sm:py-4 lg:py-6 text-xs xs:text-sm sm:text-base lg:text-lg rounded-full shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-pink-500/25 active:scale-95 w-full sm:w-auto sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group min-h-[44px] touch-manipulation border border-white/20 backdrop-blur-sm",
+              "responsive-button bg-gradient-to-r from-wedding-pink to-pink-600 hover:from-wedding-pink/90 hover:to-pink-700 text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-pink-500/25 active:scale-95 w-full sm:w-auto sm:min-w-[180px] relative overflow-hidden group border border-white/20 backdrop-blur-sm touch-target",
               hoveredButton === 1 ? "shadow-pink-500/50 shadow-2xl" : ""
             )}
             onMouseEnter={() => setHoveredButton(1)}
@@ -133,9 +132,8 @@ const Hero = () => {
           <Button
             onClick={handleExploreWeddings}
             variant="outline"
-            size={isMobile ? "default" : "lg"}
             className={cn(
-              "bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-3 xs:px-4 sm:px-6 lg:px-8 py-2.5 xs:py-3 sm:py-4 lg:py-6 text-xs xs:text-sm sm:text-base lg:text-lg rounded-full shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] relative overflow-hidden group min-h-[44px] touch-manipulation",
+              "responsive-button bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 rounded-full shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto sm:min-w-[180px] relative overflow-hidden group touch-target",
               hoveredButton === 2 ? "shadow-white/30 shadow-xl bg-white/20" : ""
             )}
             onMouseEnter={() => setHoveredButton(2)}

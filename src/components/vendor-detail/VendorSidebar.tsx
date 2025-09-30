@@ -59,61 +59,61 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ vendor, onCheckAvailabili
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-6 sticky top-24">
-      <div className="flex justify-between mb-4">
-        <h3 className="text-xl font-heading font-semibold">Contact Vendor</h3>
-        <div className="flex space-x-2">
+    <div className="bg-white rounded-lg shadow-md responsive-spacing mb-4 sm:mb-6 lg:sticky lg:top-24">
+      <div className="flex flex-col xs:flex-row xs:justify-between xs:items-start gap-3 xs:gap-4 mb-4 sm:mb-6">
+        <h3 className="responsive-text font-heading font-semibold">Contact Vendor</h3>
+        <div className="flex space-x-2 xs:flex-shrink-0">
           <Button 
             variant="outline" 
             size="icon"
-            className={`rounded-full border-gray-200 ${wishlist ? 'text-wedding-pink border-wedding-pink' : ''}`}
+            className={`rounded-full border-gray-200 touch-target ${wishlist ? 'text-wedding-pink border-wedding-pink' : ''}`}
             onClick={toggleWishlist}
           >
-            <Heart className={`h-5 w-5 ${wishlist ? 'fill-wedding-pink' : ''}`} />
+            <Heart className={`h-4 w-4 xs:h-5 xs:w-5 ${wishlist ? 'fill-wedding-pink' : ''}`} />
           </Button>
           <Button 
             variant="outline" 
             size="icon"
-            className="rounded-full border-gray-200"
+            className="rounded-full border-gray-200 touch-target"
             onClick={handleShare}
           >
-            <Share2 className="h-5 w-5" />
+            <Share2 className="h-4 w-4 xs:h-5 xs:w-5" />
           </Button>
         </div>
       </div>
       
-      <div className="space-y-4 mb-6">
-        <div className="flex items-center">
-          <Phone size={18} className="text-wedding-pink mr-3" />
-          <div>
-            <p className="text-sm text-gray-500">Phone</p>
-            <p className="font-medium">{vendor.phone}</p>
+      <div className="space-y-3 xs:space-y-4 mb-4 xs:mb-6">
+        <div className="flex items-start xs:items-center">
+          <Phone size={16} className="text-wedding-pink mr-2 xs:mr-3 mt-1 xs:mt-0 flex-shrink-0" />
+          <div className="min-w-0">
+            <p className="responsive-text-small text-gray-500">Phone</p>
+            <p className="responsive-text-small font-medium break-all">{vendor.phone}</p>
           </div>
         </div>
-        <div className="flex items-center">
-          <Mail size={18} className="text-wedding-pink mr-3" />
-          <div>
-            <p className="text-sm text-gray-500">Email</p>
-            <p className="font-medium">{vendor.email}</p>
+        <div className="flex items-start xs:items-center">
+          <Mail size={16} className="text-wedding-pink mr-2 xs:mr-3 mt-1 xs:mt-0 flex-shrink-0" />
+          <div className="min-w-0">
+            <p className="responsive-text-small text-gray-500">Email</p>
+            <p className="responsive-text-small font-medium break-all">{vendor.email}</p>
           </div>
         </div>
-        <div className="flex items-center">
-          <MapPin size={18} className="text-wedding-pink mr-3" />
-          <div>
-            <p className="text-sm text-gray-500">Address</p>
-            <p className="font-medium">{vendor.address}</p>
+        <div className="flex items-start">
+          <MapPin size={16} className="text-wedding-pink mr-2 xs:mr-3 mt-1 flex-shrink-0" />
+          <div className="min-w-0">
+            <p className="responsive-text-small text-gray-500">Address</p>
+            <p className="responsive-text-small font-medium">{vendor.address}</p>
           </div>
         </div>
         {vendor.website && (
-          <div className="flex items-center">
-            <ExternalLink size={18} className="text-wedding-pink mr-3" />
-            <div>
-              <p className="text-sm text-gray-500">Website</p>
+          <div className="flex items-start xs:items-center">
+            <ExternalLink size={16} className="text-wedding-pink mr-2 xs:mr-3 mt-1 xs:mt-0 flex-shrink-0" />
+            <div className="min-w-0">
+              <p className="responsive-text-small text-gray-500">Website</p>
               <a 
                 href={`https://${vendor.website}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="font-medium text-wedding-navy hover:text-wedding-pink transition-colors"
+                className="responsive-text-small font-medium text-wedding-navy hover:text-wedding-pink transition-colors break-all"
               >
                 {vendor.website}
               </a>
@@ -124,31 +124,31 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ vendor, onCheckAvailabili
       
       <Separator className="my-4" />
       
-      <div className="mb-4">
-        <h4 className="font-medium mb-2">Send Inquiry</h4>
+      <div className="mb-4 sm:mb-6">
+        <h4 className="responsive-text-small font-medium mb-2 xs:mb-3">Send Inquiry</h4>
         <Textarea 
           placeholder="Write your message to the vendor..." 
-          className="min-h-[120px]" 
+          className="min-h-[100px] xs:min-h-[120px] mobile-padding" 
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
       </div>
       
-      <Button 
-        className="w-full bg-wedding-pink hover:bg-wedding-pink/90 text-white"
-        onClick={handleSendMessage}
-        disabled={!message.trim()}
-      >
-        Send Message
-      </Button>
-      
-      <div className="mt-4">
+      <div className="space-y-3">
+        <Button 
+          className="mobile-button bg-wedding-pink hover:bg-wedding-pink/90 text-white touch-target"
+          onClick={handleSendMessage}
+          disabled={!message.trim()}
+        >
+          Send Message
+        </Button>
+        
         <Button 
           variant="outline" 
-          className="w-full border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10"
+          className="mobile-button border-wedding-pink text-wedding-pink hover:bg-wedding-pink/10 touch-target"
           onClick={onCheckAvailability}
         >
-          <Calendar size={18} className="mr-2" />
+          <Calendar size={16} className="mr-2" />
           Check Availability
         </Button>
       </div>
