@@ -142,24 +142,24 @@ const InteractiveFeatures = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-pink-50 via-white to-blue-50">
+    <section className="py-8 xs:py-10 sm:py-12 lg:py-16 xl:py-20 bg-gradient-to-br from-pink-50 via-white to-blue-50">
       <div className="wedding-container">
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-4">
-            <div className="bg-gradient-to-r from-wedding-pink to-pink-600 p-3 rounded-full">
-              <Sparkles className="h-8 w-8 text-white" />
+        <div className="text-center mb-8 xs:mb-10 sm:mb-12 lg:mb-16 px-4">
+          <div className="flex justify-center mb-3 sm:mb-4">
+            <div className="bg-gradient-to-r from-wedding-pink to-pink-600 p-2 xs:p-2.5 sm:p-3 rounded-full">
+              <Sparkles className="h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 text-white" />
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-wedding-navy mb-6">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-wedding-navy mb-3 xs:mb-4 sm:mb-6">
             Your Wedding Planning <span className="text-wedding-pink">Toolkit</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm xs:text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Comprehensive tools and resources to make your wedding planning journey smooth, 
             organized, and stress-free from start to finish.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 lg:gap-8 mb-8 xs:mb-10 sm:mb-12 lg:mb-16 px-4 sm:px-2 lg:px-0">
           {planningTools.map((tool) => {
             const IconComponent = tool.icon;
             const isExpanded = expandedTool === tool.id;
@@ -167,22 +167,22 @@ const InteractiveFeatures = () => {
             return (
               <Card 
                 key={tool.id} 
-                className={`group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-gray-100 hover:border-wedding-pink/30 bg-white/90 backdrop-blur-sm cursor-pointer ${
+                className={`group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 border-2 border-gray-100 hover:border-wedding-pink/30 bg-white/90 backdrop-blur-sm cursor-pointer ${
                   isExpanded ? 'ring-2 ring-wedding-pink/50 shadow-xl' : ''
                 }`}
                 onClick={() => handleToolClick(tool.id, tool.link)}
               >
-                <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="h-8 w-8 text-white" />
+                <CardHeader className="text-center pb-3 xs:pb-4 p-4 xs:p-5 sm:p-6">
+                  <div className={`w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 mx-auto mb-3 xs:mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className="h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-heading font-bold text-wedding-navy group-hover:text-wedding-pink transition-colors">
+                  <CardTitle className="text-base xs:text-lg sm:text-xl font-heading font-bold text-wedding-navy group-hover:text-wedding-pink transition-colors">
                     {tool.title}
                   </CardTitle>
                 </CardHeader>
                 
-                <CardContent className="text-center space-y-4">
-                  <p className="text-gray-600 leading-relaxed">
+                <CardContent className="text-center space-y-3 xs:space-y-4 p-4 xs:p-5 sm:p-6 pt-0">
+                  <p className="text-gray-600 leading-relaxed text-xs xs:text-sm sm:text-base">
                     {tool.description}
                   </p>
                   
@@ -237,33 +237,33 @@ const InteractiveFeatures = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-200/50">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-wedding-pink">50K+</div>
-              <div className="text-sm text-gray-600">Weddings Planned</div>
+        <div className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 xs:p-6 sm:p-8 shadow-xl border border-gray-200/50 mx-4 sm:mx-2 lg:mx-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 text-center">
+            <div className="space-y-1 xs:space-y-2">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-pink">50K+</div>
+              <div className="text-xs xs:text-sm text-gray-600">Weddings Planned</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-wedding-pink">95%</div>
-              <div className="text-sm text-gray-600">Client Satisfaction</div>
+            <div className="space-y-1 xs:space-y-2">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-pink">95%</div>
+              <div className="text-xs xs:text-sm text-gray-600">Client Satisfaction</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-wedding-pink">30+</div>
-              <div className="text-sm text-gray-600">Planning Tools</div>
+            <div className="space-y-1 xs:space-y-2">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-pink">30+</div>
+              <div className="text-xs xs:text-sm text-gray-600">Planning Tools</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-wedding-pink">24/7</div>
-              <div className="text-sm text-gray-600">Support Available</div>
+            <div className="space-y-1 xs:space-y-2">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-wedding-pink">24/7</div>
+              <div className="text-xs xs:text-sm text-gray-600">Support Available</div>
             </div>
           </div>
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 xs:mt-10 sm:mt-12 px-4">
           <Button 
             onClick={() => navigate('/planning-tools')}
-            className="bg-gradient-to-r from-wedding-navy to-blue-700 hover:from-wedding-navy/90 hover:to-blue-800 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
+            className="bg-gradient-to-r from-wedding-navy to-blue-700 hover:from-wedding-navy/90 hover:to-blue-800 text-white px-6 xs:px-8 py-3 xs:py-4 text-sm xs:text-base sm:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300 touch-target w-full sm:w-auto"
           >
-            <Clock className="mr-2 h-5 w-5" />
+            <Clock className="mr-2 h-4 w-4 xs:h-5 xs:w-5" />
             Access All Planning Tools
           </Button>
         </div>

@@ -63,10 +63,10 @@ const TestimonialSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-wedding-cream">
+    <section className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gradient-to-br from-pink-50 via-white to-purple-50">
       <div className="wedding-container">
         <h2 className="section-title">Happy Couples</h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 mb-6 sm:mb-8 lg:mb-12 max-w-2xl mx-auto px-4 text-sm xs:text-base sm:text-lg">
           Hear from couples who found their perfect wedding vendors through our platform
         </p>
 
@@ -75,36 +75,36 @@ const TestimonialSection = () => {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-5xl mx-auto px-4"
+          className="w-full max-w-5xl mx-auto px-2 xs:px-4"
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-2 xs:-ml-4">
             {testimonials.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="md:basis-1/3 lg:basis-1/3">
-                <Card className="bg-white shadow-md hover:shadow-lg transition-shadow h-full">
-                  <CardContent className="p-6 text-center h-full flex flex-col">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
+              <CarouselItem key={testimonial.id} className="pl-2 xs:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <Card className="bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full border border-gray-100">
+                  <CardContent className="p-4 xs:p-5 sm:p-6 text-center h-full flex flex-col">
+                    <div className="w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 rounded-full overflow-hidden ring-4 ring-wedding-pink/20">
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="text-xl font-medium mb-1">{testimonial.name}</h3>
-                    <p className="text-gray-500 text-sm mb-4">{testimonial.location}</p>
+                    <h3 className="text-base xs:text-lg sm:text-xl font-semibold mb-1 text-wedding-navy">{testimonial.name}</h3>
+                    <p className="text-gray-500 text-xs xs:text-sm mb-3 sm:mb-4">{testimonial.location}</p>
                     
-                    <svg className="w-10 h-10 mx-auto mb-4 text-wedding-pink opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 mx-auto mb-3 sm:mb-4 text-wedding-pink opacity-20" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                     </svg>
                     
-                    <p className="text-gray-700 italic flex-grow">{testimonial.quote}</p>
+                    <p className="text-gray-700 italic flex-grow text-xs xs:text-sm sm:text-base leading-relaxed">{testimonial.quote}</p>
                   </CardContent>
                 </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-center mt-8">
-            <CarouselPrevious className="static transform-none mx-2" />
-            <CarouselNext className="static transform-none mx-2" />
+          <div className="flex justify-center mt-6 sm:mt-8 gap-2">
+            <CarouselPrevious className="static transform-none touch-target" />
+            <CarouselNext className="static transform-none touch-target" />
           </div>
         </Carousel>
       </div>
