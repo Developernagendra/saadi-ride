@@ -27,8 +27,8 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ onNavigate }) => 
                   <NavigationMenuTrigger className="text-gray-900 font-semibold hover:text-wedding-pink hover:bg-wedding-pink/5 transition-all duration-300 rounded-lg px-3 py-2 text-sm lg:text-base">
                     {link.title}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white/95 backdrop-blur-lg shadow-xl border border-gray-200/50 rounded-xl">
-                    <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <NavigationMenuContent className="bg-background/98 backdrop-blur-lg shadow-xl border border-border rounded-xl z-[100]">
+                    <ul className="grid w-[350px] gap-2 p-4 md:w-[450px] md:grid-cols-2 lg:w-[550px] xl:w-[600px]">
                       {link.subItems.map((service) => (
                         <li key={service.title} className="row-span-1">
                           <NavigationMenuLink asChild>
