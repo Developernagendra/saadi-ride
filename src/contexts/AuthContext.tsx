@@ -1,6 +1,7 @@
-
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
 
 // Define user interface
 interface User {
@@ -25,59 +26,88 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Provider component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Check if user is already logged in on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem("shaadiSaathi_user");
-    
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        console.log("Found stored user:", parsedUser);
-        setUser(parsedUser);
-      } catch (error) {
-        console.error("Failed to parse user from localStorage", error);
-        localStorage.removeItem("shaadiSaathi_user");
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setIsLoading(false);
+        
+        if (session?.user) {
+          setTimeout(() => {
+            supabase
+              .from('profiles')
+              .select('*')
+              .eq('id', session.user.id)
+              .single()
+              .then(({ data: profile }) => {
+                if (profile) {
+                  setUser({
+                    id: session.user.id,
+                    email: session.user.email!,
+                    name: profile.name
+                  });
+                }
+              });
+          }, 0);
+        } else {
+          setUser(null);
+        }
       }
-    }
-    
-    setIsLoading(false);
+    );
+
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      
+      if (session?.user) {
+        supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', session.user.id)
+          .single()
+          .then(({ data: profile }) => {
+            if (profile) {
+              setUser({
+                id: session.user.id,
+                email: session.user.email!,
+                name: profile.name
+              });
+            }
+            setIsLoading(false);
+          });
+      } else {
+        setIsLoading(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   // Login function
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       setIsLoading(true);
-      console.log("Attempting login for:", email);
       
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      if (!email.includes("@")) {
-        toast.error("Please enter a valid email address");
-        return false;
-      }
-      
-      if (password.length < 6) {
-        toast.error("Password must be at least 6 characters");
-        return false;
-      }
-      
-      // Create a mock user (in a real app, this would come from the backend)
-      const mockUser: User = {
-        id: Date.now().toString(),
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
-        name: email.split("@")[0].charAt(0).toUpperCase() + email.split("@")[0].slice(1)
-      };
+        password,
+      });
       
-      // Save user to localStorage with app-specific key
-      localStorage.setItem("shaadiSaathi_user", JSON.stringify(mockUser));
-      setUser(mockUser);
+      if (error) {
+        toast.error(error.message);
+        return false;
+      }
       
-      console.log("Login successful:", mockUser);
-      toast.success("Welcome back to ShaadiSaathi!");
-      return true;
+      if (data.user) {
+        toast.success("Welcome back to ShaadiSaathi!");
+        return true;
+      }
+      
+      return false;
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error("Login error:", error);
@@ -91,41 +121,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signup = async (email: string, password: string, name: string): Promise<boolean> => {
     try {
       setIsLoading(true);
-      console.log("Attempting signup for:", email);
       
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 800));
+      const redirectUrl = `${window.location.origin}/`;
       
-      // Validation
-      if (!email.includes("@")) {
-        toast.error("Please enter a valid email address");
-        return false;
-      }
-      
-      if (password.length < 6) {
-        toast.error("Password must be at least 6 characters");
-        return false;
-      }
-      
-      if (name.length < 2) {
-        toast.error("Please enter your name");
-        return false;
-      }
-      
-      // Create a new user
-      const newUser: User = {
-        id: Date.now().toString(),
+      const { data, error } = await supabase.auth.signUp({
         email,
-        name
-      };
+        password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: {
+            name: name,
+          }
+        }
+      });
       
-      // Save user to localStorage with app-specific key
-      localStorage.setItem("shaadiSaathi_user", JSON.stringify(newUser));
-      setUser(newUser);
+      if (error) {
+        toast.error(error.message);
+        return false;
+      }
       
-      console.log("Signup successful:", newUser);
-      toast.success("Welcome to ShaadiSaathi! Your account has been created.");
-      return true;
+      if (data.user) {
+        toast.success("Welcome to ShaadiSaathi! Your account has been created.");
+        return true;
+      }
+      
+      return false;
     } catch (error) {
       toast.error("Signup failed. Please try again.");
       console.error("Signup error:", error);
@@ -136,10 +156,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   // Logout function
-  const logout = () => {
-    console.log("Logging out user:", user?.email);
-    localStorage.removeItem("shaadiSaathi_user");
+  const logout = async () => {
+    await supabase.auth.signOut();
     setUser(null);
+    setSession(null);
     toast.success("You've been logged out successfully");
   };
 
