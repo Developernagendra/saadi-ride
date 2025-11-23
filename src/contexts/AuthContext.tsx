@@ -48,7 +48,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                   setUser({
                     id: session.user.id,
                     email: session.user.email!,
-                    name: profile.name
+                    name: profile.full_name || session.user.email!.split('@')[0]
                   });
                 }
               });
@@ -74,7 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
               setUser({
                 id: session.user.id,
                 email: session.user.email!,
-                name: profile.name
+                name: profile.full_name || session.user.email!.split('@')[0]
               });
             }
             setIsLoading(false);

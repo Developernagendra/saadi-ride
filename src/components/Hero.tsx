@@ -161,6 +161,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
+      </div>
       
       {/* Enhanced image indicators with better styling */}
       <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 xs:space-x-2 sm:space-x-3 z-10">

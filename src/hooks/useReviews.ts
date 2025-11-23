@@ -19,12 +19,20 @@ export const useVendorReviews = (vendorId: string) => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('reviews')
-        .select('*, profiles(name)')
+        .select('id, vendor_id, user_id, rating, review, created_at')
         .eq('vendor_id', vendorId)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      return data as Review[];
+      
+      return data.map(review => ({
+        id: review.id,
+        vendor_id: review.vendor_id,
+        user_id: review.user_id,
+        rating: review.rating,
+        comment: review.review,
+        created_at: review.created_at,
+      }));
     },
     enabled: !!vendorId,
   });
@@ -45,7 +53,7 @@ export const useCreateReview = () => {
           vendor_id: review.vendor_id,
           user_id: user.id,
           rating: review.rating,
-          comment: review.comment,
+          review: review.comment,
         })
         .select()
         .single();

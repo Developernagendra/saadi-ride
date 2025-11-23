@@ -18,12 +18,11 @@ export type Database = {
         Row: {
           created_at: string
           event_date: string
-          event_type: string
+          event_type: string | null
           guest_count: number | null
           id: string
           message: string | null
-          package_id: string | null
-          status: Database["public"]["Enums"]["booking_status"] | null
+          status: string | null
           updated_at: string
           user_id: string
           vendor_id: string
@@ -31,12 +30,11 @@ export type Database = {
         Insert: {
           created_at?: string
           event_date: string
-          event_type: string
+          event_type?: string | null
           guest_count?: number | null
           id?: string
           message?: string | null
-          package_id?: string | null
-          status?: Database["public"]["Enums"]["booking_status"] | null
+          status?: string | null
           updated_at?: string
           user_id: string
           vendor_id: string
@@ -44,74 +42,18 @@ export type Database = {
         Update: {
           created_at?: string
           event_date?: string
-          event_type?: string
+          event_type?: string | null
           guest_count?: number | null
           id?: string
           message?: string | null
-          package_id?: string | null
-          status?: Database["public"]["Enums"]["booking_status"] | null
+          status?: string | null
           updated_at?: string
           user_id?: string
           vendor_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "bookings_package_id_fkey"
-            columns: ["package_id"]
-            isOneToOne: false
-            referencedRelation: "packages"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "bookings_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "bookings_vendor_id_fkey"
-            columns: ["vendor_id"]
-            isOneToOne: false
-            referencedRelation: "vendors"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      packages: {
-        Row: {
-          created_at: string
-          duration: string | null
-          features: Json | null
-          id: string
-          name: string
-          price: string
-          updated_at: string
-          vendor_id: string
-        }
-        Insert: {
-          created_at?: string
-          duration?: string | null
-          features?: Json | null
-          id?: string
-          name: string
-          price: string
-          updated_at?: string
-          vendor_id: string
-        }
-        Update: {
-          created_at?: string
-          duration?: string | null
-          features?: Json | null
-          id?: string
-          name?: string
-          price?: string
-          updated_at?: string
-          vendor_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "packages_vendor_id_fkey"
             columns: ["vendor_id"]
             isOneToOne: false
             referencedRelation: "vendors"
@@ -123,68 +65,61 @@ export type Database = {
         Row: {
           avatar_url: string | null
           created_at: string
-          email: string
+          full_name: string | null
           id: string
-          name: string
           phone: string | null
           updated_at: string
+          user_id: string
         }
         Insert: {
           avatar_url?: string | null
           created_at?: string
-          email: string
-          id: string
-          name: string
+          full_name?: string | null
+          id?: string
           phone?: string | null
           updated_at?: string
+          user_id: string
         }
         Update: {
           avatar_url?: string | null
           created_at?: string
-          email?: string
+          full_name?: string | null
           id?: string
-          name?: string
           phone?: string | null
           updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
       reviews: {
         Row: {
-          comment: string
           created_at: string
           id: string
           rating: number
+          review: string
           updated_at: string
           user_id: string
           vendor_id: string
         }
         Insert: {
-          comment: string
           created_at?: string
           id?: string
           rating: number
+          review: string
           updated_at?: string
           user_id: string
           vendor_id: string
         }
         Update: {
-          comment?: string
           created_at?: string
           id?: string
           rating?: number
+          review?: string
           updated_at?: string
           user_id?: string
           vendor_id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "reviews_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "reviews_vendor_id_fkey"
             columns: ["vendor_id"]
@@ -194,110 +129,62 @@ export type Database = {
           },
         ]
       }
-      user_roles: {
-        Row: {
-          created_at: string
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: []
-      }
       vendors: {
         Row: {
-          address: string
-          category: Database["public"]["Enums"]["vendor_category"]
+          address: string | null
+          category: string
           created_at: string
-          description: string
-          email: string
-          experience: string | null
+          description: string | null
+          email: string | null
           featured: boolean | null
-          features: Json | null
-          gallery: Json | null
           id: string
-          image: string
-          languages: Json | null
+          images: string[] | null
           location: string
           name: string
-          phone: string
-          price_range: number
+          phone: string | null
           rating: number | null
-          review_count: number | null
-          services: Json | null
+          services: string[] | null
           slug: string
-          specializations: Json | null
-          starting_price: string
+          starting_price: number | null
           updated_at: string
-          user_id: string | null
-          verified: boolean | null
           website: string | null
         }
         Insert: {
-          address: string
-          category: Database["public"]["Enums"]["vendor_category"]
+          address?: string | null
+          category: string
           created_at?: string
-          description: string
-          email: string
-          experience?: string | null
+          description?: string | null
+          email?: string | null
           featured?: boolean | null
-          features?: Json | null
-          gallery?: Json | null
           id?: string
-          image: string
-          languages?: Json | null
+          images?: string[] | null
           location: string
           name: string
-          phone: string
-          price_range: number
+          phone?: string | null
           rating?: number | null
-          review_count?: number | null
-          services?: Json | null
+          services?: string[] | null
           slug: string
-          specializations?: Json | null
-          starting_price: string
+          starting_price?: number | null
           updated_at?: string
-          user_id?: string | null
-          verified?: boolean | null
           website?: string | null
         }
         Update: {
-          address?: string
-          category?: Database["public"]["Enums"]["vendor_category"]
+          address?: string | null
+          category?: string
           created_at?: string
-          description?: string
-          email?: string
-          experience?: string | null
+          description?: string | null
+          email?: string | null
           featured?: boolean | null
-          features?: Json | null
-          gallery?: Json | null
           id?: string
-          image?: string
-          languages?: Json | null
+          images?: string[] | null
           location?: string
           name?: string
-          phone?: string
-          price_range?: number
+          phone?: string | null
           rating?: number | null
-          review_count?: number | null
-          services?: Json | null
+          services?: string[] | null
           slug?: string
-          specializations?: Json | null
-          starting_price?: string
+          starting_price?: number | null
           updated_at?: string
-          user_id?: string | null
-          verified?: boolean | null
           website?: string | null
         }
         Relationships: []
@@ -307,28 +194,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "vendor" | "user"
-      booking_status: "pending" | "confirmed" | "cancelled" | "completed"
-      vendor_category:
-        | "venues"
-        | "photographers"
-        | "catering"
-        | "decorators"
-        | "makeup"
-        | "mehendi"
-        | "bridal"
-        | "planners"
-        | "purohit"
-        | "digital"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -455,21 +324,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "vendor", "user"],
-      booking_status: ["pending", "confirmed", "cancelled", "completed"],
-      vendor_category: [
-        "venues",
-        "photographers",
-        "catering",
-        "decorators",
-        "makeup",
-        "mehendi",
-        "bridal",
-        "planners",
-        "purohit",
-        "digital",
-      ],
-    },
+    Enums: {},
   },
 } as const
