@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import type { Tables } from '@/integrations/supabase/types';
+
+type DatabaseVendor = Tables<'vendors'>;
 
 export interface Vendor {
   id: string;
@@ -34,6 +37,28 @@ export interface VendorFilters {
   searchTerm?: string;
 }
 
+const mapVendor = (dbVendor: DatabaseVendor): Vendor => ({
+  id: dbVendor.id,
+  name: dbVendor.name,
+  category: dbVendor.category,
+  location: dbVendor.location,
+  rating: dbVendor.rating || 0,
+  review_count: 0,
+  starting_price: dbVendor.starting_price ? `₹${dbVendor.starting_price.toLocaleString()}` : 'Contact for pricing',
+  price_range: dbVendor.starting_price || 0,
+  slug: dbVendor.slug,
+  image: dbVendor.images?.[0] || '',
+  featured: dbVendor.featured || false,
+  description: dbVendor.description || '',
+  features: dbVendor.services || [],
+  phone: dbVendor.phone || '',
+  email: dbVendor.email || '',
+  address: dbVendor.address || '',
+  website: dbVendor.website || undefined,
+  gallery: dbVendor.images || [],
+  services: dbVendor.services || [],
+});
+
 export const useVendors = (filters?: VendorFilters) => {
   return useQuery({
     queryKey: ['vendors', filters],
@@ -41,7 +66,7 @@ export const useVendors = (filters?: VendorFilters) => {
       let query = supabase.from('vendors').select('*');
 
       if (filters?.category && filters.category !== 'all') {
-        query = query.eq('category', filters.category as any);
+        query = query.eq('category', filters.category);
       }
 
       if (filters?.city && filters.city !== 'all') {
@@ -49,7 +74,7 @@ export const useVendors = (filters?: VendorFilters) => {
       }
 
       if (filters?.priceRange) {
-        query = query.eq('price_range', filters.priceRange);
+        query = query.lte('starting_price', filters.priceRange);
       }
 
       if (filters?.searchTerm) {
@@ -59,7 +84,7 @@ export const useVendors = (filters?: VendorFilters) => {
       const { data, error } = await query.order('featured', { ascending: false }).order('rating', { ascending: false });
 
       if (error) throw error;
-      return data as Vendor[];
+      return data.map(mapVendor);
     },
   });
 };
@@ -75,7 +100,7 @@ export const useVendor = (slug: string) => {
         .maybeSingle();
 
       if (error) throw error;
-      return data as Vendor | null;
+      return data ? mapVendor(data) : null;
     },
     enabled: !!slug,
   });
@@ -93,7 +118,7 @@ export const useFeaturedVendors = () => {
         .limit(6);
 
       if (error) throw error;
-      return data as Vendor[];
+      return data.map(mapVendor);
     },
   });
 };
