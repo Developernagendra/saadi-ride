@@ -9,6 +9,7 @@ import ChatHeader from "./live-chat/ChatHeader";
 import UserInfoForm from "./live-chat/UserInfoForm";
 import MessageList from "./live-chat/MessageList";
 import ChatInput from "./live-chat/ChatInput";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
   id: number;
@@ -115,36 +116,44 @@ const LiveChat = () => {
   // Responsive chat window
   const chatWindowClass = isMobile 
     ? "fixed inset-0 z-[9999] flex flex-col bg-white"
-    : "fixed bottom-4 right-4 z-[9999] w-80 sm:w-96 h-[500px] sm:h-[600px] flex flex-col max-h-[85vh] sm:max-h-[80vh]";
+    : "fixed bottom-4 right-4 z-[9999] w-80 sm:w-96 h-[500px] sm:h-[550px] flex flex-col max-h-[85vh] sm:max-h-[80vh]";
 
   return (
-    <div className={chatWindowClass}>
-      <Card className="flex-1 flex flex-col shadow-2xl border-0 rounded-none sm:rounded-xl overflow-hidden">
-        <ChatHeader onClose={() => setIsOpen(false)} />
+    <AnimatePresence>
+      <motion.div 
+        className={chatWindowClass}
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
+        <Card className="flex-1 flex flex-col shadow-2xl border-0 rounded-none sm:rounded-xl overflow-hidden">
+          <ChatHeader onClose={() => setIsOpen(false)} />
 
-        <CardContent className="flex-1 flex flex-col p-0">
-          {!isInfoCollected ? (
-            <UserInfoForm
-              userInfo={userInfo}
-              onUserInfoChange={setUserInfo}
-              onSubmit={handleInfoSubmit}
-              onWhatsAppContact={handleWhatsAppContact}
-            />
-          ) : (
-            <>
-              <MessageList messages={messages} isTyping={isTyping} />
-              <ChatInput
-                currentMessage={currentMessage}
-                onMessageChange={setCurrentMessage}
-                onSendMessage={handleSendMessage}
-                onKeyPress={handleKeyPress}
+          <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
+            {!isInfoCollected ? (
+              <UserInfoForm
+                userInfo={userInfo}
+                onUserInfoChange={setUserInfo}
+                onSubmit={handleInfoSubmit}
                 onWhatsAppContact={handleWhatsAppContact}
               />
-            </>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+            ) : (
+              <>
+                <MessageList messages={messages} isTyping={isTyping} />
+                <ChatInput
+                  currentMessage={currentMessage}
+                  onMessageChange={setCurrentMessage}
+                  onSendMessage={handleSendMessage}
+                  onKeyPress={handleKeyPress}
+                  onWhatsAppContact={handleWhatsAppContact}
+                />
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

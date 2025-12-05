@@ -4,16 +4,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Star } from "lucide-react";
 import { Vendor } from "@/utils/vendorData";
+import { motion } from "framer-motion";
 
 interface VendorCardProps {
   vendor: Vendor;
   onViewDetails: (vendorId: number, slug: string) => void;
+  index?: number;
 }
 
-const VendorCard: React.FC<VendorCardProps> = ({ vendor, onViewDetails }) => {
+const VendorCard: React.FC<VendorCardProps> = ({ vendor, onViewDetails, index = 0 }) => {
   return (
-    <Card className="vendor-card group shadow-md hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02] w-full max-w-sm mx-auto sm:max-w-none">
-      <CardContent className="p-0">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.3, delay: index * 0.05 }}
+    >
+      <Card className="vendor-card group shadow-md hover:shadow-xl active:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full max-w-sm mx-auto sm:max-w-none touch-manipulation">
+        <CardContent className="p-0">
         <div 
           className="relative overflow-hidden aspect-[4/3] cursor-pointer touch-manipulation"
           onClick={() => onViewDetails(vendor.id, vendor.slug)}
@@ -64,7 +72,7 @@ const VendorCard: React.FC<VendorCardProps> = ({ vendor, onViewDetails }) => {
           <div className="mt-3 sm:mt-4">
             <Button 
               onClick={() => onViewDetails(vendor.id, vendor.slug)} 
-              className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90 transition-all duration-300 transform hover:scale-[1.01] active:scale-95 touch-target h-10 sm:h-11 text-sm sm:text-base"
+              className="w-full bg-wedding-pink text-white hover:bg-wedding-pink/90 active:bg-wedding-pink/80 transition-all duration-200 transform hover:scale-[1.01] active:scale-[0.98] touch-target h-10 sm:h-11 text-sm sm:text-base"
             >
               View Details
             </Button>
@@ -72,6 +80,7 @@ const VendorCard: React.FC<VendorCardProps> = ({ vendor, onViewDetails }) => {
         </div>
       </CardContent>
     </Card>
+    </motion.div>
   );
 };
 

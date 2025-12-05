@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const CategorySection = () => {
   const categories = [
@@ -110,11 +111,18 @@ const CategorySection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8 px-3 sm:px-0">
           {categories.map((category, index) => (
-            <Link key={category.id} to={`/vendors?category=${category.id}`}>
-              <Card className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden h-full border-0 shadow-lg hover:scale-[1.02] animate-fade-in`} style={{animationDelay: `${index * 100}ms`}}>
-                <div className="relative h-48 sm:h-56 lg:h-48 xl:h-56 overflow-hidden">
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+            >
+              <Link to={`/vendors?category=${category.id}`} className="block h-full">
+                <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 active:scale-[0.98] overflow-hidden h-full border-0 shadow-lg touch-manipulation">
+                <div className="relative h-32 xs:h-40 sm:h-48 lg:h-48 xl:h-56 overflow-hidden">
                   <img 
                     src={category.image} 
                     alt={category.name} 
@@ -124,12 +132,12 @@ const CategorySection = () => {
                   <div className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
                   
                   {/* Enhanced icon with animation */}
-                  <div className="absolute top-4 left-4 text-3xl sm:text-4xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 drop-shadow-2xl">
+                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4 text-2xl sm:text-4xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 drop-shadow-2xl">
                     {category.icon}
                   </div>
                   
                   {/* Enhanced count badge */}
-                  <div className={`absolute bottom-4 right-4 bg-gradient-to-r ${category.color} text-white px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-lg group-hover:scale-110 transition-transform duration-300 border border-white/20 backdrop-blur-sm`}>
+                  <div className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-gradient-to-r ${category.color} text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-medium shadow-lg group-hover:scale-110 transition-transform duration-300 border border-white/20 backdrop-blur-sm`}>
                     {category.count}
                   </div>
                   
@@ -139,16 +147,16 @@ const CategorySection = () => {
                   </div>
                 </div>
                 
-                <CardContent className="p-6 bg-gradient-to-br from-white to-gray-50/50 group-hover:from-white group-hover:to-white transition-all duration-300">
-                  <h3 className="text-xl sm:text-2xl font-heading font-bold text-wedding-navy mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-wedding-pink group-hover:to-purple-500 transition-all duration-300 leading-tight">
+                <CardContent className="p-3 sm:p-6 bg-gradient-to-br from-white to-gray-50/50 group-hover:from-white group-hover:to-white transition-all duration-300">
+                  <h3 className="text-sm sm:text-xl lg:text-2xl font-heading font-bold text-wedding-navy mb-1 sm:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-wedding-pink group-hover:to-purple-500 transition-all duration-300 leading-tight line-clamp-1">
                     {category.name}
                   </h3>
-                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-300 line-clamp-2 hidden xs:block">
                     {category.description}
                   </p>
                   
-                  {/* Hover indicator */}
-                  <div className="mt-4 flex items-center text-wedding-pink opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                  {/* Hover indicator - hidden on mobile for cleaner look */}
+                  <div className="mt-2 sm:mt-4 hidden sm:flex items-center text-wedding-pink opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
                     <span className="text-sm font-medium">Explore</span>
                     <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -156,7 +164,8 @@ const CategorySection = () => {
                   </div>
                 </CardContent>
               </Card>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
         
