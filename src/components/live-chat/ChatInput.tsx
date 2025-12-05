@@ -19,30 +19,33 @@ const ChatInput: React.FC<ChatInputProps> = ({
   onWhatsAppContact,
 }) => {
   return (
-    <div className="border-t bg-white p-3 sm:p-4 space-y-3">
+    <div className="border-t bg-white p-3 sm:p-4 space-y-2 sm:space-y-3 flex-shrink-0">
       <Button 
         onClick={onWhatsAppContact}
-        className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold h-10 sm:h-12 text-sm sm:text-base touch-target"
+        className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-semibold h-11 sm:h-12 text-sm sm:text-base touch-target transition-all duration-200 active:scale-[0.98]"
         size="sm"
       >
         <Phone className="w-4 h-4 mr-2" />
         Continue on WhatsApp
       </Button>
       
-      <div className="flex space-x-2">
+      <div className="flex gap-2">
         <Input
           placeholder="Type your message..."
           value={currentMessage}
           onChange={(e) => onMessageChange(e.target.value)}
           onKeyPress={onKeyPress}
-          className="flex-1 h-10 sm:h-12 border-2 focus:border-wedding-pink text-sm sm:text-base mobile-padding"
+          className="flex-1 h-11 sm:h-12 border-2 focus:border-wedding-pink text-base touch-manipulation"
+          autoComplete="off"
+          enterKeyHint="send"
         />
         <Button
           onClick={onSendMessage}
           disabled={!currentMessage.trim()}
-          className="bg-wedding-pink hover:bg-wedding-pink/90 h-10 sm:h-12 px-3 sm:px-4 touch-target"
+          className="bg-wedding-pink hover:bg-wedding-pink/90 active:bg-wedding-pink/80 h-11 sm:h-12 w-11 sm:w-12 p-0 touch-target transition-all duration-200 active:scale-[0.95] disabled:opacity-50"
+          aria-label="Send message"
         >
-          <Send className="w-4 h-4" />
+          <Send className="w-4 h-4 sm:w-5 sm:h-5" />
         </Button>
       </div>
     </div>

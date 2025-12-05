@@ -32,6 +32,8 @@ const translations = {
     'hero.title': 'Plan Your Dream Wedding',
     'hero.subtitle': 'Find the best wedding vendors, venues and inspiration',
     'hero.cta': 'Start Planning',
+    'hero.exploreWeddings': 'Explore Weddings',
+    'hero.scrollDown': 'Scroll Down',
     
     // Categories
     'categories.title': 'Browse by Category',
@@ -95,6 +97,8 @@ const translations = {
     'hero.title': 'अपनी सपनों की शादी की योजना बनाएं',
     'hero.subtitle': 'सर्वश्रेष्ठ विवाह विक्रेता, स्थल और प्रेरणा खोजें',
     'hero.cta': 'योजना शुरू करें',
+    'hero.exploreWeddings': 'शादियां देखें',
+    'hero.scrollDown': 'नीचे स्क्रॉल करें',
     
     // Categories
     'categories.title': 'श्रेणी के अनुसार ब्राउज़ करें',
